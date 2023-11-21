@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 07:52:24 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/20 12:00:12 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/11/21 06:53:58 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,22 @@ void	*ft_calloc(size_t count, size_t size)
 		return (NULL);
 	ft_bzero(loc, count * size);
 	return (loc);
+}
+
+char    *ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char *)(s + i));
+		i++;
+	}
+	if ((char)c == '\0')
+		return ((char *)(s + i));
+	return (NULL);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
