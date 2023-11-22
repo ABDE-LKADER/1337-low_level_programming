@@ -1,6 +1,6 @@
-NAME =	get_next_line.a
-LIBH =	get_next_line.h
-SRCS =	get_next_line.c get_next_line_utils.c
+NAME =	printf.a
+LIBH =	printf.h
+SRCS =	ft_printf.c
 FLGS =	cc -c -Wall -Wextra -Werror
 ARRC =	ar -rc
 OBJS =	$(SRCS:.c=.o)
@@ -14,7 +14,7 @@ $(NAME): $(OBJS)
 
 all: $(NAME)
 
-clean: 
+clean:
 	$(RM) $(OBJS)
 
 fclean: clean
