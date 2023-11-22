@@ -1,6 +1,6 @@
-NAME =	printf.a
+NAME =	libftprintf.a
 LIBH =	printf.h
-SRCS =	ft_printf.c
+SRCS =	ft_printf.c ft_printf_utils.c
 FLGS =	cc -c -Wall -Wextra -Werror
 ARRC =	ar -rc
 OBJS =	$(SRCS:.c=.o)

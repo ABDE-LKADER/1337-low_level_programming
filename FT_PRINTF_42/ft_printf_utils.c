@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   printf_plus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 09:40:45 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 09:43:04 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/22 11:39:58 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_PRINTF
-# define FT_PRINTF
+#include "libftprintf.h"
 
-#include <stdarg.h>
-#include <stdlib.h>
+int		print_char(char c)
+{
+	return (write(1, &c, 1));
+}
 
-#endif
+int		print_string(char *str)
+{
+	int		i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		print_char(str[i++]);
+	return (i);
+}
