@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:25:49 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:19:19 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int		print_string(char *str)
 {
 	int		i;
 
-	i = 0;
 	if (!str)
-		ft_putstr_fd("(null)", 1);
+		return (ft_putstr_fd("(null)", 1), 0);
+	i = 0;
 	while (str[i])
-		print_char(str[i++]);
-	return (i);
+		i++;
+	return (ft_putstr_fd(str, 1), i);
 }
 
-int		print_(char *)
+int		print_x(char *str)
 {
-	
+	return (1);
 }

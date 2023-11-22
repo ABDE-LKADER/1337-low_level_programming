@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:24:42 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:17:35 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,19 @@ int		ft_printf(const char *format, ...)
 			if (format[i] == 's')
 				print += print_string(va_arg(lstarg, char *));
 			if (format[i] == 'p')
-				print += ;
-		}
+				print += print_x(va_arg(lstarg, char *));
+			if (format[i] == 'd' || format[i] == 'i')
+				print += print_x(va_arg(lstarg, char *));
+			if (format[i] == 'u')
+				print += print_x(va_arg(lstarg, char *));
+			if (format[i] == 'X' || format[i] == 'X')
+				print += print_x(va_arg(lstarg, char *));
+			if (format[i] == '%')
+				print += print_x(va_arg(lstarg, char *));
+			}
 		else
 			print += print_char(format[i]);
 		i++;
 	}
-	va_end(lstarg);
-	return (print);
+	return (va_end(lstarg), print);
 }
