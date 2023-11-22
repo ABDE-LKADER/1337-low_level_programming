@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   lstiter_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:01:19 by abdel            ###   ########.fr       */
+/*   Created: 2023/11/08 09:18:01 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/11 20:21:33 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int		print_char(char c)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	return (write(1, &c, 1));
-}
-
-int		print_string(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-		print_char(str[i++]);
-	return (i);
+	if (!lst)
+		return ;
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }

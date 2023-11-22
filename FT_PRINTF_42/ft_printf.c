@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 13:23:33 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:51:42 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,3 @@ int		ft_printf(const char *format, ...)
 	va_end(lstarg);
 	return (print);
 }
-
-// #include <stdio.h>
-// int		main(void)
-// {
-// 	ft_printf("%s %%%%%%\n", NULL);
-// 	printf("% s %%%%%%\n", NULL);
-// }

@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:01:19 by abdel            ###   ########.fr       */
+/*   Created: 2023/11/02 19:32:56 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/04 14:33:02 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int		print_char(char c)
+void	*ft_calloc(size_t count, size_t size)
 {
-	return (write(1, &c, 1));
-}
+	void	*loc;
 
-int		print_string(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-		print_char(str[i++]);
-	return (i);
+	loc = malloc(count * size);
+	if (!loc)
+		return (NULL);
+	ft_bzero(loc, count * size);
+	return (loc);
 }

@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:01:19 by abdel            ###   ########.fr       */
+/*   Created: 2023/11/07 21:19:03 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/08 17:42:58 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int		print_char(char c)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	return (write(1, &c, 1));
-}
+	t_list	*node;
 
-int		print_string(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-		print_char(str[i++]);
-	return (i);
+	if (!(*lst))
+	{
+		*lst = new;
+		return ;
+	}
+	node = *lst;
+	node = ft_lstlast(node);
+	node->next = new;
 }

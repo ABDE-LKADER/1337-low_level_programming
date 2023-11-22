@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:01:19 by abdel            ###   ########.fr       */
+/*   Created: 2023/10/30 10:54:37 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/04 21:16:04 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int		print_char(char c)
+int	ft_isalnum(int c)
 {
-	return (write(1, &c, 1));
-}
-
-int		print_string(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-		print_char(str[i++]);
-	return (i);
+	if (!((c >= 65 && c <= 90) || (c >= 97 && c <= 122)
+			|| (c >= 48 && c <= 57)))
+		return (0);
+	return (1);
 }

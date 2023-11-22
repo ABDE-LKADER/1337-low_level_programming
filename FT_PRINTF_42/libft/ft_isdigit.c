@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:01:19 by abdel            ###   ########.fr       */
+/*   Created: 2023/10/30 10:53:04 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/04 13:03:00 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int		print_char(char c)
+int	ft_isdigit(int c)
 {
-	return (write(1, &c, 1));
-}
-
-int		print_string(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-		print_char(str[i++]);
-	return (i);
+	if (!(c >= 48 && c <= 57))
+		return (0);
+	return (1);
 }
