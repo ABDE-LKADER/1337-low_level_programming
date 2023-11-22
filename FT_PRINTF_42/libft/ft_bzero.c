@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 09:40:45 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 14:54:12 by abdel            ###   ########.fr       */
+/*   Created: 2023/10/30 22:58:18 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/03 17:35:25 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_PRINTF
-# define FT_PRINTF
+#include "libft.h"
 
-#include "./libft/libft.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+	char	*buff;
 
-int		print_char(char c);
-int		print_string(char *str);
-int		ft_printf(const char *format, ...);
-
-#endif
+	i = 0;
+	buff = (char *)s;
+	while (i < n)
+	{
+		buff[i] = '\0';
+		i++;
+	}
+}

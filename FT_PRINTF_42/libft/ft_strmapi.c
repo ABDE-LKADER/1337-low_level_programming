@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:25:49 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/06 20:38:16 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/06 21:51:36 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int		print_char(char c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	return (ft_putchar_fd(c, 1), 1);
-}
+	int		len;
+	char	*str;
 
-int		print_string(char *str)
-{
-	int		i;
-
-	i = 0;
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s);
+	str = malloc((len + 1) * sizeof(char));
 	if (!str)
-		ft_putstr_fd("(null)", 1);
-	while (str[i])
-		print_char(str[i++]);
-	return (i);
-}
-
-int		print_(char *)
-{
-	
+		return (NULL);
+	str[len] = '\0';
+	while (len--)
+		str[len] = f(len, s[len]);
+	return (str);
 }

@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 09:40:45 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 14:54:12 by abdel            ###   ########.fr       */
+/*   Created: 2023/11/07 20:49:31 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/07 20:59:12 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_PRINTF
-# define FT_PRINTF
+#include "libft.h"
 
-#include "./libft/libft.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
-
-int		print_char(char c);
-int		print_string(char *str);
-int		ft_printf(const char *format, ...);
-
-#endif
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	new->next = *lst;
+	*lst = new;
+}

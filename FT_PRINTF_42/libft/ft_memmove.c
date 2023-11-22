@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:25:49 by abadouab         ###   ########.fr       */
+/*   Created: 2023/10/31 21:16:29 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/04 12:13:15 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int		print_char(char c)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	return (ft_putchar_fd(c, 1), 1);
-}
+	size_t	i;
+	char	*d;
+	char	*s;
 
-int		print_string(char *str)
-{
-	int		i;
-
-	i = 0;
-	if (!str)
-		ft_putstr_fd("(null)", 1);
-	while (str[i])
-		print_char(str[i++]);
-	return (i);
-}
-
-int		print_(char *)
-{
-	
+	d = (char *)dst;
+	s = (char *)src;
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	if (d < s)
+	{
+		i = 0;
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	else
+	{
+		while (len--)
+			d[len] = s[len];
+	}
+	return (dst);
 }

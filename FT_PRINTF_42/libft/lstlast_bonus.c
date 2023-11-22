@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 09:40:45 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 14:54:12 by abdel            ###   ########.fr       */
+/*   Created: 2023/11/07 21:07:41 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/07 21:22:23 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_PRINTF
-# define FT_PRINTF
+#include "libft.h"
 
-#include "./libft/libft.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
-
-int		print_char(char c);
-int		print_string(char *str);
-int		ft_printf(const char *format, ...);
-
-#endif
+t_list	*ft_lstlast(t_list *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}

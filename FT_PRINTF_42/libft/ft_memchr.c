@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:25:49 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/01 21:43:50 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/04 12:54:01 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int		print_char(char c)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	return (ft_putchar_fd(c, 1), 1);
-}
-
-int		print_string(char *str)
-{
-	int		i;
+	size_t			i;
+	unsigned char	l;
+	unsigned char	*str;
 
 	i = 0;
-	if (!str)
-		ft_putstr_fd("(null)", 1);
-	while (str[i])
-		print_char(str[i++]);
-	return (i);
-}
-
-int		print_(char *)
-{
-	
+	l = (unsigned char)c;
+	str = (unsigned char *)s;
+	while (i < n)
+	{
+		if (str[i] == l)
+			return ((void *)str + i);
+		i++;
+	}
+	return (NULL);
 }

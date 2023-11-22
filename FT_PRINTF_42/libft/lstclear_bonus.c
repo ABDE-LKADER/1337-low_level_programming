@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:25:49 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/07 21:45:15 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/08 15:50:17 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int		print_char(char c)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	return (ft_putchar_fd(c, 1), 1);
-}
+	t_list	*node;
+	t_list	*loop;
 
-int		print_string(char *str)
-{
-	int		i;
-
-	i = 0;
-	if (!str)
-		ft_putstr_fd("(null)", 1);
-	while (str[i])
-		print_char(str[i++]);
-	return (i);
-}
-
-int		print_(char *)
-{
-	
+	if (!lst || !del)
+		return ;
+	node = *lst;
+	while (node)
+	{
+		loop = node->next;
+		del(node->content);
+		free(node);
+		node = loop;
+	}
+	*lst = NULL;
 }

@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 09:40:45 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 14:54:12 by abdel            ###   ########.fr       */
+/*   Created: 2023/10/30 10:53:04 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/04 13:03:00 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_PRINTF
-# define FT_PRINTF
+#include "libft.h"
 
-#include "./libft/libft.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
-
-int		print_char(char c);
-int		print_string(char *str);
-int		ft_printf(const char *format, ...);
-
-#endif
+int	ft_isdigit(int c)
+{
+	if (!(c >= 48 && c <= 57))
+		return (0);
+	return (1);
+}

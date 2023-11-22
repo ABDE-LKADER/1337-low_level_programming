@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   lstmap_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:25:49 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/08 11:17:56 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/22 09:19:07 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int		print_char(char c)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	return (ft_putchar_fd(c, 1), 1);
-}
+	t_list	*node;
+	t_list	*list;
 
-int		print_string(char *str)
-{
-	int		i;
-
-	i = 0;
-	if (!str)
-		ft_putstr_fd("(null)", 1);
-	while (str[i])
-		print_char(str[i++]);
-	return (i);
-}
-
-int		print_(char *)
-{
-	
+	list = NULL;
+	while (lst)
+	{
+		node = ft_lstnew(f(lst->content));
+		if (!node)
+			return (ft_lstclear(&list, del), NULL);
+		ft_lstadd_back(&list, node);
+		lst = lst->next;
+	}
+	return (list);
 }

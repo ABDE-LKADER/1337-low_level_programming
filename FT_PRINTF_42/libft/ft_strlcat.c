@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:25:49 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/01 11:17:03 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/03 17:45:10 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int		print_char(char c)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	return (ft_putchar_fd(c, 1), 1);
-}
+	size_t	i;
+	size_t	len;
+	size_t	ld;
+	size_t	ls;
 
-int		print_string(char *str)
-{
-	int		i;
-
-	i = 0;
-	if (!str)
-		ft_putstr_fd("(null)", 1);
-	while (str[i])
-		print_char(str[i++]);
-	return (i);
-}
-
-int		print_(char *)
-{
-	
+	len = 0;
+	while (dst[len] && len < dstsize)
+		len++;
+	ld = len;
+	ls = ft_strlen(src);
+	if (dstsize > len)
+	{
+		i = 0;
+		while (src[i] && len < dstsize - 1)
+		{
+			dst[len] = src[i];
+			len++;
+			i++;
+		}
+		dst[len] = '\0';
+	}
+	return (ld + ls);
 }

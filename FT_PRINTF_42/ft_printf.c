@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/22 15:00:28 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:24:42 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int		ft_printf(const char *format, ...)
 	int		print;
 	va_list	lstarg;
 
-	i = -1;
+	i = 0;
 	va_start(lstarg, format);
-	while (format[i++])
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
@@ -29,17 +29,13 @@ int		ft_printf(const char *format, ...)
 				print += print_char(va_arg(lstarg, int));
 			if (format[i] == 's')
 				print += print_string(va_arg(lstarg, char *));
+			if (format[i] == 'p')
+				print += ;
 		}
 		else
 			print += print_char(format[i]);
+		i++;
 	}
 	va_end(lstarg);
 	return (print);
-}
-
-#include <stdio.h>
-int		main(void)
-{
-	ft_printf("%c \n", 'h');
-	printf("%c \n", 'h');
 }
