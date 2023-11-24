@@ -6,7 +6,7 @@
 /*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:40:45 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/24 18:50:03 by abdel            ###   ########.fr       */
+/*   Updated: 2023/11/24 19:27:20 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,4 @@ int		print_percent(void);
 int		ft_printf(const char *format, ...);
 
 #endif
+

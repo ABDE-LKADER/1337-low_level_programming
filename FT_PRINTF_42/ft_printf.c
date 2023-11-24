@@ -6,7 +6,7 @@
 /*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/24 18:53:50 by abdel            ###   ########.fr       */
+/*   Updated: 2023/11/24 19:26:54 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +44,4 @@ int		ft_printf(const char *format, ...)
 	}
 	return (va_end(lstarg), print);
 }
+
