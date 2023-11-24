@@ -6,13 +6,13 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/24 19:20:43 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:34:07 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
-int		ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	int		i;
 	int		print;
