@@ -1,8 +1,5 @@
 {
     "files.associations": {
-        "__locale": "c",
-        "__threading_support": "c",
-        "vector": "c"
-    },
-    "C_Cpp.errorSquiggles": "disabled"
+        "ft_printf.h": "c"
+    }
 }

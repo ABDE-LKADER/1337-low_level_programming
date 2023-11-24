@@ -1,12 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   print_address.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/24 19:17:36 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/24 19:16:23 by abadouab          #+#    #+#             */
+/*   Updated: 2023/11/24 19:20:43 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
+
+int		ft_print_address(void *ptr)
+{
+	int		len;
+
+	len = 0;
+	len += ft_print_string("0x");
+	len += ft_print_base((long)ptr, 'x');
+	return (len);
+}
