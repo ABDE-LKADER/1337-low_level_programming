@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <limits.h>
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	test_simple(void)
 {
@@ -592,16 +592,16 @@ int	main(void)
 	test_p();
 	test_all();
 
-	// printf("\n\n========== BONUS TESTS ============\n\n");
-	// test_bonus_char();
-	// test_bonus_str();
-	// test_bonus_hex();
-	// test_bonus_unsigned();
-	// test_bonus_int();
-	// test_bonus_ptr();
-	// test_bonus_precision();
-	// test_extra();
-	// test_invalid_spec();
+	printf("\n\n========== BONUS TESTS ============\n\n");
+	test_bonus_char();
+	test_bonus_str();
+	test_bonus_hex();
+	test_bonus_unsigned();
+	test_bonus_int();
+	test_bonus_ptr();
+	test_bonus_precision();
+	test_extra();
+	test_invalid_spec();
 
 	return (0);
 }

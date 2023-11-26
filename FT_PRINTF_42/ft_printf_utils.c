@@ -6,11 +6,11 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/24 19:37:15 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:05:49 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	print_char(char c)
 {
@@ -20,7 +20,7 @@ int	print_char(char c)
 int	print_string(char *str)
 {
 	if (!str)
-		return (ft_putstr_fd("(null)", 1), 0);
+		return (print_string("(null)"));
 	return (ft_putstr_fd(str, 1), ft_strlen(str));
 }
 
@@ -30,18 +30,19 @@ int	print_address(void *ptr)
 
 	len = 0;
 	len += print_string("0x");
-	len += print_base((long)ptr, 'x');
+	len += print_base((long long)ptr, 'x');
 	return (len);
 }
 
-int	print_base(long num, char set)
+int	print_base(long long num, char set)
 {
-	int				len;
-	char			*base;
-	unsigned long	lbase;
-	unsigned long	number;
+	int		len;
+	char	*base;
+	long long	lbase;
+	long long	number;
 
 	len = 0;
+	base = NULL;
 	if (num < 0 && set != 'u')
 	{
 		number = -num;
@@ -57,8 +58,8 @@ int	print_base(long num, char set)
 		base = "0123456789ABCDEF";
 	lbase = ft_strlen(base);
 	if (number > lbase - 1)
-		print_base(number / lbase, set);
-	print_char(base[number % lbase]);
+		len += print_base(number / lbase, set);
+	len += print_char(base[number % lbase]);
 	return (len);
 }
 
