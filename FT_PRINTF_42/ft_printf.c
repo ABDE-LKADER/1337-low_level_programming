@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/25 11:04:11 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/11/27 12:00:52 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	format_set(char format, va_list lstarg)
+{
+	int	print;
+	
+	if (format == 'c')
+		print += print_char(va_arg(lstarg, int));
+	else if (format == 's')
+		print += print_string(va_arg(lstarg, char *));
+	else if (format == 'p')
+		print += print_address(va_arg(lstarg, void *));
+	// else if (format == 'd' || format == 'i')
+	// 	print += print_num(va_arg(lstarg, int));
+	// else if (format == 'u')
+	// 	print += print_unum(va_arg(lstarg, unsigned int));
+	else if (format == 'x' || format == 'X')
+		print += print_hex(va_arg(lstarg, unsigned long), format);
+	else if (format == '%')
+		print += print_percent();
+	return (print);
+}
 
 int	ft_printf(const char *format, ...)
 {
@@ -24,20 +45,8 @@ int	ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == 'c')
-				print += print_char(va_arg(lstarg, int));
-			if (format[i] == 's')
-				print += print_string(va_arg(lstarg, char *));
-			if (format[i] == 'p')
-				print += print_address(va_arg(lstarg, void *));
-			if (format[i] == 'd' || format[i] == 'i' || format[i] == 'u'
-				|| format[i] == 'x' || format[i] == 'X')
-				print += print_base(va_arg(lstarg, long long), format[i]);
-			if (format[i] == '%')
-				print += print_percent();
-		}
+			if (ft_strchr("cspdiuxX%", format[i]))
+				print += format_set(format[i++], lstarg);
 		else
 			print += print_char(format[i]);
 		i++;

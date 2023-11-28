@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/25 11:05:49 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/11/27 11:49:56 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,36 +30,24 @@ int	print_address(void *ptr)
 
 	len = 0;
 	len += print_string("0x");
-	len += print_base((long long)ptr, 'x');
+	len += print_hex((unsigned long)ptr, 'x');
 	return (len);
 }
 
-int	print_base(long long num, char set)
+int	print_hex(unsigned long num, char set)
 {
-	int		len;
-	char	*base;
-	long long	lbase;
-	long long	number;
+	int				len;
+	char			*base;
 
 	len = 0;
 	base = NULL;
-	if (num < 0 && set != 'u')
-	{
-		number = -num;
-		len += print_char('-');
-	}
-	else
-		number = num;
-	if (set == 'd' || set == 'i' || set == 'u')
-		base = "0123456789";
-	else if (set == 'x')
+	if (set == 'x')
 		base = "0123456789abcdef";
 	else if (set == 'X')
 		base = "0123456789ABCDEF";
-	lbase = ft_strlen(base);
-	if (number > lbase - 1)
-		len += print_base(number / lbase, set);
-	len += print_char(base[number % lbase]);
+	if (num > 16)
+		len += print_hex(num / 16, set);
+	len += print_char(base[num % 16]);
 	return (len);
 }
 
