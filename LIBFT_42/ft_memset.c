@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 22:58:25 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/12 19:28:03 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:10:48 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t			i;
+	size_t	i;
 	char	*buffer;
 
 	i = 0;
