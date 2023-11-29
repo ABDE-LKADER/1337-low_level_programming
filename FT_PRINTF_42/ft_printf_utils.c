@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/29 14:47:21 by abdel            ###   ########.fr       */
+/*   Updated: 2023/11/29 15:07:58 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	print_address(void *ptr)
 	int		len;
 
 	len = 0;
-	print_string("0x");
+	len += print_string("0x");
 	len += print_hex((unsigned long)ptr, 'x');
 	return (len);
 }

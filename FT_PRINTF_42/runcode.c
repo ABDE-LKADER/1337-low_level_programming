@@ -584,20 +584,20 @@ int	main(void)
 	// int i = 10110;
 	// printf("%d\t\n", ft_printf("%d\t", INT_MIN));
 	// printf("%d\t\n", printf("%d\t", INT_MIN));
-	// test_simple(); done
-	// test_percent(); done
-	// test_c(); done
-	// test_s(); done
-	// test_d(); done
-	// test_i(); done
-	// test_x(); done
-	// test_X();
-	// test_u();
-	// test_p(); done
-	// test_all();
+	test_simple(); //done
+	test_percent(); //done
+	test_c(); //done
+	test_s(); //done
+	test_d(); //done
+	test_i(); //done
+	test_x(); //done
+	test_X();
+	test_u();
+	test_p(); //done
+	test_all();
 
 	printf("\n\n========== BONUS TESTS ============\n\n");
-	test_bonus_char();
+	// test_bonus_char();
 	// test_bonus_str();
 	// test_bonus_hex();
 	// test_bonus_unsigned();
