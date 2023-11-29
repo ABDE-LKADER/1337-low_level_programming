@@ -6,11 +6,7 @@
 /*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/11/27 11:49:56 by abdel            ###   ########.fr       */
-=======
-/*   Updated: 2023/11/28 14:41:32 by abadouab         ###   ########.fr       */
->>>>>>> refs/remotes/origin/master
+/*   Updated: 2023/11/29 14:47:21 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +20,7 @@ int	print_char(char c)
 int	print_string(char *str)
 {
 	if (!str)
-		return (print_string("(null)"));
+		str = "(null)";
 	return (ft_putstr_fd(str, 1), ft_strlen(str));
 }
 
@@ -33,8 +29,38 @@ int	print_address(void *ptr)
 	int		len;
 
 	len = 0;
-	len += print_string("0x");
+	print_string("0x");
 	len += print_hex((unsigned long)ptr, 'x');
+	return (len);
+}
+
+int	print_num(int num)
+{
+	int	len;
+	unsigned int number;
+
+	len = 0;
+	if (num < 0)
+	{
+		number = -num;
+		len += print_char('-');
+	}
+	else
+		number = num;
+	if (number > 9)
+		len += print_unum(number / 10);
+	len += print_char(number % 10 + 48);
+	return (len);
+}
+
+int	print_unum(unsigned int num)
+{
+	int	len;
+
+	len = 0;
+	if (num > 9)
+		len += print_unum(num / 10);
+	len += print_char(num % 10 + 48);
 	return (len);
 }
 
@@ -53,9 +79,4 @@ int	print_hex(unsigned long num, char set)
 		len += print_hex(num / 16, set);
 	len += print_char(base[num % 16]);
 	return (len);
-}
-
-int	print_percent(void)
-{
-	return (print_char('%'));
 }

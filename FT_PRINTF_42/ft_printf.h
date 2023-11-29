@@ -6,7 +6,7 @@
 /*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:31:09 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/27 11:57:44 by abdel            ###   ########.fr       */
+/*   Updated: 2023/11/29 14:10:22 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@
 int	print_char(char c);
 int	print_string(char *str);
 int	print_address(void *ptr);
+int	print_num(int num);
+int	print_unum(unsigned int num);
 int	print_hex(unsigned long num, char set);
-int	print_percent(void);
 int	ft_printf(const char *format, ...);
+int print_percent();
 
 #endif
