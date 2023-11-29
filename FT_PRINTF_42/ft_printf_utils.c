@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:09:41 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/29 15:07:58 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:49:11 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,26 @@ int	print_string(char *str)
 	return (ft_putstr_fd(str, 1), ft_strlen(str));
 }
 
+static int	address_plus(unsigned long num, char set)
+{
+	int				len;
+	char			*base;
+
+	len = 0;
+	base = "0123456789abcdef";
+	if (num > 16)
+		len += address_plus(num / 16, set);
+	len += print_char(base[num % 16]);
+	return (len);
+}
+
 int	print_address(void *ptr)
 {
 	int		len;
 
 	len = 0;
 	len += print_string("0x");
-	len += print_hex((unsigned long)ptr, 'x');
+	len += address_plus((unsigned long)ptr, 'x');
 	return (len);
 }
 
@@ -64,7 +77,7 @@ int	print_unum(unsigned int num)
 	return (len);
 }
 
-int	print_hex(unsigned long num, char set)
+int	print_hex(unsigned int num, char set)
 {
 	int				len;
 	char			*base;

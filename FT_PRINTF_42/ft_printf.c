@@ -6,7 +6,7 @@
 /*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/29 14:53:03 by abdel            ###   ########.fr       */
+/*   Updated: 2023/11/29 17:38:40 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	format_set(char format, va_list lstarg)
 {
 	int	print;
-	
+
 	print = 0;
 	if (format == 'c')
 		print += print_char(va_arg(lstarg, int));
@@ -29,10 +29,9 @@ int	format_set(char format, va_list lstarg)
 	else if (format == 'u')
 		print += print_unum(va_arg(lstarg, unsigned int));
 	else if (format == 'x' || format == 'X')
-		print += print_hex(va_arg(lstarg, unsigned long), format);
+		print += print_hex(va_arg(lstarg, unsigned int), format);
 	else if (format == '%')
-		print += print_char('%');
-	// printf("FIRST %d\t", print);
+		print += print_char(format);
 	return (print);
 }
 
