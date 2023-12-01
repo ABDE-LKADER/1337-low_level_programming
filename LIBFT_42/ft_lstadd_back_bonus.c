@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 21:19:03 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/01 15:41:05 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/01 19:25:14 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,4 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	node = *lst;
 	node = ft_lstlast(node);
 	node->next = new;
-}
-
-#include <stdio.h>
-int main ()
-{
-	ft_lstadd_back(NULL, NULL);
 }

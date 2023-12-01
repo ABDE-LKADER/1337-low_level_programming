@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 19:22:38 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/24 19:33:39 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:45:05 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	over_fix(int sign)
 {
 	if (sign == 1)
 		return (-1);
-	else
-		return (0);
+	return (0);
 }
 
 int	ft_atoi(const char *str)
@@ -25,6 +24,7 @@ int	ft_atoi(const char *str)
 	int		i;
 	int		sign;
 	long	num;
+	long	check;
 
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
@@ -37,13 +37,13 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	num = 0;
+	check = 0;
 	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 	{
-		if (!(num < 9223372036854775807))
+		num = num * 10 + str[i++] - 48;
+		if (check > num)
 			return (over_fix(sign));
-		num *= 10;
-		num += str[i] - 48;
-		i++;
+		check = num;
 	}
 	return (num * sign);
 }
