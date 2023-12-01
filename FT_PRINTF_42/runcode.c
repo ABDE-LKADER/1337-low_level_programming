@@ -580,10 +580,14 @@ void	test_invalid_spec(void)
 
 int	main(void)
 {
-	// printf("\n\n========== MANDATORY TESTS ========\n\n");
-	// int i = 10110
-	printf("%d\n", ft_printf("HEKLDJK\t%k%s%\n", "TESTE"));
-	printf("%d\n", printf("HEKLDJK\t%k%s%\n", "TESTE"));
+	printf("\n\n========== MANDATORY TESTS ========\n\n");
+// 	// int i = 10110
+	// printf("%d\n", printf("HEKLDJK\t%k%%%s%%%\0%%\n", "HEJFNJD"));
+	printf("%d\n", ft_printf("%s", NULL));
+	printf("%d\n", printf("%s", NULL));
+// 	// printf("%d\n", ft_printf(NULL));
+// 	ft_printf("Result: [%-5s]\n", "Hello");
+
 	// test_simple(); //done
 	// test_percent(); //done
 	// test_c(); //done
@@ -596,16 +600,16 @@ int	main(void)
 	// test_p(); //done
 	// test_all();
 
-	// printf("\n\n========== BONUS TESTS ============\n\n");
-	// test_bonus_char();
-	// test_bonus_str();
-	// test_bonus_hex();
-	// test_bonus_unsigned();
-	// test_bonus_int();
-	// test_bonus_ptr();
-	// test_bonus_precision();
-	// test_extra();
-	// test_invalid_spec();
+// 	// printf("\n\n========== BONUS TESTS ============\n\n");
+// 	// test_bonus_char();
+// 	// test_bonus_str();
+// 	// test_bonus_hex();
+// 	// test_bonus_unsigned();
+// 	// test_bonus_int();
+// 	// test_bonus_ptr();
+// 	// test_bonus_precision();
+// 	// test_extra();
+// 	// test_invalid_spec();
 
 	return (0);
 }

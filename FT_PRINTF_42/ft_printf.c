@@ -6,7 +6,7 @@
 /*   By: abdel <abdel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/29 17:38:40 by abdel            ###   ########.fr       */
+/*   Updated: 2023/11/29 21:34:43 by abdel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	ft_printf(const char *format, ...)
 
 	i = 0;
 	print = 0;
+	if (write(1, "", 1) < 0)
+		return (-1);
 	va_start(lstarg, format);
 	while (format[i])
 	{
