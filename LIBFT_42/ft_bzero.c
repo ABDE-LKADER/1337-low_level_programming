@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 22:58:18 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/03 17:35:25 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/01 10:03:48 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,5 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
-	char	*buff;
-
-	i = 0;
-	buff = (char *)s;
-	while (i < n)
-	{
-		buff[i] = '\0';
-		i++;
-	}
+	ft_memset(s, 0, n);
 }

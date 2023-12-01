@@ -6,13 +6,13 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 14:27:59 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/10 12:11:51 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:31:07 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	free_split(char **str)
+static void	free_split(char **str)
 {
 	size_t	i;
 
@@ -22,7 +22,7 @@ void	free_split(char **str)
 	free(str);
 }
 
-size_t	count_words(char const *s, char c)
+static size_t	count_words(char const *s, char c)
 {
 	size_t	i;
 	size_t	count;
@@ -41,7 +41,7 @@ size_t	count_words(char const *s, char c)
 	return (count);
 }
 
-char	**split_words(char	**str, char const *s, char c)
+static char	**split_words(char	**str, char const *s, char c)
 {
 	size_t	i;
 	size_t	j;
@@ -66,8 +66,7 @@ char	**split_words(char	**str, char const *s, char c)
 			ft_strlcpy(str[j++], s + pos, len + 1);
 		}
 	}
-	str[j] = NULL;
-	return (str);
+	return (str[j] = NULL, str);
 }
 
 char	**ft_split(char const *s, char c)
