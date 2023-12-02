@@ -6,13 +6,13 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:08:21 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/06 19:56:33 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/01 19:22:17 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	get_len(int n)
+static int	get_len(int n)
 {
 	int	len;
 
@@ -39,7 +39,7 @@ char	*ft_itoa(int n)
 	if (!snum)
 		return (NULL);
 	if (n < 0)
-		num = -(unsigned int)n;
+		num = -n;
 	else
 		num = n;
 	snum[len] = '\0';

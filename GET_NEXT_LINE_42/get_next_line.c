@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/21 12:47:08 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/02 11:09:58 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,20 @@ char	*get_next_line(int fd)
 		buffer = get_next(buffer), line);
 }
 
-// int	main(void)
-// {
-// 	int		i;
-// 	int		fd;
-// 	char	*line;
+int	main(void)
+{
+	int		i;
+	int		fd;
+	char	*line;
 
-// 	i = 0;
-// 	fd = open("test.txt", O_RDONLY);
-// 	while (i < 30)
-// 	{
-// 		line = get_next_line(fd);
-// 		printf("->>>>> FINAL: %s\n", line);
-// 		i++;
-// 	}
-// 	free(line);
-// 	close(fd);
-// }
+	i = 0;
+	fd = open("test.txt", O_RDONLY);
+	while (i < 30)
+	{
+		line = get_next_line(fd);
+		printf("->>>>> FINAL: %s\n", line);
+		i++;
+	}
+	free(line);
+	close(fd);
+}

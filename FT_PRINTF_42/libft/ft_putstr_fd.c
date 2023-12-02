@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:37:35 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/07 14:48:50 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/01 19:23:52 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	ft_putstr_fd(char *s, int fd)
 
 	if (!s)
 		return ;
-	i = 0;
-	while (s[i])
-	{
+	i = -1;
+	while (s[++i])
 		ft_putchar_fd(s[i], fd);
-		i++;
-	}
 }

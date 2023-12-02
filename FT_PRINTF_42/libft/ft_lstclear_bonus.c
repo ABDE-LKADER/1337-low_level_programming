@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 21:45:15 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/08 15:50:17 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/01 19:22:22 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	while (node)
 	{
 		loop = node->next;
-		del(node->content);
-		free(node);
+		ft_lstdelone(node, del);
 		node = loop;
 	}
 	*lst = NULL;

@@ -6,13 +6,13 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 19:22:38 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/30 14:45:05 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/01 19:21:36 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	over_fix(int sign)
+static int	over_fix(int sign)
 {
 	if (sign == 1)
 		return (-1);

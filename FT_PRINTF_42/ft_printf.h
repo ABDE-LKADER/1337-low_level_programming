@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:31:09 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/01 19:25:46 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:47:23 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int	print_unum(unsigned int num);
 int	print_hex(unsigned int num, char set);
 int	ft_printf(const char *format, ...);
 int print_percent();
+// int print_padding(int zero_pad, int content_len, char pad_char, int *flags);
 
 #endif

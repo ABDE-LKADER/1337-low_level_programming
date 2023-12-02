@@ -6,13 +6,13 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:33:35 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/06 10:59:26 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/01 19:24:27 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_is_set(char const *set, char c)
+static size_t	ft_is_set(char const *set, char c)
 {
 	size_t	i;
 

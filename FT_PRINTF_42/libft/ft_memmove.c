@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 21:16:29 by abadouab          #+#    #+#             */
-/*   Updated: 2023/11/04 12:13:15 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/01 19:23:35 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,19 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	i;
 	char	*d;
 	char	*s;
 
 	d = (char *)dst;
 	s = (char *)src;
-	if (dst == NULL && src == NULL)
+	if (!dst && !src)
 		return (NULL);
-	if (d < s)
-	{
-		i = 0;
-		while (i < len)
-		{
-			d[i] = s[i];
-			i++;
-		}
-	}
-	else
+	if (d > s)
 	{
 		while (len--)
 			d[len] = s[len];
 	}
+	else
+		ft_memcpy(d, s, len);
 	return (dst);
 }
