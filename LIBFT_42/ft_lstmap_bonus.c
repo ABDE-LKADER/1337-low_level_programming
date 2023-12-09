@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:17:56 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/01 19:22:31 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:10:02 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*list;
 
 	list = NULL;
-	while (lst)
+	while (lst && f && del)
 	{
 		node = ft_lstnew(lst->content);
 		if (!node)

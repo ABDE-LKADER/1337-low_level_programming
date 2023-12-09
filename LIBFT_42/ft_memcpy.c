@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 21:02:30 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/01 19:22:59 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/08 10:16:23 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	i = 0;
 	d = (char *)dst;
 	s = (char *)src;
-	if (dst == NULL && src == NULL)
+	if (dst == src)
+		return (dst);
+	if (!dst && !src)
 		return (NULL);
 	while (i < n)
 	{
