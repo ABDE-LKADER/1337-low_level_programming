@@ -21,7 +21,7 @@ char	*get_next(char	*buffer)
 	len = 0;
 	while (buffer[len] && buffer[len] != '\n')
 		len++;
-	if (!buffer[len])
+	if (!buffer)
 		return (free(buffer), NULL);
 	line = ft_calloc(ft_strlen(buffer) - len + 1, sizeof(char));
 	len++;
@@ -38,7 +38,7 @@ char	*get_line(char	*buffer)
 
 	len = 0;
 	if (!buffer)
-		return (NULL);
+		return (free(buffer), NULL);
 	while (buffer[len] && buffer[len] != '\n')
 		len++;
 	line = ft_calloc(len + 1, sizeof(char));
@@ -59,7 +59,9 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	bytes = 1;
-	new = calloc(BUFFER_SIZE + 1, sizeof(char));
+	new = calloc((size_t)BUFFER_SIZE + 1, sizeof(char));
+	if (!new)
+		return (NULL);
 	while (bytes > 0)
 	{
 		bytes = read(fd, new, BUFFER_SIZE);
