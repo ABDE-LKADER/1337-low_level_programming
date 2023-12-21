@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 19:31:09 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/01 20:47:23 by abadouab         ###   ########.fr       */
+/*   Created: 2023/12/16 02:39:33 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/16 16:02:43 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_FT_PRINTF
-# define LIB_FT_PRINTF
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include "./libft/libft.h"
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdarg.h>
+# include <limits.h>
+#include <stdio.h>
+#include <fcntl.h>
 
-int	print_char(char c);
-int	print_string(char *str);
-int	print_address(void *ptr);
-int	print_num(int num);
-int	print_unum(unsigned int num);
-int	print_hex(unsigned int num, char set);
-int	ft_printf(const char *format, ...);
-int print_percent();
+int		ft_strlen(const char *str);
+char	*ft_strjoin(char const *s1, char const *s2, int lens2);
+char	*get_next_line(int fd);
 
 #endif

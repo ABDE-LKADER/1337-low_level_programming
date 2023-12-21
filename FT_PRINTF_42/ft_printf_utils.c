@@ -40,16 +40,3 @@ int	print_hex(unsigned int num, char set)
 	len += print_char(base[num % 16]);
 	return (len);
 }
-
-// int print_padding(int zero_pad, int content_len, char pad_char, int *flags)
-// {
-//     int len = 0;
-
-//     while (flags['-'] == 0 && flags['0'] && zero_pad > content_len)
-//     {
-//         ft_putchar_fd(pad_char, 1);
-//         len++;
-//         zero_pad--;
-//     }
-//     return (len);
-// }

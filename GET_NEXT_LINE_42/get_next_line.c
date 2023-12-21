@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/02 11:09:58 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:39:10 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*get_next_line(int fd)
 	return (free(new), line = get_line(buffer),
 		buffer = get_next(buffer), line);
 }
-
+void f(void){system(leaks run);}
 int	main(void)
 {
 	int		i;
