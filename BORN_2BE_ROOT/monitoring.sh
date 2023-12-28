@@ -1,8 +1,8 @@
 #!/bin/bash
 
-tram=$(free -m | grep "^Mem:" | awk '{print $2}')
-uram=$(free -m | grep "^Mem:" | awk '{print $3}')
-pram=$(free -m | grep "^Mem:" | awk '{printf("%.2f"), $3*100/$2}')
+tram=$(free --mega | grep "^Mem:" | awk '{print $2}')
+uram=$(free --mega | grep "^Mem:" | awk '{print $3}')
+pram=$(free --mega | grep "^Mem:" | awk '{printf("%.2f"), $3*100/$2}')
 tmem=$(df -BG | grep "^/dev/mapper" | awk '{SUM += $2} END {print SUM}')
 umem=$(df -BM | grep "^/dev/mapper" | awk '{SUM += $3} END {print SUM}')
 pmem=$(df -BM | grep "^/dev/mapper" | awk '{TN += $2} {UN += $3} END {printf("%d"), UN*100/TN}')
