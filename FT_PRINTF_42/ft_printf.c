@@ -6,12 +6,23 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/09 15:08:24 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/31 13:58:24 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
+
+int	print_char(char c)
+{
+	return (ft_putchar_fd(c, 1), 1);
+}
+
+int	print_string(char *str)
+{
+	if (!str)
+		str = "(null)";
+	return (ft_putstr_fd(str, 1), ft_strlen(str));
+}
 
 int	format_set(char format, va_list lstarg)
 {
