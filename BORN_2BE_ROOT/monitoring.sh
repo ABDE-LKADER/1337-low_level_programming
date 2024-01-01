@@ -1,19 +1,16 @@
 #!/bin/bash
 
-tram=$(free --mega | grep "^Mem:" | awk '{print $2}')
-uram=$(free --mega | grep "^Mem:" | awk '{print $3}')
-pram=$(free --mega | grep "^Mem:" | awk '{printf("%.2f"), $3*100/$2}')
+ramu=$(free --mega | grep "^Mem:" | awk '{printf("%d/%dMB (%.2f%%)"), $3, $2, $3*100/$2}')
 tmem=$(df -BG | grep "^/dev/mapper" | awk '{SUM += $2} END {print SUM}')
 umem=$(df -BM | grep "^/dev/mapper" | awk '{SUM += $3} END {print SUM}')
 pmem=$(df -BM | grep "^/dev/mapper" | awk '{TN += $2} {UN += $3} END {printf("%d"), UN*100/TN}')
-cpul=$(mpstat | tail -n 1 | awk '{print 100 - $13}')
 
 wall "	#Architecture: $(uname -a)
 	#CPU physical : $(lscpu | grep "Socket(s)" | awk '{print $2}')
 	#vCPU : $(lscpu | grep "^CPU(s):" | awk '{print $2}')
-	#Memory Usage: $uram/$tram"MB" ($pram%)
+	#Memory Usage: $ramu
 	#Disk Usage: $umem/$tmem"Gb" ($pmem%)
-	#CPU load: $cpul%
+	#CPU load: $(mpstat | tail -n 1 | awk '{print 100 - $13}')%
 	#Last boot: $(who -b | awk '{print $3}') $( who -b | awk '{print $4}')
 	#LVM use: $(if lsblk | grep -q "lvm"; then echo "yes"; else echo "no"; fi)
 	#Connections TCP : $(netstat -a | grep -c ESTABLISHED) ESTABLISHED
