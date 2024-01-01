@@ -1,5 +1,5 @@
-NAME =	lib
-LIBH =	
+NAME =	minitalk.a
+LIBH =	minitalk.h
 SRCS =	client.c server.c
 FLGS =	cc -c -Wall -Wextra -Werror
 ARRC =	ar -rc

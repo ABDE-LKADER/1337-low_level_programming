@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 11:34:21 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/01 18:37:56 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/07 20:49:31 by abadouab          #+#    #+#             */
+/*   Updated: 2024/01/01 18:07:49 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "srcs.h"
 
-int main()
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-    write(1, "OK", 2);
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

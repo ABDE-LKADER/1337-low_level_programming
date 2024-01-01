@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 11:34:21 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/01 18:37:56 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/08 11:17:56 by abadouab          #+#    #+#             */
+/*   Updated: 2024/01/01 18:07:34 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "srcs.h"
 
-int main()
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-    write(1, "OK", 2);
+	t_list	*node;
+	t_list	*list;
+
+	list = NULL;
+	while (lst && f && del)
+	{
+		node = ft_lstnew(lst->content);
+		if (!node)
+			return (ft_lstclear(&list, del), NULL);
+		node->content = f(lst->content);
+		ft_lstadd_back(&list, node);
+		lst = lst->next;
+	}
+	return (list);
 }

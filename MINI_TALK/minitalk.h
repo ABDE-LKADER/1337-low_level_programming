@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 11:34:21 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/01 18:37:56 by abadouab         ###   ########.fr       */
+/*   Created: 2024/01/01 18:13:13 by abadouab          #+#    #+#             */
+/*   Updated: 2024/01/01 18:29:59 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-int main()
-{
-    write(1, "OK", 2);
-}
+#include <signal.h>
+#include <unistd.h>
+#include <stdio.h>
+
+#endif

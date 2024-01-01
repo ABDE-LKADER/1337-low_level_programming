@@ -6,8 +6,14 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 11:34:17 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/26 16:55:32 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/01 18:37:53 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include ""
+#include "minitalk.h"
+
+int main()
+{
+    printf("The server PID: %d", getpid());
+    pause();
+}

@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 11:34:21 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/01 18:37:56 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/02 19:32:56 by abadouab          #+#    #+#             */
+/*   Updated: 2024/01/01 18:08:04 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "srcs.h"
 
-int main()
+void	*ft_calloc(size_t count, size_t size)
 {
-    write(1, "OK", 2);
+	void	*loc;
+	size_t	bytes;
+
+	loc = NULL;
+	bytes = count * size;
+	if (count != 0 && bytes / count != size)
+		return (NULL);
+	loc = malloc(bytes);
+	if (!loc)
+		return (NULL);
+	ft_bzero(loc, bytes);
+	return (loc);
 }

@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 11:34:21 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/01 18:37:56 by abadouab         ###   ########.fr       */
+/*   Created: 2023/10/30 22:58:25 by abadouab          #+#    #+#             */
+/*   Updated: 2024/01/01 18:07:19 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "srcs.h"
 
-int main()
+void	*ft_memset(void *b, int c, size_t len)
 {
-    write(1, "OK", 2);
+	size_t			i;
+	unsigned char	*buffer;
+
+	i = 0;
+	buffer = (unsigned char *)b;
+	while (i < len)
+	{
+		buffer[i] = c;
+		i++;
+	}
+	return (buffer);
 }
