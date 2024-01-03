@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 11:34:17 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/02 18:00:37 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/03 10:52:16 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ void sig_handle2(){
 
 void signal_h()
 {
-    signal(SIGUSR1, &sig_handle1);
-    signal(SIGUSR2, &sig_handle2);
+	signal(SIGUSR1, &sig_handle1);
+	signal(SIGUSR2, &sig_handle2);
 }
 
 int main()
 {
-    pid_t server_pid = getpid();
+	pid_t server_pid = getpid();
 
-    printf("The server PID: %d\n", server_pid);
-    signal_h();
-    while (1)
-        pause();
-    return EXIT_SUCCESS;
+	printf("The server PID: %d\n", server_pid);
+	signal_h();
+	while (1)
+		pause();
+	return EXIT_SUCCESS;
 }
