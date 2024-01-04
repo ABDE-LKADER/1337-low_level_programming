@@ -13,6 +13,17 @@
 #include "minitalk.h"
 
 
+<<<<<<< HEAD
+=======
+void sig_handle2(){
+	printf("SIG ACTION 2\n");
+}
+
+void signal_h()
+{
+
+}
+>>>>>>> 4007ee7a2341c51751a3b7a59708cf00ff2c235b
 
 int main()
 {

@@ -14,7 +14,11 @@
 
 void	signal_handler(int server_pid, char mes)
 {
+<<<<<<< HEAD
 	// 01001000
+=======
+	
+>>>>>>> 4007ee7a2341c51751a3b7a59708cf00ff2c235b
 }
 
 int	main(int ac, char **av)
