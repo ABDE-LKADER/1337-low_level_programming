@@ -6,12 +6,23 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/09 15:08:24 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/01 17:59:08 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
+
+int	print_char(char c)
+{
+	return (ft_putchar_fd(c, 1), 1);
+}
+
+int	print_string(char *str)
+{
+	if (!str)
+		str = "(null)";
+	return (ft_putstr_fd(str, 1), ft_strlen(str));
+}
 
 int	format_set(char format, va_list lstarg)
 {
@@ -43,8 +54,6 @@ int	ft_printf(const char *format, ...)
 
 	i = 0;
 	print = 0;
-	if (write(1, "", 1) < 0)
-		return (-1);
 	va_start(lstarg, format);
 	while (format[i])
 	{

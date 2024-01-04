@@ -1,13 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/22 13:11:29 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/02 19:32:56 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:22:44 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*loc;
+	size_t	bytes;
+
+	loc = NULL;
+	bytes = count * size;
+	if (count != 0 && bytes / count != size)
+		return (NULL);
+	loc = malloc(bytes);
+	if (!loc)
+		return (NULL);
+	ft_bzero(loc, bytes);
+	return (loc);
+}

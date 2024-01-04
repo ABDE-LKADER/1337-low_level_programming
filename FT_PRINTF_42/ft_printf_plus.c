@@ -6,13 +6,13 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:19:43 by abdel             #+#    #+#             */
-/*   Updated: 2023/12/01 22:30:18 by abadouab         ###   ########.fr       */
+/*   Updated: 2023/12/29 11:16:57 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	address_plus(unsigned long num, char set)
+static	int	address_plus(unsigned long num, char set)
 {
 	int				len;
 	char			*base;
@@ -62,5 +62,22 @@ int	print_unum(unsigned int num)
 	if (num > 9)
 		len += print_unum(num / 10);
 	len += print_char(num % 10 + 48);
+	return (len);
+}
+
+int	print_hex(unsigned int num, char set)
+{
+	int				len;
+	char			*base;
+
+	len = 0;
+	base = NULL;
+	if (set == 'x')
+		base = "0123456789abcdef";
+	else if (set == 'X')
+		base = "0123456789ABCDEF";
+	if (num > 15)
+		len += print_hex(num / 16, set);
+	len += print_char(base[num % 16]);
 	return (len);
 }

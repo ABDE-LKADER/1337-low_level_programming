@@ -1,13 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/22 13:11:29 by abadouab         ###   ########.fr       */
+/*   Created: 2023/12/24 11:34:17 by abadouab          #+#    #+#             */
+/*   Updated: 2024/01/03 10:52:16 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "minitalk.h"
+
+void sig_handle1(){
+	printf("SIG ACTION 1\n");
+}
+
+void sig_handle2(){
+	printf("SIG ACTION 2\n");
+}
+
+void signal_h()
+{
+	signal(SIGUSR1, &sig_handle1);
+	signal(SIGUSR2, &sig_handle2);
+}
+
+int main()
+{
+	pid_t server_pid = getpid();
+
+	printf("The server PID: %d\n", server_pid);
+	signal_h();
+	while (1)
+		pause();
+	return EXIT_SUCCESS;
+}

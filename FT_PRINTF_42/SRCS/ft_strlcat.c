@@ -1,54 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 11:08:21 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/28 09:13:40 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/01 11:17:03 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:16:33 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	get_len(int n)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	int	len;
+	size_t	i;
+	size_t	len;
+	size_t	ld;
+	size_t	ls;
 
-	if (n > 0)
-		len = 0;
-	else
-		len = 1;
-	while (n)
-	{
-		n /= 10;
+	len = 0;
+	ls = ft_strlen(src);
+	if (!dst && !dstsize)
+		return (ls);
+	while (dst[len] && len < dstsize)
 		len++;
-	}
-	return (len);
-}
-
-char	*ft_itoa(int n)
-{
-	int				len;
-	unsigned int	num;
-	char			*snum;
-
-	len = get_len(n);
-	snum = malloc((len + 1) * sizeof(char));
-	if (!snum)
-		return (NULL);
-	if (n < 0)
-		num = -n;
-	else
-		num = n;
-	snum[len] = '\0';
-	while (len--)
+	ld = len;
+	if (dstsize > len)
 	{
-		snum[len] = num % 10 + '0';
-		num /= 10;
+		i = 0;
+		while (src[i] && len < dstsize - 1)
+		{
+			dst[len] = src[i];
+			len++;
+			i++;
+		}
+		dst[len] = '\0';
 	}
-	if (n < 0)
-		snum[0] = '-';
-	return (snum);
+	return (ld + ls);
 }
