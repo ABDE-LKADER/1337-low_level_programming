@@ -14,8 +14,7 @@
 
 void	signal_handler(int server_pid, char *message)
 {
-	kill(server_pid, SIGUSR1);
-	printf("%s\nDONE", message);
+	
 }
 
 int	main(int ac, char **av)

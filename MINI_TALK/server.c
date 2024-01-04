@@ -22,8 +22,7 @@ void sig_handle2(){
 
 void signal_h()
 {
-	signal(SIGUSR1, &sig_handle1);
-	signal(SIGUSR2, &sig_handle2);
+
 }
 
 int main()
@@ -31,7 +30,8 @@ int main()
 	pid_t server_pid = getpid();
 
 	printf("The server PID: %d\n", server_pid);
-	signal_h();
+	signal(SIGUSR1, &sig_handle1);
+	signal(SIGUSR2, &sig_handle2);
 	while (1)
 		pause();
 	return EXIT_SUCCESS;
