@@ -14,15 +14,18 @@
 
 void	signal_handler(int server_pid, unsigned char mes)
 {
-	int nbit;
+	int	num_bit;
+	int	check_bits = 128;
 
-	nbit = 8;
-	while (nbit--)
+	num_bit = 8;
+	while (num_bit--)
 	{	
-		if (mes % 2 == 0)
-		{
-			kill();
-		}
+		if (mes & check_bits)
+			kill(server_pid, SIGUSR1);
+		else
+			kill(server_pid, SIGUSR2);
+		check_bits >>= 1;
+		usleep(WAIT_TIME);
 	}
 }
 
@@ -45,30 +48,7 @@ int	main(int ac, char **av)
 	}
 	while (*av[2])
 		signal_handler(server_pid, *av[2]++);
+	signal_handler(server_pid, '\0');
+	signal_handler(server_pid, '\n');
 	return (EXIT_SUCCESS);
-}
-
-
-
-
-void	send_msg(pid_t sv_pid, char *msg)
-{
-	unsigned char	c;
-	int				nbr_bits;
-
-	while (*msg)
-	{
-		c = *msg;
-		nbr_bits = 8;
-		while (nbr_bits--)
-		{
-			if (c & 0b10000000)
-				kill(sv_pid, SIGUSR1);
-			else
-				kill(sv_pid, SIGUSR2);
-			usleep(50);
-			c <<= 1;
-		}
-		msg++;
-	}
 }

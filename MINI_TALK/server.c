@@ -12,9 +12,25 @@
 
 #include "minitalk.h"
 
-void signal_handler(int client_signal)
+static int	set_bit = 128;
+void	signal_handler(int signal_client)
 {
-	
+	static int	bits = 0;
+	static int	mess = 0;
+
+	if (signal_client == SIGUSR1)
+		mess = mess | set_bit;
+
+	set_bit >>= 1;
+	bits++;
+
+	if (bits == 8)
+	{
+		write(1, &mess, 1);
+		bits = 0;
+		mess = 0;
+		set_bit = 128;
+	}
 }
 
 int main()

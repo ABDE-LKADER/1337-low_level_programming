@@ -13,6 +13,8 @@
 #ifndef MINITALK_H
 # define MINITALK_H
 
+# define WAIT_TIME 200
+
 #include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
