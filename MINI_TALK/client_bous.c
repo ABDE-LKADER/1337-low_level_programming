@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 int	error_handler(int ac, char *av)
 {
@@ -50,10 +50,16 @@ void	signal_handler(int server_pid, unsigned char mes)
 	}
 }
 
+void	feedback()
+{
+	printf("\033[1;33m[SUCCESS]: \033[0mMessage was received to the server!\n");
+}
+
 int	main(int ac, char **av)
 {
 	pid_t	server_pid;
 
+	signal(SIGUSR1, &feedback);
 	error_handler(ac, av[1]);
 	server_pid = atoi(av[1]);
 	if (server_pid <= 0)
