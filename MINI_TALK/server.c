@@ -12,35 +12,35 @@
 
 #include "minitalk.h"
 
-static int	set_bit = 128;
+int	g_set_bit = 128;
+
 void	signal_handler(int signal_client)
 {
 	static int	bits = 0;
 	static int	mess = 0;
 
 	if (signal_client == SIGUSR1)
-		mess = mess | set_bit;
-
-	set_bit >>= 1;
+		mess |= g_set_bit;
+	g_set_bit >>= 1;
 	bits++;
-
 	if (bits == 8)
 	{
 		write(1, &mess, 1);
 		bits = 0;
 		mess = 0;
-		set_bit = 128;
+		g_set_bit = 128;
 	}
 }
 
-int main()
+int	main(void)
 {
-	pid_t server_pid = getpid();
+	pid_t	server_pid;
 
+	server_pid = getpid();
 	printf("The server PID: %d\n", server_pid);
 	signal(SIGUSR1, &signal_handler);
 	signal(SIGUSR2, &signal_handler);
 	while (1)
 		pause();
-	return EXIT_SUCCESS;
+	return (EXIT_SUCCESS);
 }

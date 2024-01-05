@@ -15,11 +15,12 @@
 void	signal_handler(int server_pid, unsigned char mes)
 {
 	int	num_bit;
-	int	check_bits = 128;
+	int	check_bits;
 
 	num_bit = 8;
+	check_bits = 128;
 	while (num_bit--)
-	{	
+	{
 		if (mes & check_bits)
 			kill(server_pid, SIGUSR1);
 		else
