@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 18:13:13 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/03 14:11:40 by abadouab         ###   ########.fr       */
+/*   Created: 2023/10/30 11:07:46 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:22:28 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+#include "mylib.h"
 
-#include "MYLIB/mylib.h"
-# include <signal.h>
-
-# define WAIT_TIME 800
-
-#endif
+int	ft_isascii(int c)
+{
+	if (!(c >= 0 && c <= 127))
+		return (0);
+	return (1);
+}

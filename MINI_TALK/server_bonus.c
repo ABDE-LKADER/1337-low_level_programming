@@ -14,7 +14,7 @@
 
 int	g_set_bit = 128;
 
-void	signal_handler(int signal_client, siginfo_t *sig_inf, void *none)
+static void	signal_handler(int signal_client, siginfo_t *sig_inf, void *none)
 {
 	static int	bits = 0;
 	static int	mess = 0;
@@ -28,7 +28,7 @@ void	signal_handler(int signal_client, siginfo_t *sig_inf, void *none)
 	{
 		if (!mess)
 			kill(sig_inf->si_pid, SIGUSR1);
-		printf("%c", mess);
+		ft_printf("%c", mess);
 		bits = 0;
 		mess = 0;
 		g_set_bit = 128;
@@ -46,7 +46,7 @@ int	main(void)
 	sigemptyset(&set_sig.sa_mask);
 	sigaddset(&set_sig.sa_mask, SIGUSR1);
 	sigaddset(&set_sig.sa_mask, SIGUSR2);
-	printf("The server PID: %d\n", server_pid);
+	ft_printf("The server PID: %d\n", server_pid);
 	sigaction(SIGUSR1, &set_sig, NULL);
 	sigaction(SIGUSR2, &set_sig, NULL);
 	while (1)

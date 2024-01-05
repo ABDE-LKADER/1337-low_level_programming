@@ -12,7 +12,7 @@
 
 #include "minitalk_bonus.h"
 
-int	error_handler(int ac, char *av)
+static void	error_handler(int ac, char *av)
 {
 	if (ac != 3)
 	{
@@ -22,7 +22,7 @@ int	error_handler(int ac, char *av)
 	}
 	while (*av)
 	{
-		if (!strchr("-+0123456789", *av++))
+		if (!ft_strchr("-+0123456789", *av++))
 		{
 			write(2, "\033[1;31mError: \033[0mInvalid server PID.\n", 38);
 			write(2, "\033[0;33m-> Provide a valid PID ", 30);
@@ -32,7 +32,7 @@ int	error_handler(int ac, char *av)
 	}
 }
 
-void	signal_handler(int server_pid, unsigned char mes)
+static void	signal_handler(int server_pid, unsigned char mes)
 {
 	int	num_bit;
 	int	check_bits;
@@ -52,7 +52,7 @@ void	signal_handler(int server_pid, unsigned char mes)
 
 void	feedback()
 {
-	printf("\033[1;33m[SUCCESS]: \033[0mMessage was received to the server!\n");
+	ft_printf("\033[1;33m[SUCCESS]: \033[0mMessage was received to the server!\n");
 }
 
 int	main(int ac, char **av)
@@ -61,7 +61,7 @@ int	main(int ac, char **av)
 
 	signal(SIGUSR1, &feedback);
 	error_handler(ac, av[1]);
-	server_pid = atoi(av[1]);
+	server_pid = ft_atoi(av[1]);
 	if (server_pid <= 0)
 	{
 		write(2, "\033[1;31mError: \033[0mInvalid server PID.\n\033[0;33m", 45);

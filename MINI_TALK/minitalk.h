@@ -13,12 +13,9 @@
 #ifndef MINITALK_H
 # define MINITALK_H
 
+#include "MYLIB/mylib.h"
 # include <signal.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
 
-# define WAIT_TIME 800
+# define WAIT_TIME 400
 
 #endif
