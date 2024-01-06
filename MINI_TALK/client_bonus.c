@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 11:34:21 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/04 20:26:44 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/06 17:34:38 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ static void	signal_handler(int server_pid, unsigned char mes)
 	}
 }
 
-void	feedback()
+void	feedback(void)
 {
-	ft_printf("\033[1;33m[SUCCESS]: \033[0mMessage was received to the server!\n");
+	ft_printf("\033[1;33m[SUCCESS]: \033[0m");
+	ft_printf("Message was received to the server!\n");
 }
 
 int	main(int ac, char **av)

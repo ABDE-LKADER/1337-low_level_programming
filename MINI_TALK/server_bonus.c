@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 11:34:17 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/04 20:16:11 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/06 17:33:29 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,16 @@ static void	signal_handler(int signal_client, siginfo_t *sig_inf, void *none)
 
 int	main(void)
 {
-	pid_t				server_pid;
-	struct sigaction	set_sig;
+	struct sigaction	sa;
 
-	server_pid = getpid();
-    set_sig.sa_sigaction = signal_handler;
-	set_sig.sa_flags = SA_SIGINFO;
-	sigemptyset(&set_sig.sa_mask);
-	sigaddset(&set_sig.sa_mask, SIGUSR1);
-	sigaddset(&set_sig.sa_mask, SIGUSR2);
-	ft_printf("The server PID: %d\n", server_pid);
-	sigaction(SIGUSR1, &set_sig, NULL);
-	sigaction(SIGUSR2, &set_sig, NULL);
+	sa.sa_sigaction = signal_handler;
+	sa.sa_flags = SA_SIGINFO;
+	sigemptyset(&sa.sa_mask);
+	sigaddset(&sa.sa_mask, SIGUSR1);
+	sigaddset(&sa.sa_mask, SIGUSR2);
+	ft_printf("The server PID: %d\n", getpid());
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 		pause();
 	return (EXIT_SUCCESS);

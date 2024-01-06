@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:19:43 by abdel             #+#    #+#             */
-/*   Updated: 2023/12/29 11:16:57 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/06 17:36:00 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	print_address(void *ptr)
 
 int	print_num(int num)
 {
-	int	len;
-	unsigned int number;
+	int				len;
+	unsigned int	number;
 
 	len = 0;
 	if (num < 0)

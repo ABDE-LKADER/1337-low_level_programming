@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 11:34:21 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/04 20:27:58 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/06 16:24:25 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	error_handler(int ac, char *av)
 		{
 			write(2, "\033[1;31mError: \033[0mInvalid server PID.\n", 38);
 			write(2, "\033[0;33m-> Provide a valid PID ", 30);
-			write(2, "<Numeric value only> please.\n", 29);
+			write(2, "<numeric value only> please.\n", 29);
 			exit (EXIT_FAILURE);
 		}
 	}
