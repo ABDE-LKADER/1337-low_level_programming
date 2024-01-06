@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 18:13:13 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/03 14:11:40 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/08 11:17:56 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/08 11:10:02 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "mylib.h"
 
-#include "MYLIB/mylib.h"
-# include <signal.h>
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list	*node;
+	t_list	*list;
 
-# define WAIT_TIME 400
-
-#endif
+	list = NULL;
+	while (lst && f && del)
+	{
+		node = ft_lstnew(lst->content);
+		if (!node)
+			return (ft_lstclear(&list, del), NULL);
+		node->content = f(lst->content);
+		ft_lstadd_back(&list, node);
+		lst = lst->next;
+	}
+	return (list);
+}

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 18:13:13 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/03 14:11:40 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/07 20:49:31 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:20:43 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "mylib.h"
 
-#include "MYLIB/mylib.h"
-# include <signal.h>
-
-# define WAIT_TIME 400
-
-#endif
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}

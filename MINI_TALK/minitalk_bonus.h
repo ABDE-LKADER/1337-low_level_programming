@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 
 #include "MYLIB/mylib.h"
 # include <signal.h>
 
-# define WAIT_TIME 400
+# define WAIT_TIME 800
 
 #endif

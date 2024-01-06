@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 18:13:13 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/03 14:11:40 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/07 18:20:38 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:19:00 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "mylib.h"
 
-#include "MYLIB/mylib.h"
-# include <signal.h>
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*ls;
 
-# define WAIT_TIME 400
-
-#endif
+	ls = malloc(sizeof(t_list));
+	if (!ls)
+		return (NULL);
+	ls->content = content;
+	ls->next = NULL;
+	return (ls);
+}

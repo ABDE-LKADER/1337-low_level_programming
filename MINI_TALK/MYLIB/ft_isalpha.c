@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 18:13:13 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/03 14:11:40 by abadouab         ###   ########.fr       */
+/*   Created: 2023/10/30 10:41:35 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:22:36 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "mylib.h"
 
-#include "MYLIB/mylib.h"
-# include <signal.h>
-
-# define WAIT_TIME 400
-
-#endif
+int	ft_isalpha(int c)
+{
+	if (!((c >= 65 && c <= 90) || (c >= 97 && c <= 122)))
+		return (0);
+	return (1);
+}

@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 18:13:13 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/03 14:11:40 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/07 21:45:15 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:20:25 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "mylib.h"
 
-#include "MYLIB/mylib.h"
-# include <signal.h>
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*node;
+	t_list	*loop;
 
-# define WAIT_TIME 400
-
-#endif
+	if (!lst || !del)
+		return ;
+	node = *lst;
+	while (node)
+	{
+		loop = node->next;
+		ft_lstdelone(node, del);
+		node = loop;
+	}
+	*lst = NULL;
+}

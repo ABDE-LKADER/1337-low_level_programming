@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 18:13:13 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/03 14:11:40 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/07 15:00:49 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:17:22 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "mylib.h"
 
-#include "MYLIB/mylib.h"
-# include <signal.h>
+void	ft_putnbr_fd(int n, int fd)
+{
+	unsigned int	num;
 
-# define WAIT_TIME 400
-
-#endif
+	if (n < 0)
+	{
+		num = -n;
+		ft_putchar_fd('-', fd);
+	}
+	else
+		num = n;
+	if (num > 9)
+		ft_putnbr_fd(num / 10, fd);
+	ft_putchar_fd(num % 10 + 48, fd);
+}
