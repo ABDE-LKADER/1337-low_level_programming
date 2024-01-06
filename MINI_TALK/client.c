@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 11:34:21 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/04 20:26:44 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/04 20:27:58 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,4 @@ int	main(int ac, char **av)
 	while (*av[2])
 		signal_handler(server_pid, *av[2]++);
 	return (EXIT_SUCCESS);
-}
-
-
-
-
-void	send_msg(pid_t sv_pid, char *msg)
-{
-	unsigned char	c;
-	int				nbr_bits;
-
-	while (*msg)
-	{
-		c = *msg;
-		nbr_bits = 8;
-		while (nbr_bits--)
-		{
-			if (c & 0b10000000)
-				kill(sv_pid, SIGUSR1);
-			else
-				kill(sv_pid, SIGUSR2);
-			usleep(50);
-			c <<= 1;
-		}
-		msg++;
-	}
 }
