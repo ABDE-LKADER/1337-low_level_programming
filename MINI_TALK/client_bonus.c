@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 11:34:21 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/06 17:34:38 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/07 21:46:39 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ static void	signal_handler(int server_pid, unsigned char mes)
 	}
 }
 
-void	feedback(void)
+void	feedback(int sig)
 {
+	(void)sig;
 	ft_printf("\033[1;33m[SUCCESS]: \033[0m");
 	ft_printf("Message was received to the server!\n");
 }

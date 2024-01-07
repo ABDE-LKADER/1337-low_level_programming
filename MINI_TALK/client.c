@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 11:34:21 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/06 16:24:25 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/07 21:34:10 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	signal_handler(int server_pid, unsigned char mes)
 	int	check_bits;
 
 	num_bit = 8;
-	check_bits = 128;
+	check_bits = 128; // 0010 0000
 	while (num_bit--)
 	{
 		if (mes & check_bits)
