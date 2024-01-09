@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 11:34:17 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/07 21:46:05 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:22:14 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 int	g_set_bit = 128;
 
-void	check_pid(int new_pid, int mess, int bits)
+static void	check_pid(int *old_pid, int new_pid, int *mess, int *bits)
 {
-	static int	old_pid;
-	if (old_pid != new_pid)
+	if (*old_pid != new_pid)
 	{
-		bits = 0;
-		mess = 0;
+		*bits = 0;
+		*mess = 0;
 		g_set_bit = 128;
 	}
-	old_pid = new_pid;
+	*old_pid = new_pid;
 }
 
-static void	signal_handler(int signal_client, siginfo_t *sig_info, void *none)
+static void	signal_handler(int signal_client, siginfo_t *sig_inf, void *none)
 {
+	static int	old_pid = 0;
 	static int	bits = 0;
 	static int	mess = 0;
 
 	(void)none;
-	check_pid(sig_info->si_pid, mess, bits);
+	check_pid(&old_pid, sig_inf->si_pid, &mess, &bits);
 	if (signal_client == SIGUSR1)
 		mess |= g_set_bit;
 	g_set_bit >>= 1;
