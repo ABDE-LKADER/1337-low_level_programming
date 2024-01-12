@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:18:34 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/11 21:27:37 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/12 22:15:33 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ void	check_double(t_stack *stack);
 
 t_stack	*parce_in(int ac, char **av);
 void	add_num(t_stack **stack, char *value);
+
+void	sa(t_stack **stack_a);
+void	pa(t_stack **stack_a, t_stack **stack_b);
 
 #endif

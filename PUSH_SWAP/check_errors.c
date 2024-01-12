@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_errors.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/12 20:43:19 by abadouab          #+#    #+#             */
+/*   Updated: 2024/01/12 20:43:21 by abadouab         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	message_error(void)
@@ -31,6 +43,23 @@ long	ft_atol(const char *str)
 			message_error();
 	}
 	return (num * sign);
+}
+
+void	t_clear(t_stack **lst, void (*del)(void *))
+{
+	t_stack	*node;
+	t_stack	*loop;
+
+	if (!lst || !del)
+		return ;
+	node = *lst;
+	while (node)
+	{
+		loop = node->next;
+		free(node);
+		node = loop;
+	}
+	*lst = NULL;
 }
 
 void	check_double(t_stack *stack)
@@ -72,7 +101,7 @@ void	check_in(int ac, char **av)
 			j++;
 		}
 		check = ft_strtrim(av[i], " ");
-		if (!check[0])
+		if (!*check)
 			message_error();
 		ft_atol(av[i]);
 		i++;

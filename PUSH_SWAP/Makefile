@@ -1,7 +1,8 @@
 NAME	=	push_swap
 SRCS	=	push_swap.c \
 			check_errors.c \
-			parse_in.c
+			parse_in.c \
+			actions_a.c
 
 OBJS 	=	$(SRCS:.c=.o)
 
