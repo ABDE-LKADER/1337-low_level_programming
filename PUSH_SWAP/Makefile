@@ -1,6 +1,8 @@
 NAME	=	push_swap
 SRCS	=	push_swap.c \
-			
+			check_errors.c \
+			parse_in.c
+
 OBJS 	=	$(SRCS:.c=.o)
 
 FLGS 	=	cc -Wall -Wextra -Werror
