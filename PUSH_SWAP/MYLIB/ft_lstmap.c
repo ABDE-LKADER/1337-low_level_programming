@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 19:18:34 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/11 21:27:37 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/08 11:17:56 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/08 11:10:02 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-#define PUSH_SWAP
+#include "mylib.h"
 
-# include "MYLIB/mylib.h"
-# include <stdio.h>
-# include <limits.h>
-
-typedef struct	s_stack
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int				value;
-	struct s_stack	*next;
-}	t_stack;
+	t_list	*node;
+	t_list	*list;
 
-#endif
+	list = NULL;
+	while (lst && f && del)
+	{
+		node = ft_lstnew(lst->content);
+		if (!node)
+			return (ft_lstclear(&list, del), NULL);
+		node->content = f(lst->content);
+		ft_lstadd_back(&list, node);
+		lst = lst->next;
+	}
+	return (list);
+}

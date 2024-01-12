@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 19:18:34 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/11 21:27:37 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/07 21:45:15 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:20:25 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-#define PUSH_SWAP
+#include "mylib.h"
 
-# include "MYLIB/mylib.h"
-# include <stdio.h>
-# include <limits.h>
-
-typedef struct	s_stack
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int				value;
-	struct s_stack	*next;
-}	t_stack;
+	t_list	*node;
+	t_list	*loop;
 
-#endif
+	if (!lst || !del)
+		return ;
+	node = *lst;
+	while (node)
+	{
+		loop = node->next;
+		ft_lstdelone(node, del);
+		node = loop;
+	}
+	*lst = NULL;
+}

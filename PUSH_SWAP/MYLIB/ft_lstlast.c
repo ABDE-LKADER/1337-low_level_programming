@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 19:18:34 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/11 21:27:37 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/07 21:07:41 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:19:11 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-#define PUSH_SWAP
+#include "mylib.h"
 
-# include "MYLIB/mylib.h"
-# include <stdio.h>
-# include <limits.h>
-
-typedef struct	s_stack
+t_list	*ft_lstlast(t_list *lst)
 {
-	int				value;
-	struct s_stack	*next;
-}	t_stack;
-
-#endif
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}

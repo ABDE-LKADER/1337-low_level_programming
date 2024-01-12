@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 19:18:34 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/11 21:27:37 by abadouab         ###   ########.fr       */
+/*   Created: 2023/10/30 10:41:35 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:22:36 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-#define PUSH_SWAP
+#include "mylib.h"
 
-# include "MYLIB/mylib.h"
-# include <stdio.h>
-# include <limits.h>
-
-typedef struct	s_stack
+int	ft_isalpha(int c)
 {
-	int				value;
-	struct s_stack	*next;
-}	t_stack;
-
-#endif
+	if (!((c >= 65 && c <= 90) || (c >= 97 && c <= 122)))
+		return (0);
+	return (1);
+}

@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 19:18:34 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/11 21:27:37 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/02 19:32:56 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:22:44 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-#define PUSH_SWAP
+#include "mylib.h"
 
-# include "MYLIB/mylib.h"
-# include <stdio.h>
-# include <limits.h>
-
-typedef struct	s_stack
+void	*ft_calloc(size_t count, size_t size)
 {
-	int				value;
-	struct s_stack	*next;
-}	t_stack;
+	void	*loc;
+	size_t	bytes;
 
-#endif
+	loc = NULL;
+	bytes = count * size;
+	if (count != 0 && bytes / count != size)
+		return (NULL);
+	loc = malloc(bytes);
+	if (!loc)
+		return (NULL);
+	ft_bzero(loc, bytes);
+	return (loc);
+}

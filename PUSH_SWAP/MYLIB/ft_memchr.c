@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 19:18:34 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/11 21:27:37 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/01 21:43:50 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:18:38 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-#define PUSH_SWAP
+#include "mylib.h"
 
-# include "MYLIB/mylib.h"
-# include <stdio.h>
-# include <limits.h>
-
-typedef struct	s_stack
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int				value;
-	struct s_stack	*next;
-}	t_stack;
+	size_t			i;
+	unsigned char	l;
+	unsigned char	*str;
 
-#endif
+	i = 0;
+	l = (unsigned char)c;
+	str = (unsigned char *)s;
+	while (i < n)
+	{
+		if (str[i] == l)
+			return ((void *)str + i);
+		i++;
+	}
+	return (NULL);
+}
