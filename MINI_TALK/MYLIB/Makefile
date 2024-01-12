@@ -10,18 +10,26 @@ FLGS =	cc -Wall -Wextra -Werror -c
 OBJS =	$(SRCS:.c=.o)
 RM   =	rm -fr
 
-%.o: %.c $(LIBF)
-	@$(FLGS) $< -o $@
+GREEN =	"\033[1;32m"
+YELOW =	"\033[1;33m"
+REDCL = "\033[1;31m"
+RESET =	"\033[0m"
+
+all: $(NAME)
+	@echo $(GREEN)MYLIB Created !!$(RESET)
 
 $(NAME): $(OBJS)
 	@$(ARRC) $(NAME) $(OBJS)
 
-all: $(NAME)
+%.o: %.c $(LIBF)
+	@$(FLGS) $< -o $@
 
 clean:
 	@$(RM) $(OBJS)
+	@echo $(YELOW)MYLIB Cleaned !!$(RESET)
 
 fclean: clean
 	@$(RM) $(NAME)
+	@echo $(REDCL)MYLIB Cleared !!$(RESET)
 
-re: fclean all bonus
+re: fclean all

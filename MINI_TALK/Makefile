@@ -27,28 +27,28 @@ $(MYAR):
 	@make -C MYLIB --no-print-directory
 
 $(NAME): $(OBJS) $(MYAR)
-	$(FLGS) $^ -o $(NAME)
+	@$(FLGS) $^ -o $(NAME)
 
 $(CLIENT_NAME): $(CLIENT_OBJS) $(MYAR)
-	$(FLGS) $^ -o $(CLIENT_NAME) 
+	@$(FLGS) $^ -o $(CLIENT_NAME) 
 
 $(OBJS): %.o: %.c $(MYHD)
-	$(FLGS) -c $< -o $@
+	@$(FLGS) -c $< -o $@
 
 $(CLIENT_OBJS): %.o: %.c $(MYHD)
-	$(FLGS) -c $< -o $@
+	@$(FLGS) -c $< -o $@
 
 $(NAME_BONUS): $(OBJS_BONUS) $(MYAR)
-	$(FLGS) $^ -o $(NAME_BONUS)
+	@$(FLGS) $^ -o $(NAME_BONUS)
 
 $(CLIENT_NAME_BONUS): $(CLIENT_OBJS_BONUS) $(MYAR)
-	$(FLGS) $^ -o $(CLIENT_NAME_BONUS) 
+	@$(FLGS) $^ -o $(CLIENT_NAME_BONUS) 
 
 $(OBJS_BONUS): %.o: %.c $(MYHD)
-	$(FLGS) -c $< -o $@
+	@$(FLGS) -c $< -o $@
 
 $(CLIENT_OBJS_BONUS): %.o: %.c $(MYHD)
-	$(FLGS) -c $< -o $@
+	@$(FLGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS) $(CLIENT_OBJS) $(OBJS_BONUS) $(CLIENT_OBJS_BONUS)
