@@ -6,11 +6,24 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:43:07 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/13 12:19:34 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/13 15:47:32 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+size_t	size_stack(t_stack *stack)
+{
+	size_t	len;
+
+	len = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		len++;
+	}
+	return (len);	
+}
 
 void	add_num(t_stack **stack, char *value)
 {

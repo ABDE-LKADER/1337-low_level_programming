@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:18:34 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/13 13:02:37 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/13 15:44:45 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ long	ft_atol(const char *str);
 void	check_in(int ac, char **av);
 void	check_double(t_stack *stack);
 
+size_t	size_stack(t_stack *stack);
 t_stack	*parce_in(int ac, char **av);
 void	add_num(t_stack **stack, char *value);
 
