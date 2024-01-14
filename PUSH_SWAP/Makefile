@@ -10,7 +10,7 @@ OBJS 	=	$(SRCS:.c=.o)
 
 FLGS 	=	cc -Wall -Wextra -Werror
 MYAR	=	MYLIB/mylib.a
-MYH		=	MYLIB/mylib.h
+MYHD	=	MYLIB/mylib.h
 RM		=	rm -f
 
 GREEN	=	"\033[1;32m"
