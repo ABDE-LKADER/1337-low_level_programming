@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:43:19 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/13 15:41:08 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/14 12:49:25 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,41 @@ void	message_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
+}
+
+void	check_double(t_stack *stack)
+{
+	t_stack	*temp;
+
+	while (stack)
+	{
+		temp = stack->next;
+		while (temp)
+		{
+			if (stack->value == temp->value)
+				message_error();
+			temp = temp->next;
+		}
+		stack = stack->next;
+	}
+}
+
+size_t check_sort(t_stack *stack)
+{
+	t_stack	*check;
+
+	while (stack)
+	{
+		check = stack->next;
+		while (check)
+		{
+			if (stack->value < check->value)
+				return (1);
+			check = check->next;
+		}
+		stack = stack->next;
+	}
+	return (0);
 }
 
 long	ft_atol(const char *str)
@@ -43,40 +78,6 @@ long	ft_atol(const char *str)
 			message_error();
 	}
 	return (num * sign);
-}
-
-void	t_clear(t_stack **lst, void (*del)(void *))
-{
-	t_stack	*node;
-	t_stack	*loop;
-
-	if (!lst || !del)
-		return ;
-	node = *lst;
-	while (node)
-	{
-		loop = node->next;
-		free(node);
-		node = loop;
-	}
-	*lst = NULL;
-}
-
-void	check_double(t_stack *stack)
-{
-	t_stack	*temp;
-
-	while (stack)
-	{
-		temp = stack->next;
-		while (temp)
-		{
-			if (stack->value == temp->value)
-				message_error();
-			temp = temp->next;
-		}
-		stack = stack->next;
-	}
 }
 
 void	check_in(int ac, char **av)
