@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:18:34 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/14 12:58:21 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/14 14:55:50 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	message_error(void);
 long	ft_atol(const char *str);
 void	check_in(int ac, char **av);
 void	check_double(t_stack *stack);
-size_t	check_is_sorted(t_stack *stack);
+int		check_is_sorted(t_stack *stack);
 
 size_t	size_stack(t_stack *stack);
 t_stack	*parce_in(int ac, char **av);

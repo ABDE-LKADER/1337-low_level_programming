@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:43:19 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/14 12:49:25 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/14 14:55:41 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	check_double(t_stack *stack)
 	}
 }
 
-size_t check_sort(t_stack *stack)
+int	check_is_sorted(t_stack *stack)
 {
 	t_stack	*check;
 
@@ -44,13 +44,13 @@ size_t check_sort(t_stack *stack)
 		check = stack->next;
 		while (check)
 		{
-			if (stack->value < check->value)
-				return (1);
+			if (stack->value > check->value)
+				return (0);
 			check = check->next;
 		}
 		stack = stack->next;
 	}
-	return (0);
+	return (1);
 }
 
 long	ft_atol(const char *str)
