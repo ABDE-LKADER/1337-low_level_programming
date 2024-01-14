@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:18:37 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/14 12:39:40 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/14 14:27:26 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	sort_stack(t_stack	**stack_a, t_stack	**stack_b)
 	if (len == 1)
 		exit(EXIT_SUCCESS);
 	pivot = find_pivot(*stack_a, len);
-    ft_printf("PIVOT: %d\n", pivot);
 	if ((*stack_a)->value < pivot)
 		pb(stack_a, stack_b);
 	else
@@ -78,7 +77,7 @@ int	main(int ac, char **av)
 		return (EXIT_SUCCESS);
 	check_in(ac, av);
 	stack_a = parce_in(ac, av);
-	if (check_sort(stack_a))
+	if (check_is_sorted(stack_a))
 		return (EXIT_SUCCESS);
 	sort_stack(&stack_a, &stack_b);
 	return (EXIT_SUCCESS);
