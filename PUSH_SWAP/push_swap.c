@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:18:37 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/14 14:55:43 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:39:40 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ int	find_pivot(t_stack *stack, int len)
 	t_stack *first = stack;
 	t_stack *middle = stack;
 	t_stack *last = stack;
+	int		i;
 
-	for (int i = 0; i < len / 2; i++)
+	i = 0;
+	while (i++ < len / 2)
 		middle = middle->next;
-
-	for (int i = 0; i < len - 1; i++)
+	i = 0;
+	while (i++ < len - 1)
 		last = last->next;
-
 	if ((first->value <= middle->value && middle->value <= last->value) ||
 		(last->value <= middle->value && middle->value <= first->value))
 		return middle->value;
@@ -50,6 +51,12 @@ void	sort_stack(t_stack	**stack_a, t_stack	**stack_b)
 	len = size_stack(*stack_a);
 	if (len == 1)
 		exit(EXIT_SUCCESS);
+	else if (len == 2)
+	{
+		if ((*stack_a)->value > (*stack_a)->next->value)
+			sa(stack_a, 1);
+		return ;
+	}
 	pivot = find_pivot(*stack_a, len);
 	if ((*stack_a)->value < pivot)
 		pb(stack_a, stack_b);
