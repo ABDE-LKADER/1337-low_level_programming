@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:43:52 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/13 14:39:30 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/17 22:46:30 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ra(t_stack **stack_a, int print)
 	t_stack *temp;
 	t_stack *last;
 
+	if (!size_stack(*stack_a))
+		return ;
 	temp = *stack_a;
 	*stack_a = (*stack_a)->next;
 	last = *stack_a;

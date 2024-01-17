@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:18:37 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/16 20:39:40 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/17 22:46:39 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,51 @@ int	find_pivot(t_stack *stack, int len)
 		return last->value;
 }
 
-void	sort_stack(t_stack	**stack_a, t_stack	**stack_b)
+void	sort_less(t_stack **stack_a, int len)
+{
+	if (len == 1 || len == 2)
+	{
+		if (len == 2)
+			if ((*stack_a)->value > (*stack_a)->next->value)
+				sa(stack_a, 1);
+		exit(EXIT_SUCCESS);
+	}
+	if((*stack_a)->value < (*stack_a)->next->value)
+		sa(stack_a, 1);
+	if ((*stack_a)->value > (*stack_a)->next->value)
+	{
+		if ((*stack_a)->value > (*stack_a)->next->next->value)
+		{
+			ra(stack_a, 1);
+			if ((*stack_a)->value > (*stack_a)->next->value)
+				sa(stack_a, 1);
+		}
+		else if ((*stack_a)->value < (*stack_a)->next->next->value)
+			sa(stack_a, 1);
+		else
+			ra(stack_a, 1);
+	}
+}
+
+void	sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	int	len;
+	int	lenb;
 	int	pivot;
 
 	len = size_stack(*stack_a);
-	if (len == 1)
-		exit(EXIT_SUCCESS);
-	else if (len == 2)
-	{
-		if ((*stack_a)->value > (*stack_a)->next->value)
-			sa(stack_a, 1);
-		return ;
-	}
+	lenb = size_stack(*stack_b);
 	pivot = find_pivot(*stack_a, len);
-	if ((*stack_a)->value < pivot)
-		pb(stack_a, stack_b);
+	if (len > 3)
+	{
+		if ((*stack_a)->value < pivot)
+			pb(stack_a, stack_b);
+		else
+			ra(stack_a, 1);
+		sort_stack(stack_a, stack_b);
+	}
 	else
-		ra(stack_a, 1);
-	sort_stack(stack_a, stack_b);
-	sort_stack(stack_b, stack_a);
+		sort_less(stack_a, len);
 	sort_back(stack_a, stack_b);
 }
 
