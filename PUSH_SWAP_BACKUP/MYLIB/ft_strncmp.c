@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 21:19:03 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/18 13:36:29 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/01 18:39:17 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:15:08 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mylib.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_list	*node;
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	if (!lst || !new)
-		return ;
-	if (!(*lst))
+	i = 0;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while ((str1[i] || str2[i]) && i < n)
 	{
-		*lst = new;
-		return ;
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
 	}
-	node = *lst;
-	node = ft_lstlast(node);
-	node->next = new;
+	return (0);
 }

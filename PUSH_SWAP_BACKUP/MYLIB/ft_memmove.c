@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 21:19:03 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/18 13:36:29 by abadouab         ###   ########.fr       */
+/*   Created: 2023/10/31 21:16:29 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/08 11:00:10 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mylib.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	t_list	*node;
+	char	*d;
+	char	*s;
 
-	if (!lst || !new)
-		return ;
-	if (!(*lst))
+	d = (char *)dst;
+	s = (char *)src;
+	if (!dst && !src)
+		return (NULL);
+	if (d > s)
 	{
-		*lst = new;
-		return ;
+		while (len--)
+			d[len] = s[len];
 	}
-	node = *lst;
-	node = ft_lstlast(node);
-	node->next = new;
+	else
+		ft_memcpy(d, s, len);
+	return (dst);
 }

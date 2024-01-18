@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 21:19:03 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/18 13:36:29 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/05 10:39:56 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:16:30 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mylib.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_list	*node;
+	size_t	i;
+	size_t	j;
+	size_t	len;
+	char	*str;
 
-	if (!lst || !new)
-		return ;
-	if (!(*lst))
-	{
-		*lst = new;
-		return ;
-	}
-	node = *lst;
-	node = ft_lstlast(node);
-	node->next = new;
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	str = malloc(len * sizeof(char));
+	if (!str)
+		return (NULL);
+	i = ft_strlen(s1);
+	ft_memcpy(str, s1, i);
+	j = 0;
+	while (s2[j])
+		str[i++] = s2[j++];
+	return (str[i] = '\0', str);
 }

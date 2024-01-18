@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 21:19:03 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/18 13:36:29 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/01 21:43:50 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:18:38 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mylib.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_list	*node;
+	size_t			i;
+	unsigned char	l;
+	unsigned char	*str;
 
-	if (!lst || !new)
-		return ;
-	if (!(*lst))
+	i = 0;
+	l = (unsigned char)c;
+	str = (unsigned char *)s;
+	while (i < n)
 	{
-		*lst = new;
-		return ;
+		if (str[i] == l)
+			return ((void *)str + i);
+		i++;
 	}
-	node = *lst;
-	node = ft_lstlast(node);
-	node->next = new;
+	return (NULL);
 }

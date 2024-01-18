@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 21:19:03 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/18 13:36:29 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/07 08:57:15 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/08 11:51:50 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mylib.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	t_list	*node;
+	int		i;
 
-	if (!lst || !new)
+	if (!s || !f)
 		return ;
-	if (!(*lst))
+	i = 0;
+	while (s[i])
 	{
-		*lst = new;
-		return ;
+		f(i, &s[i]);
+		i++;
 	}
-	node = *lst;
-	node = ft_lstlast(node);
-	node->next = new;
 }

@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 21:19:03 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/18 13:36:29 by abadouab         ###   ########.fr       */
+/*   Created: 2023/11/07 15:00:49 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:17:22 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mylib.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_list	*node;
+	unsigned int	num;
 
-	if (!lst || !new)
-		return ;
-	if (!(*lst))
+	if (n < 0)
 	{
-		*lst = new;
-		return ;
+		num = -n;
+		ft_putchar_fd('-', fd);
 	}
-	node = *lst;
-	node = ft_lstlast(node);
-	node->next = new;
+	else
+		num = n;
+	if (num > 9)
+		ft_putnbr_fd(num / 10, fd);
+	ft_putchar_fd(num % 10 + 48, fd);
 }

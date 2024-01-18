@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 21:19:03 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/18 13:36:29 by abadouab         ###   ########.fr       */
+/*   Created: 2023/10/30 22:58:25 by abadouab          #+#    #+#             */
+/*   Updated: 2023/12/07 21:17:29 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mylib.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	t_list	*node;
+	size_t			i;
+	unsigned char	*buffer;
 
-	if (!lst || !new)
-		return ;
-	if (!(*lst))
+	i = 0;
+	buffer = (unsigned char *)b;
+	while (i < len)
 	{
-		*lst = new;
-		return ;
+		buffer[i] = c;
+		i++;
 	}
-	node = *lst;
-	node = ft_lstlast(node);
-	node->next = new;
+	return (buffer);
 }
