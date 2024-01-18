@@ -16,6 +16,8 @@ void	sa(t_stack **stack_a, int print)
 {
 	t_stack	*temp;
 
+	if (size_stack(*stack_a) < 2)
+		return ;
 	temp = (*stack_a)->next;
 	(*stack_a)->next = temp->next;
 	temp->next = *stack_a;
@@ -28,6 +30,8 @@ void	sb(t_stack **stack_b, int print)
 {
 	t_stack	*temp;
 
+	if (size_stack(*stack_b) < 2)
+		return ;
 	temp = (*stack_b)->next;
 	(*stack_b)->next = temp->next;
 	temp->next = *stack_b;

@@ -20,75 +20,103 @@ void	sort_back(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-int	find_pivot(t_stack *stack, int len)
+void	sort_less(t_stack **stack_a)
 {
-	t_stack *first = stack;
-	t_stack *middle = stack;
-	t_stack *last = stack;
-	int		i;
+	int	one;
+	int	tow;
+	int	three;
 
-	i = 0;
-	while (i++ < len / 2)
-		middle = middle->next;
-	i = 0;
-	while (i++ < len - 1)
-		last = last->next;
-	if ((first->value <= middle->value && middle->value <= last->value) ||
-		(last->value <= middle->value && middle->value <= first->value))
-		return middle->value;
-	else if ((middle->value <= first->value && first->value <= last->value) ||
-			 (last->value <= first->value && first->value <= middle->value))
-		return first->value;
-	else
-		return last->value;
-}
-
-void	sort_less(t_stack **stack_a, int len)
-{
-	if (len == 1 || len == 2)
+	one = (*stack_a)->value;
+	tow = (*stack_a)->next->value;
+	three = (*stack_a)->next->next->value;
+	if(one > tow && tow > three)
 	{
-		if (len == 2)
-			if ((*stack_a)->value > (*stack_a)->next->value)
-				sa(stack_a, 1);
-		exit(EXIT_SUCCESS);
-	}
-	if((*stack_a)->value < (*stack_a)->next->value)
 		sa(stack_a, 1);
-	if ((*stack_a)->value > (*stack_a)->next->value)
-	{
-		if ((*stack_a)->value > (*stack_a)->next->next->value)
-		{
-			ra(stack_a, 1);
-			if ((*stack_a)->value > (*stack_a)->next->value)
-				sa(stack_a, 1);
-		}
-		else if ((*stack_a)->value < (*stack_a)->next->next->value)
-			sa(stack_a, 1);
-		else
-			ra(stack_a, 1);
+		rra(stack_a, 1);
 	}
+	else if (one < three && three < tow)
+	{
+		sa(stack_a, 1);
+		ra(stack_a, 1);
+	}
+	else if (one > three && three > tow)
+		ra(stack_a, 1);
+	else if (one < three && three > tow)
+		sa(stack_a, 1);
+	else if (one > three && three < tow)
+		rra(stack_a, 1);
 }
+
+void sort_more(t_stack **stack_a, t_stack **stack_b)
+{
+    int len;
+
+    len = size_stack(*stack_a);
+
+    if (len <= 3)
+    {
+        sort_less(stack_a);
+        return;
+    }
+
+    while (*stack_a)
+    {
+        int current = (*stack_a)->value;
+        
+        if (*stack_b && (*stack_b)->value < current)
+        {
+            while (*stack_b && (*stack_b)->value < current)
+            {
+                pa(stack_a, stack_b);
+                write(1, "pa\n", 3);
+            }
+        }
+        else
+        {
+            pb(stack_a, stack_b);
+            write(1, "pb\n", 3);
+        }
+    }
+
+    while (*stack_b)
+    {
+        pa(stack_a, stack_b);
+        write(1, "pa\n", 3);
+    }
+
+    sort_less(stack_a);
+}
+
+
+
+// void	sort_more(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	int	len;
+
+// 	len = size_stack(*stack_a);
+// 	if (len == 3)
+// 	{
+// 		sort_less(stack_a);
+// 		return ;
+// 	}
+// 	if ((*stack_a)->value < len / 2)
+// 		pb(stack_a, stack_b);
+// 	else
+// 		ra(stack_a, 1);
+// 	sort_more(stack_a, stack_b);
+// }
 
 void	sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	int	len;
-	int	lenb;
-	int	pivot;
 
 	len = size_stack(*stack_a);
-	lenb = size_stack(*stack_b);
-	pivot = find_pivot(*stack_a, len);
-	if (len > 3)
-	{
-		if ((*stack_a)->value < pivot)
-			pb(stack_a, stack_b);
-		else
-			ra(stack_a, 1);
-		sort_stack(stack_a, stack_b);
-	}
+	if (len == 2)
+		sa(stack_a, 1);
+	else if (len == 3)
+		sort_less(stack_a);
 	else
-		sort_less(stack_a, len);
-	sort_back(stack_a, stack_b);
+		sort_more(stack_a, stack_b);
 }
 
 int	main(int ac, char **av)
