@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:43:07 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/19 15:25:52 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:27:21 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	free_stack(t_stack *stack)
 	}
 }
 
-void	add_num(t_stack **stack, char *value)
+static void	add_num(t_stack **stack, char *value)
 {
 	t_stack	*node;
 	t_stack *new;

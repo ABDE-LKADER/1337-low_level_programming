@@ -6,14 +6,14 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:18:34 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/19 15:49:22 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:32:30 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP
 #define PUSH_SWAP
 
-# include "../MYLIB/mylib.h"
+# include "mylib.h"
 # include <stdio.h>
 # include <limits.h>
 
