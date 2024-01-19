@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:18:34 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/18 15:23:44 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:49:22 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int		check_is_sorted(t_stack *stack);
 
 size_t	size_stack(t_stack *stack);
 t_stack	*parce_in(int ac, char **av);
-void	add_num(t_stack **stack, char *value);
 
 void	free_stack(t_stack *stack);
 

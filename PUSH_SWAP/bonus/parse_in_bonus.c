@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:43:07 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/18 22:13:19 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:25:52 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,9 @@ void	add_num(t_stack **stack, char *value)
 	node->next = new;
 }
 
-// static void free_mat(char ***mat)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	while ((*mat)[i])
-// 	{
-// 		free((*mat)[i]);
-// 		i++;
-// 	}
-// 	free(*mat);
-// }
-
 t_stack	*parce_in(int ac, char **av)
 {
 	t_stack	*stack = NULL;
-	char	***tmp;
 	char	**spn;
 	int		i;
 	int		j;
@@ -93,12 +79,9 @@ t_stack	*parce_in(int ac, char **av)
 			while (spn[j])
 			{
 				add_num(&stack, spn[j]);
-				free(spn[j]);
-				j++;
+				free(spn[j++]);
 			}
-			tmp = &spn;
-			free(*tmp);
-			// free_mat(&spn);
+			free(spn);
 		}
 		else
 			add_num(&stack, av[i]);

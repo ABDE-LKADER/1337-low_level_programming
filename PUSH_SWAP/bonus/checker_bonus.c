@@ -6,23 +6,11 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:18:37 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/18 22:04:59 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:24:47 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
-
-// static void	free_all(t_stack *stack_a, t_stack *stack_b, t_list	**ops)
-// {
-// 	ft_putstr_fd("Error\n", 2);
-// 	free_stack(stack_a);
-// 	free_stack(stack_b);
-// 	ft_lstclear(ops, free);
-// 	(void)ops;
-// 	(void)stack_a;
-// 	(void)stack_b;
-// 	exit (EXIT_FAILURE);
-// }
 
 static void	check_actions(char *input)
 {
@@ -70,10 +58,11 @@ static void	do_actions(t_stack **stack_a, t_stack **stack_b, char *input)
 
 static void	ft_checker(t_stack **stack_a, t_stack **stack_b)
 {
-	char	*op = NULL;
-	t_list	*ops = NULL;
-	t_list	*tmp = NULL;
+	char	*op;
+	t_list	*ops;
+	t_list	*tmp;
 
+	ops = NULL;
 	while (1)
 	{
 		op = get_next_line(0);
@@ -96,14 +85,8 @@ static void	ft_checker(t_stack **stack_a, t_stack **stack_b)
 		ft_printf("KO\n");
 }
 
-void f()
-{
-	system("leaks checker");
-}
-
 int	main(int ac, char **av)
 {
-	atexit(f);
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	stack_b = NULL;
