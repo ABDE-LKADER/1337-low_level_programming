@@ -1,54 +1,58 @@
 NAME				=	server
-SRCS				=	server.c
+SRCS				=	mandatory/server.c
 OBJS				=	$(SRCS:.c=.o)
 
 CLIENT_NAME 		=	client
-CLIENT_SRCS			=	client.c
+CLIENT_SRCS			=	mandatory/client.c
 CLIENT_OBJS			=	$(CLIENT_SRCS:.c=.o)
 
 NAME_BONUS			=	server_bonus
-SRCS_BONUS			=	server_bonus.c
+SRCS_BONUS			=	bonus/server_bonus.c
 OBJS_BONUS			=	$(SRCS_BONUS:.c=.o)
 
 CLIENT_NAME_BONUS 	=	client_bonus
-CLIENT_SRCS_BONUS 	=	client_bonus.c
+CLIENT_SRCS_BONUS 	=	bonus/client_bonus.c
 CLIENT_OBJS_BONUS 	=	$(CLIENT_SRCS_BONUS:.c=.o)
 
-FLGS				=	cc -Wall -Wextra -Werror
-MYAR				=	MYLIB/mylib.a
+HEADR				=	mandatory/minitalk.h
+HD_BONUS			=	bonus/minitalk_bonus.h
+
+MYLB				=	MYLIB
 MYHD				=	MYLIB/mylib.h
+
+FLGS				=	cc -Wall -Wextra -Werror
 RM					=	rm -f
 
-all: $(MYAR) $(NAME) $(CLIENT_NAME)
+all: $(MYLB) $(NAME) $(CLIENT_NAME)
 
-bonus: $(MYAR) $(NAME_BONUS) $(CLIENT_NAME_BONUS)
+bonus: $(MYLB) $(NAME_BONUS) $(CLIENT_NAME_BONUS)
 
-$(MYAR):
+$(MYLB):
 	@make -C MYLIB --no-print-directory
 
-$(NAME): $(OBJS) $(MYAR)
-	@$(FLGS) $^ -o $(NAME)
+$(NAME): $(OBJS)
+	@$(FLGS) $^ -L $(MYLB) -l ar -o $(NAME)
 
-$(CLIENT_NAME): $(CLIENT_OBJS) $(MYAR)
-	@$(FLGS) $^ -o $(CLIENT_NAME) 
+$(CLIENT_NAME): $(CLIENT_OBJS)
+	@$(FLGS) $^ -L $(MYLB) -l ar -o $(CLIENT_NAME) 
 
-$(OBJS): %.o: %.c $(MYHD)
-	@$(FLGS) -c $< -o $@
+$(OBJS): %.o: %.c $(MYHD) $(HEADR)
+	@$(FLGS) -c $< -I $(MYLB) -o $@
 
-$(CLIENT_OBJS): %.o: %.c $(MYHD)
-	@$(FLGS) -c $< -o $@
+$(CLIENT_OBJS): %.o: %.c $(MYHD) $(HEADR)
+	@$(FLGS) -c $< -I $(MYLB) -o $@
 
-$(NAME_BONUS): $(OBJS_BONUS) $(MYAR)
-	@$(FLGS) $^ -o $(NAME_BONUS)
+$(NAME_BONUS): $(OBJS_BONUS)
+	@$(FLGS) $^ -L $(MYLB) -l ar -o $(NAME_BONUS)
 
-$(CLIENT_NAME_BONUS): $(CLIENT_OBJS_BONUS) $(MYAR)
-	@$(FLGS) $^ -o $(CLIENT_NAME_BONUS) 
+$(CLIENT_NAME_BONUS): $(CLIENT_OBJS_BONUS)
+	@$(FLGS) $^ -L $(MYLB) -l ar -o $(CLIENT_NAME_BONUS) 
 
-$(OBJS_BONUS): %.o: %.c $(MYHD)
-	@$(FLGS) -c $< -o $@
+$(OBJS_BONUS): %.o: %.c $(MYHD) $(HD_BONUS)
+	@$(FLGS) -c $< -I $(MYLB) -o $@
 
-$(CLIENT_OBJS_BONUS): %.o: %.c $(MYHD)
-	@$(FLGS) -c $< -o $@
+$(CLIENT_OBJS_BONUS): %.o: %.c $(MYHD) $(HD_BONUS)
+	@$(FLGS) -c $< -I $(MYLB) -o $@
 
 clean:
 	$(RM) $(OBJS) $(CLIENT_OBJS) $(OBJS_BONUS) $(CLIENT_OBJS_BONUS)
@@ -59,3 +63,5 @@ fclean: clean
 	@make fclean -C MYLIB --no-print-directory
 
 re: fclean all
+
+.PHONY: $(MYLB)
