@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -20,6 +20,13 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1337
 # endif
+
+typedef struct s_list
+{
+	char			*save;
+	int				fd;
+	struct s_list	*next;
+}	t_list;
 
 size_t	ft_search(char *s);
 char	*get_next_line(int fd);
