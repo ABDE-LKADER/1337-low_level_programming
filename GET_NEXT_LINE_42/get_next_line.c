@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*get_read(int fd, char *next)
 {
@@ -20,6 +19,8 @@ char	*get_read(int fd, char *next)
 
 	bytes = 1;
 	load = malloc((size_t)BUFFER_SIZE + 1);
+	if (!load)
+		return (NULL);
 	while (ft_search(load) && bytes)
 	{
 		bytes = read(fd, load, BUFFER_SIZE);
@@ -27,7 +28,6 @@ char	*get_read(int fd, char *next)
 			return (free(load), NULL);
 		load[bytes] = '\0';
 		next = ft_strjoin(next, load);
-		printf("%s", next);
 	}
 	free(load);
 	return (next);
@@ -35,18 +35,17 @@ char	*get_read(int fd, char *next)
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	char		*rest;
 	static char	*next = NULL;
+	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX || read(fd, line, 0) == -1)
-		return (NULL);
+	line = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
+		|| read(fd, next, 0) == -1)
+		return (free(next), NULL);
 	next = get_read(fd, next);
 	if (!next)
 		return (NULL);
 	line = ft_strdup(next);
-	printf("%s", line);
-	// rest = strdup_next(next);
-	// next = rest;
+	next = strdup_next(next);
 	return (line);
 }

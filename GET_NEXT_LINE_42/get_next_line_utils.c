@@ -22,7 +22,7 @@ size_t	strlen_set(char *s, char set)
 	return (i);
 }
 
-size_t ft_search(char *s)
+size_t	ft_search(char *s)
 {
 	size_t	i;
 
@@ -43,7 +43,7 @@ char	*strdup_next(char *str)
 	char	*new;
 
 	i = 0;
-	if (!str || !*str) // CHECK
+	if (!str || !*str)
 		return (NULL);
 	len = strlen_set(str, '\n');
 	if (str[len] == '\n')
@@ -51,11 +51,10 @@ char	*strdup_next(char *str)
 	new = malloc((strlen_set(str, '\0') - len) + 1);
 	if (!new)
 		return (NULL);
-	if (str[len] == '\n')
-		len++;
 	while (str[len])
 		new[i++] = str[len++];
 	new[i] = '\0';
+	free(str);
 	return (new);
 }
 
@@ -66,7 +65,7 @@ char	*ft_strdup(char *str)
 	char	*new;
 
 	i = 0;
-	if (!str || !*str) // CHECK
+	if (!str || !*str)
 		return (NULL);
 	len = strlen_set(str, '\n');
 	if (str[len] == '\n')
@@ -79,31 +78,29 @@ char	*ft_strdup(char *str)
 		new[i] = str[i];
 		i++;
 	}
-	new[len] = '\0';
+	new[i] = '\0';
 	return (new);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *next, char *load)
 {
 	size_t	i;
 	size_t	j;
 	char	*str;
 
-	if (!s1)
-		return (s2);
-	i = strlen_set(s1, '\0') + strlen_set(s2, '\0');
-	printf("%zu\n", i);
-	str = malloc(i + 1);
+	if (!next)
+		return (ft_strjoin("", load));
+	str = malloc(strlen_set(next, '\0') + strlen_set(load, '\0') + 1);
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (next[i])
 	{
-		str[i] = s1[i];
+		str[i] = next[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j])
-		str[i++] = s2[j++];
+	while (load[j])
+		str[i++] = load[j++];
 	return (str[i] = '\0', str);
 }
