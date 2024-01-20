@@ -27,13 +27,17 @@ int	main(void)
 		free(ok);
 		ok = get_next_line(fd);
 	}
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+	free(ok);
+	ok = get_next_line(fd);
+	printf("%s", ok);
+	free(ok);
+	ok = get_next_line(fd);
+	printf("%s", ok);
+	free(ok);
+	ok = get_next_line(fd);
+	printf("%s", ok);
+	free(ok);
+	ok = get_next_line(fd);
+	printf("%s", ok);
+	free(ok);
 }
