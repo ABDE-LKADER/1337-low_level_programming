@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/22 13:11:29 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:09:37 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*get_read(int fd, char *next)
 			return (free(load), NULL);
 		load[bytes] = '\0';
 		next = ft_strjoin(next, load);
+		printf("%s", next);
 	}
 	free(load);
 	return (next);
@@ -44,7 +45,8 @@ char	*get_next_line(int fd)
 	if (!next)
 		return (NULL);
 	line = ft_strdup(next);
-	rest = strdup_next(next);
-	next = rest;
+	printf("%s", line);
+	// rest = strdup_next(next);
+	// next = rest;
 	return (line);
 }

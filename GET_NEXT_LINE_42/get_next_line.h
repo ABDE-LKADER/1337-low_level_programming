@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:26:53 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/21 18:14:27 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/20 14:58:13 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <stdio.h>
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1337
+# define BUFFER_SIZE 1
 #endif
 
 char	*get_read(int fd, char *next);

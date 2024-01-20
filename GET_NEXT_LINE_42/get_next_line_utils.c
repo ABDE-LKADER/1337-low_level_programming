@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 07:52:24 by abadouab          #+#    #+#             */
-/*   Updated: 2023/12/22 13:11:27 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:12:49 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,12 @@ char	*strdup_next(char *str)
 	char	*new;
 
 	i = 0;
-	len = strlen_set(str, '\n') + 1;
-	new = malloc(strlen_set(str, '\0') - len);
+	if (!str || !*str) // CHECK
+		return (NULL);
+	len = strlen_set(str, '\n');
+	if (str[len] == '\n')
+		len++;
+	new = malloc((strlen_set(str, '\0') - len) + 1);
 	if (!new)
 		return (NULL);
 	if (str[len] == '\n')
@@ -62,12 +66,14 @@ char	*ft_strdup(char *str)
 	char	*new;
 
 	i = 0;
-	len = strlen_set(str, '\n') + 1;
-	new = malloc(len * sizeof(char));
-	if (!new)
+	if (!str || !*str) // CHECK
 		return (NULL);
+	len = strlen_set(str, '\n');
 	if (str[len] == '\n')
 		len++;
+	new = malloc(len + 1);
+	if (!new)
+		return (NULL);
 	while (i < len)
 	{
 		new[i] = str[i];
@@ -85,9 +91,9 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s1)
 		return (s2);
-	if (!s2)
-		return (s1);
-	str = malloc(strlen_set(s1, '\0') + strlen_set(s2, '\0') + 1);
+	i = strlen_set(s1, '\0') + strlen_set(s2, '\0');
+	printf("%zu\n", i);
+	str = malloc(i + 1);
 	if (!str)
 		return (NULL);
 	i = 0;
