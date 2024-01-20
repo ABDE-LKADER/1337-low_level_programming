@@ -34,9 +34,8 @@ char	*get_read(int fd, char *next)
 
 char	*get_next_line(int fd)
 {
-	int			len;
-	char		temp[123123];
 	char		*line;
+	char		*rest;
 	static char	*next = NULL;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX || read(fd, line, 0) == -1)
@@ -44,11 +43,8 @@ char	*get_next_line(int fd)
 	next = get_read(fd, next);
 	if (!next)
 		return (NULL);
-	len = strlen_set(next, '\n');
-	line = dup_cpy(line, next, len);
-	int i = 0;
-	while (next[len])
-		temp[i++] = next[len++];
-	// free(next);
+	line = ft_strdup(next);
+	rest = strdup_next(next);
+	next = rest;
 	return (line);
 }

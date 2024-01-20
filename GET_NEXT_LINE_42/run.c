@@ -4,12 +4,25 @@
 
 int main()
 {
+	char	*to;
+    char    *ok;
     int fd = open("test.txt", O_RDONLY);
-    
-    printf("%s\n", get_next_line(fd));
-    printf("%s\n", get_next_line(fd));
-    printf("%s\n", get_next_line(fd));
-    printf("%s\n", get_next_line(fd));
-    printf("%s\n", get_next_line(fd));
-    printf("%s\n", get_next_line(fd));
+
+    ok = get_next_line(fd);
+    while (ok)
+    {
+        printf("%s", ok);
+        free(ok);
+        ok = get_next_line(fd);
+    }
+    // printf("%s", get_next_line(fd));
+    // printf("%s", get_next_line(fd));
+    // printf("%s", get_next_line(fd));
+    // printf("%s", get_next_line(fd));
+    // get_next_line(fd);
+    // ok = rest;
+    // printf("REAST ---------------> %s", rest);
+    // printf("%s", get_next_line(fd));
+    // printf("%s", get_next_line(fd));
+    // printf("%s", get_next_line(fd));
 }

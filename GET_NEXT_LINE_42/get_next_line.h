@@ -21,11 +21,12 @@
 # define BUFFER_SIZE 1337
 #endif
 
+char	*get_read(int fd, char *next);
 size_t	ft_search(char *s);
+char	*ft_strdup(char *str);
+char	*get_next_line(int fd);
+char	*strdup_next(char *str);
 size_t	strlen_set(char *s, char set);
 char	*ft_strjoin(char *s1, char *s2);
-char	*dup_cpy(char *dst, char *src, size_t len);
-
-char	*get_next_line(int fd);
 
 #endif

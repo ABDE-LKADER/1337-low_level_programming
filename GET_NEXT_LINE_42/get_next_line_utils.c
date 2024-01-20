@@ -36,21 +36,45 @@ size_t ft_search(char *s)
 	return (1);
 }
 
-char	*dup_cpy(char *dst, char *src, size_t len)
+char	*strdup_next(char *str)
 {
 	size_t	i;
+	size_t	len;
+	char	*new;
 
-	if (!src || !len)
-		return (NULL);
 	i = 0;
-	dst = malloc(len + 1);
-	while (src[i] && i < len)
+	len = strlen_set(str, '\n') + 1;
+	new = malloc(strlen_set(str, '\0') - len);
+	if (!new)
+		return (NULL);
+	if (str[len] == '\n')
+		len++;
+	while (str[len])
+		new[i++] = str[len++];
+	new[i] = '\0';
+	return (new);
+}
+
+char	*ft_strdup(char *str)
+{
+	size_t	i;
+	size_t	len;
+	char	*new;
+
+	i = 0;
+	len = strlen_set(str, '\n') + 1;
+	new = malloc(len * sizeof(char));
+	if (!new)
+		return (NULL);
+	if (str[len] == '\n')
+		len++;
+	while (i < len)
 	{
-		dst[i] = src[i];
+		new[i] = str[i];
 		i++;
 	}
-	dst[len] = '\0';
-	return (dst);
+	new[len] = '\0';
+	return (new);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
