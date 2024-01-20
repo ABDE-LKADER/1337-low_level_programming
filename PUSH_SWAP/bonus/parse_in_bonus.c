@@ -22,12 +22,12 @@ size_t	size_stack(t_stack *stack)
 		stack = stack->next;
 		len++;
 	}
-	return (len);	
+	return (len);
 }
 
 void	free_stack(t_stack *stack)
 {
-	t_stack *loop;
+	t_stack	*loop;
 
 	if (!stack)
 		return ;
@@ -42,7 +42,7 @@ void	free_stack(t_stack *stack)
 static void	add_num(t_stack **stack, char *value)
 {
 	t_stack	*node;
-	t_stack *new;
+	t_stack	*new;
 
 	if (!stack)
 		return ;
@@ -64,12 +64,13 @@ static void	add_num(t_stack **stack, char *value)
 
 t_stack	*parce_in(int ac, char **av)
 {
-	t_stack	*stack = NULL;
+	t_stack	*stack;
 	char	**spn;
 	int		i;
 	int		j;
 
 	i = 1;
+	stack = NULL;
 	while (i < ac)
 	{
 		if (ft_strchr(av[i], ' '))
@@ -87,6 +88,5 @@ t_stack	*parce_in(int ac, char **av)
 			add_num(&stack, av[i]);
 		i++;
 	}
-	check_double(stack);
-	return (stack);
+	return (check_double(stack), stack);
 }

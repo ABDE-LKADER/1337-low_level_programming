@@ -29,7 +29,7 @@ void	sort_less(t_stack **stack_a)
 	one = (*stack_a)->value;
 	tow = (*stack_a)->next->value;
 	three = (*stack_a)->next->next->value;
-	if(one > tow && tow > three)
+	if (one > tow && tow > three)
 	{
 		sa(stack_a, 1);
 		rra(stack_a, 1);
@@ -56,9 +56,7 @@ void	sort_stack(t_stack **stack_a, t_stack **stack_b)
 		sa(stack_a, 1);
 	else if (len == 3)
 		sort_less(stack_a);
-	// else
 	(void)stack_b;
-	// 	sort_more(stack_a, stack_b);
 }
 
 int	main(int ac, char **av)

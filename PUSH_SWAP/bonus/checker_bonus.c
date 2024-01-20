@@ -12,7 +12,7 @@
 
 #include "push_swap_bonus.h"
 
-static void	check_actions(char *input)
+static void	check_actions(t_stack **stack_a, t_stack **stack_b,  t_list	*ops, char *input)
 {
 	int	len;
 
@@ -21,9 +21,13 @@ static void	check_actions(char *input)
 		|| !ft_strncmp("ss\n", input, len) || !ft_strncmp("pa\n", input, len)
 		|| !ft_strncmp("pb\n", input, len) || !ft_strncmp("ra\n", input, len)
 		|| !ft_strncmp("rb\n", input, len) || !ft_strncmp("rr\n", input, len)
-		|| !ft_strncmp("rra\n", input, len)|| !ft_strncmp("rrb\n", input, len)
+		|| !ft_strncmp("rra\n", input, len) || !ft_strncmp("rrb\n", input, len)
 		|| !ft_strncmp("rrr\n", input, len))
 		return ;
+	free(input);
+	ft_lstclear(&ops, free);
+	free_stack(*stack_a);
+	free_stack(*stack_b);
 	message_error();
 }
 
@@ -68,7 +72,7 @@ static void	ft_checker(t_stack **stack_a, t_stack **stack_b)
 		op = get_next_line(0);
 		if (!op)
 			break ;
-		check_actions(op);
+		check_actions(stack_a, stack_b, ops, op);
 		tmp = ft_lstnew(op);
 		ft_lstadd_back(&ops, tmp);
 	}
@@ -89,6 +93,7 @@ int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+
 	stack_b = NULL;
 	if (ac == 1)
 		return (EXIT_SUCCESS);

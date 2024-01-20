@@ -14,8 +14,8 @@
 
 void	rab(t_stack **stack)
 {
-	t_stack *temp;
-	t_stack *last;
+	t_stack	*temp;
+	t_stack	*last;
 
 	if (size_stack(*stack) < 2)
 		return ;
@@ -36,8 +36,8 @@ void	rr(t_stack **stack_a, t_stack **stack_b)
 
 void	rrab(t_stack **stack)
 {
-	t_stack *head;
-	t_stack *last;
+	t_stack	*head;
+	t_stack	*last;
 
 	if (size_stack(*stack) < 2)
 		return ;

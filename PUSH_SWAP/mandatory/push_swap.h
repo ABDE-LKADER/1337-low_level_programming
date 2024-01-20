@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-#define PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include "mylib.h"
 # include <stdio.h>
 # include <limits.h>
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	int				value;
 	struct s_stack	*next;

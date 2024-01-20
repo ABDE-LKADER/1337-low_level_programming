@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <limits.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -76,5 +77,16 @@ int		print_num(int num);
 int		print_unum(unsigned int num);
 int		print_hex(unsigned int num, char set);
 int		ft_printf(const char *format, ...);
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1337
+# endif
+
+size_t	ft_search(char *s);
+char	*get_next_line(int fd);
+char	*strdup_line(char *str);
+char	*strdup_next(char *str);
+size_t	strlen_set(char *s, char set);
+char	*join_strings(char *s1, char *s2);
 
 #endif

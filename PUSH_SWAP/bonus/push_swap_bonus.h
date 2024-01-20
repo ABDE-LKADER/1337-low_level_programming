@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-#define PUSH_SWAP
+#ifndef PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
 
 # include "mylib.h"
 # include <stdio.h>
 # include <limits.h>
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	int				value;
 	struct s_stack	*next;
@@ -42,7 +42,5 @@ void	rab(t_stack **stack);
 void	rr(t_stack **stack_a, t_stack **stack_b);
 void	rrab(t_stack **stack);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
-
-char	*get_next_line(int fd);
 
 #endif

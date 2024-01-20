@@ -14,8 +14,8 @@
 
 void	ra(t_stack **stack_a, int print)
 {
-	t_stack *temp;
-	t_stack *last;
+	t_stack	*temp;
+	t_stack	*last;
 
 	if (size_stack(*stack_a) < 2)
 		return ;
@@ -32,8 +32,8 @@ void	ra(t_stack **stack_a, int print)
 
 void	rb(t_stack **stack_b, int print)
 {
-	t_stack *temp;
-	t_stack *last;
+	t_stack	*temp;
+	t_stack	*last;
 
 	if (size_stack(*stack_b) < 2)
 		return ;
@@ -57,8 +57,8 @@ void	rr(t_stack **stack_a, t_stack **stack_b)
 
 void	rra(t_stack **stack_a, int print)
 {
-	t_stack *head;
-	t_stack *last;
+	t_stack	*head;
+	t_stack	*last;
 
 	if (size_stack(*stack_a) < 2)
 		return ;
@@ -75,8 +75,8 @@ void	rra(t_stack **stack_a, int print)
 
 void	rrb(t_stack **stack_b, int print)
 {
-	t_stack *head;
-	t_stack *last;
+	t_stack	*head;
+	t_stack	*last;
 
 	if (size_stack(*stack_b) < 2)
 		return ;
