@@ -12,7 +12,42 @@
 
 #include "get_next_line_bonus.h"
 
-char	*get_read(int fd, char *save)
+static int	fd_check(t_list *save, int fd)
+{
+	while (save->next)
+	{
+		if (save->fd == fd)
+			return (1);
+		save = save->next;
+	}
+	return (0);
+}
+
+static void	fd_add(t_list **save, int fd)
+{
+	t_list	*node;
+	t_list	*new;
+
+	if (!save)
+		return ;
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return ;
+	new->fd = fd;
+	new->save = NULL;
+	new->next = NULL;
+	if (!(*save))
+	{
+		*save = new;
+		return ;
+	}
+	node = *save;
+	while (node->next)
+		node = node->next;
+	node->next = new;
+}
+
+static char	*get_read(int fd, char *save)
 {
 	char	*load;
 	int		bytes;
@@ -34,17 +69,27 @@ char	*get_read(int fd, char *save)
 
 char	*get_next_line(int fd)
 {
-	static char	*save = NULL;
-	char		*line;
+	static t_list	*save = NULL;
+	t_list			*tsave;
+	char			*line;
 
+	if (!save || !fd_check(save, fd))
+		fd_add(&save, fd);
+	tsave = save;
+	while (tsave->next)
+	{
+		if (tsave->fd == fd)
+			break ;
+		tsave = tsave->next;
+	}
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
-		|| read(fd, save, 0) == -1)
+		|| read(fd, tsave->save, 0) == -1)
 		return (NULL);
-	save = get_read(fd, save);
-	if (!save)
+	tsave->save = get_read(fd, tsave->save);
+	if (!tsave->save)
 		return (NULL);
-	line = strdup_line(save);
-	save = strdup_next(save);
+	line = strdup_line(tsave->save);
+	tsave->save = strdup_next(tsave->save);
 	return (line);
 }

@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char	*get_read(int fd, char *save)
+static char	*get_read(int fd, char *save)
 {
 	char	*load;
 	int		bytes;
