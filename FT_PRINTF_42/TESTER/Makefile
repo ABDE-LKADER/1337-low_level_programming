@@ -1,4 +1,4 @@
-TIMEOUT_US 		= 400000
+TIMEOUT_US 		= 200000
 
 .DEFAULT_GOAL	:= m
 SHELL			= bash

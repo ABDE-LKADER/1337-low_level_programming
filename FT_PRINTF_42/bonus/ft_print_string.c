@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
-#include <stdio.h>
 
 int	print_char(char c)
 {
@@ -27,21 +26,21 @@ int	print_string(char *str)
 
 int	print_char_handler(char c, t_flags flags)
 {
-	int print;
+	int	print;
 
 	flags.minus_len -= 1;
 	print = print_char(c);
 	if (flags.minus)
 	{
-		while (flags.minus_len--)
+		while (flags.minus_len-- > 0)
 			print += print_char(' ');
 	}
-	return(print);
+	return (print);
 }
 
-int	print_string_handler(char *str, t_flags flags)
+static int	string_handler_plus(char *str, t_flags flags)
 {
-	int print;
+	int	print;
 
 	print = 0;
 	if (flags.dot)
@@ -53,6 +52,14 @@ int	print_string_handler(char *str, t_flags flags)
 		while (flags.zero_len-- > 0)
 			print += print_char(' ');
 	}
+	return (print);
+}
+
+int	print_string_handler(char *str, t_flags flags)
+{
+	int	print;
+
+	print = string_handler_plus(str, flags);
 	if (flags.dot)
 	{
 		while (flags.dot_len-- && *str)
@@ -66,5 +73,5 @@ int	print_string_handler(char *str, t_flags flags)
 		while (flags.minus_len-- > 0)
 			print += print_char(' ');
 	}
-	return(print);
+	return (print);
 }

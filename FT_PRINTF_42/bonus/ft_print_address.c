@@ -35,8 +35,30 @@ int	print_address(void *ptr)
 	return (len);
 }
 
+static int	address_len(unsigned long num)
+{
+	int	len;
+
+	len = 2;
+	while (num > 15)
+	{
+		num /= 16;
+		len++;
+	}
+	return (len);
+}
+
 int	print_address_handler(void *ptr, t_flags flags)
 {
-	(void)flags;
-    return(print_address(ptr));
+	int	print;
+
+	print = 0;
+	print += print_address(ptr);
+	flags.minus_len -= address_len((unsigned long)ptr) + 1;
+	if (flags.minus)
+	{
+		while (flags.minus_len-- > 0)
+			print += print_char(' ');
+	}
+	return (print);
 }

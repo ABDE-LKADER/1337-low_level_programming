@@ -12,6 +12,19 @@
 
 #include "ft_printf_bonus.h"
 
+// static int	hex_len(unsigned int num)
+// {
+// 	int	len;
+
+// 	len = 2;
+// 	while (num > 15)
+// 	{
+// 		num /= 16;
+// 		len++;
+// 	}
+// 	return (len);
+// }
+
 int	print_hex(unsigned int num, char set)
 {
 	int		len;
@@ -31,6 +44,13 @@ int	print_hex(unsigned int num, char set)
 
 int	print_hex_handler(unsigned int num, char set, t_flags flags)
 {
-	(void)flags;
-    return(print_hex(num, set));
+	int	print;
+
+	print = 0;
+	if (flags.hash && set == 'x')
+		print += print_string("0x");
+	else if (flags.hash && set == 'X')
+		print += print_string("0X");
+	print += print_hex(num, set);
+	return (print);
 }

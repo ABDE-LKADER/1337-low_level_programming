@@ -11,11 +11,10 @@
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
-#include <stdio.h>
 
-static t_flags set_flags()
+static t_flags	set_flags(void)
 {
-	t_flags flags;
+	t_flags	flags;
 
 	flags.minus = 0;
 	flags.zero = 0;
@@ -131,6 +130,6 @@ int	ft_printf(const char *format, ...)
 
 // int main(void)
 // {
-// 	printf("LEN: %d\n", ft_printf("MY: %.2s %.3s %.4s %.5s %.1s ", " - ", "", "4", "", "2 "));
-// 	printf("LEN: %d\n", printf("OR: %.2s %.3s %.4s %.5s %.1s ", " - ", "", "4", "", "2 "));
+// 	printf("LEN: %d\n", ft_printf("MY: %#x ", 9223372036854775807LL));
+// 	printf("LEN: %d\n", printf("OR: %#x ", 9223372036854775807LL));
 // }

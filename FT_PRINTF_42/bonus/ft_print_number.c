@@ -45,11 +45,11 @@ int	print_unum(unsigned int num)
 int	print_num_handler(int num, t_flags flags)
 {
 	(void)flags;
-	return(print_num(num));
+	return (print_num(num));
 }
 
 int	print_unum_handler(unsigned int num, t_flags flags)
 {
 	(void)flags;
-	return(print_unum(num));   
+	return (print_unum(num));
 }

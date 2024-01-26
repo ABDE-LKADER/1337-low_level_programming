@@ -16,6 +16,8 @@
 # include "../MYLIB/mylib.h"
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdio.h>
+# include <limits.h>
 
 # define SPECIFIERS	"cspdiuxX%"
 # define NUMBERS	"0123456789"
@@ -32,6 +34,7 @@ typedef struct s_flags
 	int	hash;
 	int	space;
 	int	plus;
+	int	print;
 }				t_flags;
 
 int	print_char(char c);
