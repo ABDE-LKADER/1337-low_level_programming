@@ -12,7 +12,28 @@
 
 #include "ft_printf_bonus.h"
 
-int	print_num(int num)
+static int	number_len(int num)
+{
+	int	len;
+	unsigned int	number;
+
+	len = 1;
+	if (num < 0)
+	{
+		number = -num;
+		len++;
+	}
+	else
+		number = num;
+	while (number > 9)
+	{
+		number /= 10;
+		len++;
+	}
+	return (len);
+}
+
+int	print_num(int num, t_flags flags)
 {
 	int				len;
 	unsigned int	number;
@@ -21,7 +42,8 @@ int	print_num(int num)
 	if (num < 0)
 	{
 		number = -num;
-		len += print_char('-');
+		if (!flags.zero && !flags.dot && !flags.plus && !flags.space)
+			len += print_char('-');
 	}
 	else
 		number = num;
@@ -31,25 +53,44 @@ int	print_num(int num)
 	return (len);
 }
 
-int	print_unum(unsigned int num)
-{
-	int	len;
-
-	len = 0;
-	if (num > 9)
-		len += print_unum(num / 10);
-	len += print_char(num % 10 + 48);
-	return (len);
-}
-
 int	print_num_handler(int num, t_flags flags)
 {
-	(void)flags;
-	return (print_num(num));
-}
+	int	print;
 
-int	print_unum_handler(unsigned int num, t_flags flags)
-{
-	(void)flags;
-	return (print_unum(num));
+	print = 0;
+	flags.zero_len -= number_len(num);
+	if (flags.zero)
+	{
+		if (num < 0)
+			print += print_char('-');
+		while (flags.zero_len-- > 0)
+			print += print_char('0');
+	}
+	if (num < 0)
+		flags.dot_len -= number_len(num)  - 1;
+	else
+		flags.dot_len -= number_len(num);
+	if (flags.dot)
+	{
+		if (num < 0)
+			print += print_char('-');
+		while (flags.dot_len-- > 0)
+			print += print_char('0');
+	}
+	if (flags.space && num < 0)
+			print += print_char('-');
+	else if (flags.space)
+			print += print_char(' ');
+	if (flags.plus && num < 0)
+			print += print_char('-');
+	else if (flags.plus)
+			print += print_char('+');
+	print += print_num(num, flags);
+	flags.minus_len -= number_len(num);
+	if (flags.minus)
+	{
+		while (flags.minus_len-- > 0)
+			print += print_char(' ');
+	}
+	return (print);
 }

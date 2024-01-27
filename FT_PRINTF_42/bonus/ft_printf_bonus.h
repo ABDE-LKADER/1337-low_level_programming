@@ -38,11 +38,11 @@ typedef struct s_flags
 }				t_flags;
 
 int	print_char(char c);
-int	print_num(int num);
 int	print_percent(void);
 int	print_string(char *str);
 int	print_address(void *ptr);
 int	print_unum(unsigned int num);
+int	print_num(int num, t_flags flags);
 int	print_hex(unsigned int num, char set);
 int	ft_printf(const char *format, ...);
 int	print_char_handler(char c, t_flags flags);

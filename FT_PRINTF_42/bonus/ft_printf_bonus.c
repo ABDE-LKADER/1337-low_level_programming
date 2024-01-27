@@ -17,11 +17,11 @@ static t_flags	set_flags(void)
 	t_flags	flags;
 
 	flags.minus = 0;
+	flags.minus_len = 0;
 	flags.zero = 0;
+	flags.zero_len = 0;
 	flags.dot = 0;
 	flags.dot_len = 0;
-	flags.zero_len = 0;
-	flags.minus_len = 0;
 	flags.hash = 0;
 	flags.plus = 0;
 	flags.space = 0;
@@ -57,11 +57,11 @@ static t_flags	set_flags_len(char *set, t_flags flags)
 static t_flags	check_flags(char *set, t_flags flags)
 {
 	flags = set_flags_len(set, flags);
-	while (*set)
+	while (*set && !ft_strchr(SPECIFIERS, *set))
 	{
 		if (*set == '-')
 			flags.minus = 1;
-		else if (*set == '0')
+		else if (*set == '0' && !flags.minus && !flags.dot)
 			flags.zero = 1;
 		else if (*set == '.')
 			flags.dot = 1;
@@ -71,7 +71,7 @@ static t_flags	check_flags(char *set, t_flags flags)
 			flags.space = 1;
 		else if (*set == '+')
 			flags.plus = 1;
-		else if (!flags.minus && !flags.dot && ft_strchr("0123456789", *(set)))
+		else if (!flags.minus && !flags.dot && ft_strchr(NUMBERS, *(set)))
 			flags.zero = 1;
 		set++;
 	}
@@ -130,6 +130,6 @@ int	ft_printf(const char *format, ...)
 
 // int main(void)
 // {
-// 	printf("LEN: %d\n", ft_printf("MY: %#x ", 9223372036854775807LL));
-// 	printf("LEN: %d\n", printf("OR: %#x ", 9223372036854775807LL));
+// 	printf("LEN: %d\n", ft_printf("MY:  %+d ", -1));
+// 	printf("LEN: %d\n", printf("OR:  %+d ", -1));
 // }
