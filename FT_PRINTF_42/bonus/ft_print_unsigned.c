@@ -43,7 +43,8 @@ static int	unum_handler_plus(unsigned int num, t_flags flags)
 	int	print;
 
 	print = 0;
-	if (flags.dot_len > unum_len(num) && (flags.zero || flags.just_num) && flags.dot)
+	if (flags.dot_len > unum_len(num)
+		&& (flags.zero || flags.just_num) && flags.dot)
 		flags.zero_len -= flags.dot_len;
 	else if (flags.zero || flags.just_num)
 	{

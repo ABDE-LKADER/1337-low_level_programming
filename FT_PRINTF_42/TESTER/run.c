@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <limits.h>
-#include "bonus/ft_printf_bonus.h"
+#include "../bonus/ft_printf_bonus.h"
 
 void	test_simple(void)
 {

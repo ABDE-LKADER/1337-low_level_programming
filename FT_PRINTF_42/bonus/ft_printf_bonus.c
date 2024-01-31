@@ -33,7 +33,8 @@ static t_flags	set_flags_len(char *set, t_flags flags)
 {
 	while (*set && !ft_strchr(SPECIFIERS, *set))
 	{
-		while (ft_strchr(FLAGS, *set) && ft_strchr(FLAGS, *(set + 1)) && *set == *(set + 1))
+		while (ft_strchr(FLAGS, *set)
+			&& ft_strchr(FLAGS, *(set + 1)) && *set == *(set + 1))
 			set++;
 		if (*set == '-')
 		{
@@ -61,7 +62,8 @@ static t_flags	check_flags(char *set, t_flags flags)
 	flags = set_flags_len(set, flags);
 	while (*set && !ft_strchr(SPECIFIERS, *set))
 	{
-		while (ft_strchr(FLAGS, *set) && ft_strchr(FLAGS, *(set + 1)) && *set == *(set + 1))
+		while (ft_strchr(FLAGS, *set)
+			&& ft_strchr(FLAGS, *(set + 1)) && *set == *(set + 1))
 			set++;
 		if (*set == '-')
 			flags.minus = 1;
@@ -75,7 +77,8 @@ static t_flags	check_flags(char *set, t_flags flags)
 			flags.space = 1;
 		else if (*set == '+')
 			flags.plus = 1;
-		else if (ft_strchr("123456789", *set) && !flags.minus && !flags.dot && !flags.zero)
+		else if (ft_strchr("123456789", *set)
+			&& !flags.minus && !flags.dot && !flags.zero)
 			flags.just_num = 1;
 		set++;
 	}
@@ -116,8 +119,8 @@ int	ft_printf(const char *format, ...)
 	va_start(lstarg, format);
 	while (*format)
 	{
-		if (*format == '%' && (ft_strchr(SPECIFIERS, *(format + 1))
-			|| ft_strchr(FLAGS, *(format + 1)) || ft_isdigit(*(format + 1))))
+		if (*format == '%' && (ft_strchr(SPECIFIERS, *(format + 1)) ||
+				ft_strchr(FLAGS, *(format + 1)) || ft_isdigit(*(format + 1))))
 		{
 			if (!*(++format))
 				return (-1);
@@ -131,12 +134,4 @@ int	ft_printf(const char *format, ...)
 		format++;
 	}
 	return (va_end(lstarg), print);
-}
-
-int main()
-{
-	printf("LEN: %d\n", ft_printf("MY: -> %# +100d ", 1231230));
-	printf("LEN: %d\n", printf("OR: -> %# +100d ", 1231230));
-	// printf("LEN: %d\n", ft_printf("MY: ->  Or:\tChar [%-20.20c] "));
-	// printf("LEN: %d\n", printf("OR: ->  Or:\tChar [%-20.20c] "));
 }

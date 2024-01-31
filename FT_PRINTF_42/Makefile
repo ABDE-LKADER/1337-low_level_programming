@@ -9,7 +9,8 @@ SRCS_BONUS	=	bonus/ft_print_hex.c   \
 				bonus/ft_print_string.c  \
 				bonus/ft_print_number.c   \
 				bonus/ft_print_address.c   \
-				bonus/ft_print_unsigned.c
+				bonus/ft_print_unsigned.c   \
+				bonus/ft_print_number_plus.c
 
 FLGS		=	cc -Wall -Wextra -Werror
 
