@@ -42,51 +42,114 @@ int	print_num(int num, t_flags flags)
 	if (num < 0)
 	{
 		number = -num;
-		if (!flags.zero && !flags.dot && !flags.plus && !flags.space)
+		if (!flags.minus && !flags.dot && !flags.zero && !flags.just_num && !flags.plus)
 			len += print_char('-');
 	}
 	else
 		number = num;
 	if (number > 9)
-		len += print_unum(number / 10);
+		len += print_num(number / 10, flags);
 	len += print_char(number % 10 + 48);
 	return (len);
+}
+
+static int	num_handler_zero_plus(int num, t_flags *flags)
+{
+	int	print;
+
+	print = 0;
+	if (flags->dot_len > number_len(num) && (flags->zero || flags->just_num) && flags->dot)
+	{
+		if (num < 0)
+			flags->zero_len -= 1;
+		else if (flags->space)
+			flags->zero_len -= 1;
+		flags->zero_len -= flags->dot_len;
+	}
+	else if (flags->zero || flags->just_num)
+	{
+		if (flags->space && num >= 0)
+			flags->zero_len -= 1;
+		if (!flags->minus)
+			flags->zero_len -= number_len(num);
+		else
+			flags->zero_len -= number_len(num) + 1;
+	}
+	return (print);
+}
+
+static int	num_handler_zero(int num, t_flags flags)
+{	
+	int	print;
+
+	print = num_handler_zero_plus(num, &flags);
+	if (flags.zero || flags.just_num)
+	{
+		while (flags.zero_len-- > 0)
+		{
+			if (flags.just_num || flags.dot)
+				print += print_char(' ');
+			else
+				print += print_char('0');
+		}
+	}
+	return (print);
+}
+
+static int	num_handler_dot(int num, t_flags flags)
+{
+	int	print;
+
+	print = num_handler_zero(num, flags);
+	if (flags.dot && num < 0)
+	{
+		print += print_char('-');
+		flags.dot_len -= number_len(num) - 1;
+	}
+	else if (flags.dot)
+	{
+		if (!flags.zero && !flags.just_num && flags.plus)
+			print += print_char('+');
+		else if (!flags.zero && !flags.just_num && flags.space)
+			print += print_char(' ');
+		flags.dot_len -= number_len(num);
+	}
+	if (flags.dot)
+	{
+		if (flags.space && !flags.plus && !flags.minus && num >= 0)
+			print += print_char(' ');
+		while (flags.dot_len-- > 0)
+			print += print_char('0');
+	}
+	return (print);
 }
 
 int	print_num_handler(int num, t_flags flags)
 {
 	int	print;
 
-	print = 0;
-	flags.zero_len -= number_len(num);
-	if (flags.zero)
+	print = num_handler_dot(num, flags);
+	if (flags.dot_len > number_len(num) && flags.dot && flags.minus)
 	{
 		if (num < 0)
-			print += print_char('-');
-		while (flags.zero_len-- > 0)
-			print += print_char('0');
+			flags.minus_len -= 1;
+		else if (flags.space)
+			flags.minus_len -= 1;
+		flags.minus_len -= flags.dot_len;
 	}
-	if (num < 0)
-		flags.dot_len -= number_len(num)  - 1;
-	else
-		flags.dot_len -= number_len(num);
-	if (flags.dot)
+	else if (flags.minus)
 	{
-		if (num < 0)
-			print += print_char('-');
-		while (flags.dot_len-- > 0)
-			print += print_char('0');
+		if ((flags.space || flags.plus) && num >= 0)
+		{
+			if (flags.space && !flags.dot)
+				print += print_char(' ');
+			flags.minus_len -= 1;
+		}
+		else if (!flags.dot && num < 0)
+				print += print_char('-');
+		flags.minus_len -= number_len(num);
 	}
-	if (flags.space && num < 0)
-			print += print_char('-');
-	else if (flags.space)
-			print += print_char(' ');
-	if (flags.plus && num < 0)
-			print += print_char('-');
-	else if (flags.plus)
-			print += print_char('+');
 	print += print_num(num, flags);
-	flags.minus_len -= number_len(num);
 	if (flags.minus)
 	{
 		while (flags.minus_len-- > 0)

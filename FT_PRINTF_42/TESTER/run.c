@@ -1,6 +1,7 @@
+
 #include <stdio.h>
 #include <limits.h>
-#include "ft_printf.h"
+#include "bonus/ft_printf_bonus.h"
 
 void	test_simple(void)
 {
@@ -329,22 +330,22 @@ void	test_bonus_char(void)
 	y = ft_printf("  Ft:\tChar [%-20c]\n", 'x');
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
-	x = printf("  Or:\tChar [%*c]\n", 8, 'x');
-	y = ft_printf("  Ft:\tChar [%*c]\n", 8, 'x');
+	x = printf("  Or:\tChar [%.c]\n", 'x');
+	y = ft_printf("  Ft:\tChar [%.c]\n", 'x');
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
-	y = ft_printf("  Ft:\tChar [%0*c]\n", 8, 'x');
-	y = ft_printf("  Ft:\tChar [%-0*c]\n", 8, 'x');
+	y = ft_printf("  Ft:\tChar [%0.c]\n", 'x');
+	y = ft_printf("  Ft:\tChar [%-0.c]\n", 'x');
 
-/*	printf("\n----------- TEST: WIDTH %% -----------\n\n");
+	printf("\n----------- TEST: WIDTH %% -----------\n\n");
 	x = printf("  Or:\tChar [%20%]\n");
 	y = ft_printf("  Ft:\tChar [%20%]\n");
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
-	x = printf("  Or:\tChar [%0*%]\n", 8);
-	y = ft_printf("  Ft:\tChar [%0*%]\n", 8);
+	x = printf("  Or:\tChar [%0.%]\n", 8);
+	y = ft_printf("  Ft:\tChar [%0.%]\n", 8);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-*/}
+}
 
 void	test_bonus_str(void)
 {
@@ -355,8 +356,8 @@ void	test_bonus_str(void)
 	y = ft_printf("  Ft:\tString [%-25s]\n", "Hello!");
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
-	x = printf("  Or:\tString [%*s]\n", 20, "Hello!");
-	y = ft_printf("  Ft:\tString [%*s]\n", 20, "Hello!");
+	x = printf("  Or:\tString [%.s]\n", "Hello!");
+	y = ft_printf("  Ft:\tString [%.s]\n", "Hello!");
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
 	x = printf("  Or:\tString [%1s]\n", "Hello World!");
@@ -372,7 +373,7 @@ void	test_bonus_hex(void)
 	x = printf("  Or:\tNumber [%#x]\n", 0);
 	y = ft_printf("  Ft:\tNumber [%#x]\n", 0);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-	//x = printf("  Or:\tNumber [%#x]\n", LONG_MIN);
+	x = printf("  Or:\tNumber [%#x]\n", LONG_MIN);
 	y = ft_printf("  Ft:\tNumber [%#x]\n", LONG_MIN);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 	x = printf("  Or:\tNumber [%#x]\n", 42);
@@ -383,22 +384,22 @@ void	test_bonus_hex(void)
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
 	printf("\n----------- TEST: WIDTH HEX -----------\n\n");
-	x = printf("  Or:\tNumber [%*x]\n", 10, 42);
-	y = ft_printf("  Ft:\tNumber [%*x]\n",10, 42);
+	x = printf("  Or:\tNumber [%.x]\n", 10, 42);
+	y = ft_printf("  Ft:\tNumber [%.x]\n",10, 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 	x = printf("  Or:\tNumber [%20X]\n", 42);
 	y = ft_printf("  Ft:\tNumber [%20X]\n", 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-	x = printf("  Or:\tNumber [%0*X]\n", 20, 42);
-	y = ft_printf("  Ft:\tNumber [%0*X]\n", 20, 42);
+	x = printf("  Or:\tNumber [%0.X]\n", 20, 42);
+	y = ft_printf("  Ft:\tNumber [%0.X]\n", 20, 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
 	printf("\n----------- TEST: WIDTH SHARP HEX -----------\n\n");
-	x = printf("  Or:\tNumber [%#*x]\n", 10, 42);
-	y = ft_printf("  Ft:\tNumber [%#*x]\n",10, 42);
+	x = printf("  Or:\tNumber [%#.x]\n", 10, 42);
+	y = ft_printf("  Ft:\tNumber [%#.x]\n",10, 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-	x = printf("  Or:\tNumber [%#0*x]\n", 10, 42);
-	y = ft_printf("  Ft:\tNumber [%#0*x]\n",10, 42);
+	x = printf("  Or:\tNumber [%#0.x]\n", 10, 42);
+	y = ft_printf("  Ft:\tNumber [%#0.x]\n",10, 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 }
 
@@ -413,8 +414,8 @@ void	test_bonus_unsigned(void)
 	x = printf("  Or:\tNumber [%-15u]\n", 42);
 	y = ft_printf("  Ft:\tNumber [%-15u]\n", 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-	x = printf("  Or:\tNumber [%0*u]\n", 10, 42);
-	y = ft_printf("  Ft:\tNumber [%0*u]\n", 10, 42);
+	x = printf("  Or:\tNumber [%0.u]\n", 10, 42);
+	y = ft_printf("  Ft:\tNumber [%0.u]\n", 10, 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 }
 
@@ -426,14 +427,14 @@ void	test_bonus_int(void)
 	x = printf("  Or:\tNumber [%20i]\n", 42);
 	y = ft_printf("  Ft:\tNumber [%20i]\n", 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-	x = printf("  Or:\tNumber [%0*i]\n", 8, 42);
-	y = ft_printf("  Ft:\tNumber [%0*i]\n", 8, 42);
+	x = printf("  Or:\tNumber [%0.i]\n", 42);
+	y = ft_printf("  Ft:\tNumber [%0.i]\n", 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-	x = printf("  Or:\tNumber [%0*i]\n", 8, -42);
-	y = ft_printf("  Ft:\tNumber [%0*i]\n", 8, -42);
+	x = printf("  Or:\tNumber [%0.i]\n", -42);
+	y = ft_printf("  Ft:\tNumber [%0.i]\n", -42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-	x = printf("  Or:\tNumber [%*i]\n", 8, -42);
-	y = ft_printf("  Ft:\tNumber [%*i]\n", 8, -42);
+	x = printf("  Or:\tNumber [%.i]\n", -42);
+	y = ft_printf("  Ft:\tNumber [%.i]\n", -42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
 	printf("\n----------- TEST: ZERO INT -----------\n\n");
@@ -444,28 +445,27 @@ void	test_bonus_int(void)
 	y = ft_printf("  Ft:\tNumber [%010d]\n", INT_MIN);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
-//	 47         TEST(22, print(" %010d ", INT_MIN));
-
+	//  47         TEST(22, print(" %010d ", INT_MIN));
 
 	printf("\n----------- TEST: SPACE INT -----------\n\n");
-	x = printf("  Or:\tNumber [% 0*i]\n", 8, 42);
-	y = ft_printf("  Ft:\tNumber [% 0*i]\n", 8, 42);
+	x = printf("  Or:\tNumber [% 0.i]\n", 42);
+	y = ft_printf("  Ft:\tNumber [% 0.i]\n", 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 	
-	x = printf("  Or:\tNumber [% 0*i]\n", 8, -42);
-	y = ft_printf("  Ft:\tNumber [% 0*i]\n", 8, -42);
+	x = printf("  Or:\tNumber [% 0.i]\n", -42);
+	y = ft_printf("  Ft:\tNumber [% 0.i]\n", -42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
-	x = printf("  Or:\tNumber [%- *i]\n", 8, 42);
-	y = ft_printf("  Ft:\tNumber [%- *i]\n", 8, 42);
+	x = printf("  Or:\tNumber [%- .i]\n", 42);
+	y = ft_printf("  Ft:\tNumber [%- .i]\n", 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
 	printf("\n----------- TEST: PLUS INT -----------\n\n");
-	x = printf("  Or:\tNumber [%+0*i]\n", 8, 42);
-	y = ft_printf("  Ft:\tNumber [%+0*i]\n", 8, 42);
+	x = printf("  Or:\tNumber [%+0.i]\n", 42);
+	y = ft_printf("  Ft:\tNumber [%+0.i]\n", 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
-	x = printf("  Or:\tNumber [%+*i]\n", 8, 42);
-	y = ft_printf("  Ft:\tNumber [%+*i]\n", 8, 42);
+	x = printf("  Or:\tNumber [%+.i]\n", 42);
+	y = ft_printf("  Ft:\tNumber [%+.i]\n", 42);
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 }
 
@@ -580,8 +580,6 @@ void	test_invalid_spec(void)
 int	main(void)
 {
 	printf("\n\n========== MANDATORY TESTS ========\n\n");
-	// printf("OK %-10d HELLO\n", 42);
-	// ft_printf("OK %-10d HELLO\n", 42);
 	test_simple();
 	test_percent();
 	test_c();
@@ -594,16 +592,16 @@ int	main(void)
 	test_p();
 	test_all();
 
-	// printf("\n\n========== BONUS TESTS ============\n\n");
-	// test_bonus_char();
-	// test_bonus_str();
-	// test_bonus_hex();
-	// test_bonus_unsigned();
-	// test_bonus_int();
-	// test_bonus_ptr();
-	// test_bonus_precision();
-	// test_extra();
-	// test_invalid_spec();
+	printf("\n\n========== BONUS TESTS ============\n\n");
+	test_bonus_char();
+	test_bonus_str();
+	test_bonus_hex();
+	test_bonus_unsigned();
+	test_bonus_int();
+	test_bonus_ptr();
+	test_bonus_precision();
+	test_extra();
+	test_invalid_spec();
 
 	return (0);
 }
