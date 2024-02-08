@@ -12,21 +12,18 @@
 
 #include "ft_printf_bonus.h"
 
-static t_flags	set_flags_init(void)
+static int	is_valid(const char *set)
 {
-	t_flags	flags;
-
-	flags.minus = 0;
-	flags.minus_len = 0;
-	flags.zero = 0;
-	flags.just_num = 0;
-	flags.zero_len = 0;
-	flags.dot = 0;
-	flags.dot_len = 0;
-	flags.hash = 0;
-	flags.space = 0;
-	flags.plus = 0;
-	return (flags);
+	if (ft_strchr(SPECIFIERS, *set))
+		return (1);
+	else if (ft_strchr(FLAGS, *set) || ft_isdigit(*set))
+	{
+		while (!ft_strchr(SPECIFIERS, *set))
+				set++;
+	}
+	if (ft_strchr(SPECIFIERS, *set))
+		return (1);
+	return (0);
 }
 
 static t_flags	set_flags_len(char *set, t_flags flags)
@@ -119,8 +116,7 @@ int	ft_printf(const char *format, ...)
 	va_start(lstarg, format);
 	while (*format)
 	{
-		if (*format == '%' && (ft_strchr(SPECIFIERS, *(format + 1)) ||
-				ft_strchr(FLAGS, *(format + 1)) || ft_isdigit(*(format + 1))))
+		if (*format == '%' && is_valid(format + 1))
 		{
 			if (!*(++format))
 				return (-1);

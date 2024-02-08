@@ -12,6 +12,23 @@
 
 #include "ft_printf_bonus.h"
 
+t_flags	set_flags_init(void)
+{
+	t_flags	flags;
+
+	flags.minus = 0;
+	flags.minus_len = 0;
+	flags.zero = 0;
+	flags.just_num = 0;
+	flags.zero_len = 0;
+	flags.dot = 0;
+	flags.dot_len = 0;
+	flags.hash = 0;
+	flags.space = 0;
+	flags.plus = 0;
+	return (flags);
+}
+
 int	num_handler_flags(int num, t_flags flags)
 {
 	int	print;
