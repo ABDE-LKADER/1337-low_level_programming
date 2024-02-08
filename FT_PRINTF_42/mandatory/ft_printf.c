@@ -57,10 +57,10 @@ int	ft_printf(const char *format, ...)
 	va_start(lstarg, format);
 	while (*format)
 	{
-		if (*format != '%')
+		if (*format == '%' && ft_strchr(SPECIFIERS, *(format + 1)))
+			print += format_set(*(++format), lstarg);
+		else
 			print += print_char(*format);
-		else if (ft_strchr(SPECIFIERS, *(++format)))
-			print += format_set(*format, lstarg);
 		format++;
 	}
 	return (va_end(lstarg), print);
