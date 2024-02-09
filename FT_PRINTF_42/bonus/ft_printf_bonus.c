@@ -19,7 +19,7 @@ static int	is_valid(const char *set)
 	else if (ft_strchr(FLAGS, *set) || ft_isdigit(*set))
 	{
 		while (!ft_strchr(SPECIFIERS, *set))
-				set++;
+			set++;
 	}
 	if (ft_strchr(SPECIFIERS, *set))
 		return (1);
@@ -33,21 +33,12 @@ static t_flags	set_flags_len(char *set, t_flags flags)
 		while (ft_strchr(FLAGS, *set)
 			&& ft_strchr(FLAGS, *(set + 1)) && *set == *(set + 1))
 			set++;
-		if (*set == '-')
-		{
-			if (!flags.minus_len)
-				flags.minus_len = ft_atoi(++set);
-		}
-		else if (*set == '.')
-		{
-			if (!flags.dot_len)
-				flags.dot_len = ft_atoi(++set);
-		}
-		else if (ft_isdigit(*set) && !flags.minus_len)
-		{
-			if (!flags.zero_len)
-				flags.zero_len = ft_atoi(set);
-		}
+		if (*set == '-' && !flags.minus_len)
+			flags.minus_len = ft_atoi(++set);
+		else if (*set == '.' && !flags.dot_len)
+			flags.dot_len = ft_atoi(++set);
+		else if (ft_isdigit(*set) && !flags.minus_len && !flags.zero_len)
+			flags.zero_len = ft_atoi(set);
 		set++;
 	}
 	return (flags);

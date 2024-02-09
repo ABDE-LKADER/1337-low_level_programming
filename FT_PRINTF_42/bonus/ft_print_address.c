@@ -38,32 +38,50 @@ int	print_address(unsigned long num, char set)
 	return (len);
 }
 
-static int	address_handler_plus(void *ptr, t_flags flags)
+static int	address_handler_zero(unsigned long ptr, t_flags *flags)
 {
 	int	print;
 
 	print = 0;
-	if (!flags.zero && flags.plus)
+	if (!flags->zero && flags->plus)
 		print += print_string("+0x");
-	else if (!flags.zero)
+	else if (!flags->zero)
 		print += print_string("0x");
-	if (flags.dot_len > address_len((unsigned long)ptr) && flags.zero && flags.plus && flags.dot)
-		flags.zero_len -= flags.dot_len + 3;
-	else if (flags.dot_len > address_len((unsigned long)ptr) && flags.zero && flags.dot)
-		flags.zero_len -= flags.dot_len + 2;
-	else if (flags.zero && flags.plus)
-		flags.zero_len -= address_len((unsigned long)ptr) + 2;
-	else if (flags.zero)
-		flags.zero_len -= address_len((unsigned long)ptr) + 1;
-	if (flags.zero)
+	if (flags->dot_len > address_len(ptr) && flags->zero && flags->plus
+		&& flags->dot)
+		flags->zero_len -= flags->dot_len + 3;
+	else if (flags->dot_len > address_len(ptr) && flags->zero && flags->dot)
+		flags->zero_len -= flags->dot_len + 2;
+	else if (flags->zero && flags->plus)
+		flags->zero_len -= address_len(ptr) + 2;
+	else if (flags->zero)
+		flags->zero_len -= address_len(ptr) + 1;
+	return (print);
+}
+
+static int	address_handler_plus(unsigned long ptr, t_flags *flags)
+{
+	int	print;
+
+	print = address_handler_zero(ptr, flags);
+	if (flags->zero)
 	{
-		while (flags.zero_len-- > 0)
+		while (flags->zero_len-- > 0)
 			print += print_char(' ');
 	}
-	if (flags.zero && flags.plus)
+	if (flags->zero && flags->plus)
 		print += print_string("+0x");
-	else if (flags.zero)
+	else if (flags->zero)
 		print += print_string("0x");
+	if (flags->dot_len > address_len(ptr) && flags->minus && flags->plus
+		&& flags->dot)
+		flags->minus_len -= flags->dot_len + 3;
+	else if (flags->dot_len > address_len(ptr) && flags->minus && flags->dot)
+		flags->minus_len -= flags->dot_len + 2;
+	else if (flags->minus && flags->plus)
+		flags->minus_len -= address_len(ptr) + 2;
+	else if (flags->minus)
+		flags->minus_len -= address_len(ptr) + 1;
 	return (print);
 }
 
@@ -71,15 +89,7 @@ int	print_address_handler(void *ptr, t_flags flags)
 {
 	int	print;
 
-	print = address_handler_plus(ptr, flags);
-	if (flags.dot_len > address_len((unsigned long)ptr) && flags.minus && flags.plus && flags.dot)
-		flags.minus_len -= flags.dot_len + 3;
-	else if (flags.dot_len > address_len((unsigned long)ptr) && flags.minus && flags.dot)
-		flags.minus_len -= flags.dot_len + 2;
-	else if (flags.minus && flags.plus)
-		flags.minus_len -= address_len((unsigned long)ptr) + 2;
-	else if (flags.minus)
-		flags.minus_len -= address_len((unsigned long)ptr) + 1;
+	print = address_handler_plus((unsigned long)ptr, &flags);
 	if (flags.dot)
 	{
 		flags.dot_len -= address_len((unsigned long)ptr) - 1;

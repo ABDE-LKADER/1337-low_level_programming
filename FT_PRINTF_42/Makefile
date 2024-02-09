@@ -4,13 +4,13 @@ HEADER		=	ft_printf.h
 SRCS		=	mandatory/ft_printf.c \
 				mandatory/ft_printf_plus.c
 
-SRCS_BONUS	=	bonus/ft_print_hex.c   \
+SRCS_BONUS	=	bonus/ft_print_hex.c  \
+				bonus/ft_print_flags.c \
 				bonus/ft_printf_bonus.c \
 				bonus/ft_print_string.c  \
 				bonus/ft_print_number.c   \
 				bonus/ft_print_address.c   \
-				bonus/ft_print_unsigned.c   \
-				bonus/ft_print_number_plus.c
+				bonus/ft_print_unsigned.c
 
 FLGS		=	cc -Wall -Wextra -Werror
 

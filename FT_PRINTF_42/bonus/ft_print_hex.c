@@ -46,27 +46,21 @@ int	print_hex(unsigned int num, char set, t_flags flags)
 	return (len);
 }
 
-static int	hex_handler_plus(unsigned int num, char set, t_flags flags)
+static int	hex_handler_zero(unsigned int num, t_flags flags)
 {
 	int	print;
 
 	print = 0;
-	if (flags.hash && !flags.dot && num && set == 'x')
-		print += print_string("0x");
-	else if (flags.hash && !flags.dot && num && set == 'X')
-		print += print_string("0X");
-	if (flags.dot_len > hex_len(num, flags) && (flags.zero || flags.just_num) && flags.dot)
-	{
-		if (flags.hash && num)
-			flags.zero_len -= 2;
+	if (flags.dot_len > hex_len(num, flags) && flags.hash && num
+		&& (flags.zero || flags.just_num) && flags.dot)
+		flags.zero_len -= flags.dot_len + 2;
+	else if (flags.dot_len > hex_len(num, flags) && flags.dot
+		&& (flags.zero || flags.just_num))
 		flags.zero_len -= flags.dot_len;
-	}
+	else if ((flags.zero || flags.just_num) && flags.hash && num)
+		flags.zero_len -= hex_len(num, flags) + 2;
 	else if (flags.zero || flags.just_num)
-	{
-		if (flags.hash && num)
-			flags.zero_len -= 2;
 		flags.zero_len -= hex_len(num, flags);
-	}
 	if (flags.zero || flags.just_num)
 	{
 		while (flags.zero_len-- > 0)
@@ -77,10 +71,33 @@ static int	hex_handler_plus(unsigned int num, char set, t_flags flags)
 				print += print_char('0');
 		}
 	}
-	if (flags.hash && flags.dot && num && set == 'x')
+	return (print);
+}
+
+static int	hex_handler_plus(unsigned int num, char set, t_flags *flags)
+{
+	int	print;
+
+	print = 0;
+	if (flags->hash && !flags->dot && num && set == 'x')
 		print += print_string("0x");
-	else if (flags.hash && flags.dot && num && set == 'X')
+	else if (flags->hash && !flags->dot && num && set == 'X')
 		print += print_string("0X");
+	print += hex_handler_zero(num, *flags);
+	if (flags->hash && flags->dot && num && set == 'x')
+		print += print_string("0x");
+	else if (flags->hash && flags->dot && num && set == 'X')
+		print += print_string("0X");
+	if (flags->dot_len > hex_len(num, *flags) && num && flags->minus
+		&& flags->hash && flags->dot)
+		flags->minus_len -= flags->dot_len + 2;
+	else if (flags->dot_len > hex_len(num, *flags) && flags->minus
+		&& flags->dot)
+		flags->minus_len -= flags->dot_len;
+	else if (flags->minus && flags->hash && num)
+		flags->minus_len -= hex_len(num, *flags) + 2;
+	else if (flags->minus)
+		flags->minus_len -= hex_len(num, *flags);
 	return (print);
 }
 
@@ -88,15 +105,7 @@ int	print_hex_handler(unsigned int num, char set, t_flags flags)
 {
 	int	print;
 
-	print = hex_handler_plus(num, set, flags);
-	if (flags.dot_len > hex_len(num, flags) && num && flags.minus && flags.hash && flags.dot)
-		flags.minus_len -= flags.dot_len + 2;
-	else if (flags.dot_len > hex_len(num, flags) && flags.minus && flags.dot)
-		flags.minus_len -= flags.dot_len;
-	else if (flags.minus && flags.hash && num)
-		flags.minus_len -= hex_len(num, flags) + 2;
-	else if (flags.minus)
-		flags.minus_len -= hex_len(num, flags);
+	print = hex_handler_plus(num, set, &flags);
 	if (flags.dot && flags.dot_len)
 	{
 		if (!num)

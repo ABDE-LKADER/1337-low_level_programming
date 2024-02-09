@@ -76,7 +76,7 @@ int	print_string_handler(char *str, t_flags flags)
 	print = string_handler_plus(str, flags);
 	if (!str && flags.dot_len >= ft_strlen(ISNULL) && flags.minus && flags.dot)
 		flags.minus_len -= ft_strlen(ISNULL);
-	else if (str &&  ft_strlen(str) > flags.dot_len && flags.minus && flags.dot)
+	else if (str && ft_strlen(str) > flags.dot_len && flags.minus && flags.dot)
 		flags.minus_len -= flags.dot_len;
 	else if (str && flags.minus)
 		flags.minus_len -= ft_strlen(str);

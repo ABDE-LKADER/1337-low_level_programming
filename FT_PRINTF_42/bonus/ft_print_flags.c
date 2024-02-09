@@ -46,11 +46,14 @@ int	num_handler_flags(int num, t_flags flags)
 		print = print_char('+');
 	else if (flags.zero && !flags.dot && flags.space)
 		print = print_char(' ');
-	else if (!flags.minus && !flags.dot && !flags.zero && !flags.just_num && (flags.plus || flags.space) && num < 0)
+	else if (!flags.minus && !flags.dot && !flags.zero && !flags.just_num
+		&& (flags.plus || flags.space) && num < 0)
 		print = print_char('-');
-	else if (!flags.minus && !flags.dot && !flags.zero && !flags.just_num && flags.plus)
+	else if (!flags.minus && !flags.dot && !flags.zero && !flags.just_num
+		&& flags.plus)
 		print = print_char('+');
-	else if (!flags.minus && !flags.dot && !flags.zero && !flags.just_num && flags.space)
+	else if (!flags.minus && !flags.dot && !flags.zero
+		&& !flags.just_num && flags.space)
 		print = print_char(' ');
 	return (print);
 }

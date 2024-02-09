@@ -14,7 +14,7 @@
 
 static int	number_len(int num)
 {
-	int	len;
+	int				len;
 	unsigned int	number;
 
 	len = 1;
@@ -56,7 +56,8 @@ int	print_num(int num, t_flags flags)
 
 static void	zero_len_handler(int num, t_flags *flags)
 {
-	if (flags->dot_len > number_len(num) && (flags->zero || flags->just_num) && flags->dot)
+	if (flags->dot_len > number_len(num) && (flags->zero || flags->just_num)
+		&& flags->dot)
 	{
 		if (num < 0)
 			flags->zero_len -= 1;
