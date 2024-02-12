@@ -36,11 +36,12 @@ char	*get_next_line(int fd)
 {
 	static char	*save = NULL;
 	char		*line;
+	char		*temp;
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
 		|| read(fd, save, 0) == -1)
-		return (NULL);
+		return (free(save), save = NULL, NULL);
 	save = get_read(fd, save);
 	if (!save)
 		return (NULL);

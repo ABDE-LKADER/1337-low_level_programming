@@ -52,7 +52,7 @@ char	*strdup_next(char *str)
 		len++;
 	new = malloc((strlen_set(str, '\0') - len) + 1);
 	if (!new)
-		return (NULL);
+		return (free(str), NULL);
 	while (str[len])
 		new[i++] = str[len++];
 	return (new[i] = '\0', free(str), new);
@@ -65,7 +65,7 @@ char	*strdup_line(char *str)
 	char	*new;
 
 	i = 0;
-	if (!str || !*str)
+	if (!*str)
 		return (NULL);
 	len = strlen_set(str, '\n');
 	if (str[len] == '\n')

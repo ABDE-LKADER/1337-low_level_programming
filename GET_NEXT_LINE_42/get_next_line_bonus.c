@@ -70,26 +70,24 @@ static char	*get_read(int fd, char *save)
 char	*get_next_line(int fd)
 {
 	static t_list	*save = NULL;
-	t_list			*tsave;
+	t_list			*temp;
 	char			*line;
 
+	if (fd < 0)
+		return (NULL);
 	if (!save || !fd_check(save, fd))
 		fd_add(&save, fd);
-	tsave = save;
-	while (tsave->next)
+	temp = save;
+	while (temp->next)
 	{
-		if (tsave->fd == fd)
+		if (temp->fd == fd)
 			break ;
-		tsave = tsave->next;
+		temp = temp->next;
 	}
-	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
-		|| read(fd, tsave->save, 0) == -1)
+	temp->save = get_read(fd, temp->save);
+	if (!(temp->save))
 		return (NULL);
-	tsave->save = get_read(fd, tsave->save);
-	if (!tsave->save)
-		return (NULL);
-	line = strdup_line(tsave->save);
-	tsave->save = strdup_next(tsave->save);
+	line = strdup_line(temp->save);
+	temp->save = strdup_next(temp->save);
 	return (line);
 }
