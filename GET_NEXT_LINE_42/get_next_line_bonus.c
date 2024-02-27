@@ -23,6 +23,24 @@ static int	fd_check(t_list *save, int fd)
 	return (0);
 }
 
+static void	free_all(t_list **save)
+{
+	t_list	*node;
+	t_list	*loop;
+
+	if (!save)
+		return ;
+	node = *save;
+	while (node)
+	{
+		loop = node->next;
+		free(node->save);
+		free(node);
+		node = loop;
+	}
+	*save = NULL;
+}
+
 static void	fd_add(t_list **save, int fd)
 {
 	t_list	*node;
@@ -73,8 +91,9 @@ char	*get_next_line(int fd)
 	t_list			*temp;
 	char			*line;
 
-	if (fd < 0)
-		return (NULL);
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
+		|| read(fd, save, 0) == -1)
+		return (free_all(&save), save = NULL, NULL);
 	if (!save || !fd_check(save, fd))
 		fd_add(&save, fd);
 	temp = save;

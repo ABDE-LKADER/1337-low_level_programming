@@ -36,7 +36,6 @@ char	*get_next_line(int fd)
 {
 	static char	*save = NULL;
 	char		*line;
-	char		*temp;
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
