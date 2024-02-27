@@ -23,8 +23,8 @@
 
 typedef struct s_list
 {
-	char			*save;
 	int				fd;
+	char			*save;
 	struct s_list	*next;
 }	t_list;
 
