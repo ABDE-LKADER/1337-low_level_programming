@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/02/29 12:55:56 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/17 08:02:24 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ char	*get_next_line(int fd)
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
-		|| read(fd, save, 0) == -1)
+		|| fd > OPEN_MAX || read(fd, save, 0) == -1)
 		return (free(save), save = NULL, NULL);
 	save = get_read(fd, save);
 	if (!save)
-		return (NULL);
-	line = strdup_line(save);
-	save = strdup_next(save);
-	return (line);
+		return (free(save), save = NULL, NULL);
+	return (line = strdup_line(save), save = strdup_next(save),
+		line);
 }

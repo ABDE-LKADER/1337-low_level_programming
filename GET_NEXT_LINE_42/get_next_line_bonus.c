@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/20 15:09:37 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/17 08:19:16 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ static void	fd_add(t_list **save, int fd)
 	t_list	*node;
 	t_list	*new;
 
-	if (!save)
-		return ;
 	new = malloc(sizeof(t_list));
 	if (!new)
 		return ;
@@ -91,22 +89,22 @@ char	*get_next_line(int fd)
 	t_list			*temp;
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
-		|| read(fd, save, 0) == -1)
-		return (free_all(&save), save = NULL, NULL);
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
+		return (NULL);
 	if (!save || !fd_check(save, fd))
 		fd_add(&save, fd);
 	temp = save;
-	while (temp->next)
+	while (temp)
 	{
 		if (temp->fd == fd)
 			break ;
 		temp = temp->next;
 	}
 	temp->save = get_read(fd, temp->save);
-	if (!(temp->save))
+	if (!temp->save)
 		return (NULL);
 	line = strdup_line(temp->save);
-	temp->save = strdup_next(temp->save);
-	return (line);
+	if (!line)
+		return (free_all(&save), NULL);
+	return (temp->save = strdup_next(temp->save), line);
 }
