@@ -38,8 +38,8 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
-		|| fd > OPEN_MAX || read(fd, save, 0) == -1)
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
+		|| read(fd, save, 0) == -1)
 		return (free(save), save = NULL, NULL);
 	save = get_read(fd, save);
 	if (!save)

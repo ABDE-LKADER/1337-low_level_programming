@@ -21,6 +21,8 @@
 #  define BUFFER_SIZE 1337
 # endif
 
+#  define OPEN_MAX 10240
+
 size_t	ft_search(char *s);
 char	*get_next_line(int fd);
 char	*strdup_line(char *str);

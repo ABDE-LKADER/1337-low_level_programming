@@ -47,7 +47,7 @@ char	*strdup_next(char *str)
 	char	*new;
 
 	i = 0;
-	if (!*str)
+	if (!str || !*str)
 		return (free(str), NULL);
 	len = strlen_set(str, '\n');
 	if (str[len] == '\n')
@@ -67,7 +67,7 @@ char	*strdup_line(char *str)
 	char	*new;
 
 	i = 0;
-	if (!*str)
+	if (!str || !*str)
 		return (NULL);
 	len = strlen_set(str, '\n');
 	if (str[len] == '\n')

@@ -23,23 +23,23 @@ static int	fd_check(t_list *save, int fd)
 	return (0);
 }
 
-static void	free_all(t_list **save)
-{
-	t_list	*node;
-	t_list	*loop;
+// static void	free_all(t_list **save)
+// {
+// 	t_list	*node;
+// 	t_list	*loop;
 
-	if (!save)
-		return ;
-	node = *save;
-	while (node)
-	{
-		loop = node->next;
-		free(node->save);
-		free(node);
-		node = loop;
-	}
-	*save = NULL;
-}
+// 	if (!save)
+// 		return ;
+// 	node = *save;
+// 	while (node)
+// 	{
+// 		loop = node->next;
+// 		free(node->save);
+// 		free(node);
+// 		node = loop;
+// 	}
+// 	*save = NULL;
+// }
 
 static void	fd_add(t_list **save, int fd)
 {
@@ -86,25 +86,20 @@ static char	*get_read(int fd, char *save)
 char	*get_next_line(int fd)
 {
 	static t_list	*save = NULL;
-	t_list			*temp;
+	t_list			*current;
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
+		|| fd > OPEN_MAX || read(fd, save, 0) == -1)
 		return (NULL);
 	if (!save || !fd_check(save, fd))
 		fd_add(&save, fd);
-	temp = save;
-	while (temp)
-	{
-		if (temp->fd == fd)
-			break ;
-		temp = temp->next;
-	}
-	temp->save = get_read(fd, temp->save);
-	if (!temp->save)
+	current = save;
+	while (current && current->fd != fd)
+		current = current->next;
+	current->save = get_read(fd, current->save);
+	if (!current->save)
 		return (NULL);
-	line = strdup_line(temp->save);
-	if (!line)
-		return (free_all(&save), NULL);
-	return (temp->save = strdup_next(temp->save), line);
+	return (line = strdup_line(current->save),
+		current->save = strdup_next(current->save), line);
 }
