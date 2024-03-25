@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 07:52:24 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/17 07:58:56 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:04:28 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*strdup_next(char *str)
 	return (new[i] = '\0', free(str), new);
 }
 
-char	*strdup_line(char *str)
+char	*strdup_line(char *str, int set)
 {
 	size_t	i;
 	size_t	len;
@@ -69,8 +69,11 @@ char	*strdup_line(char *str)
 	i = 0;
 	if (!str || !*str)
 		return (NULL);
-	len = strlen_set(str, '\n');
-	if (str[len] == '\n')
+	if (set)
+		len = strlen_set(str, '\n');
+	else
+		len = strlen_set(str, '\0');
+	if (set && str[len] == '\n')
 		len++;
 	new = malloc(len + 1);
 	if (!new)
@@ -90,10 +93,7 @@ char	*join_strings(char *save, char *load)
 	char	*str;
 
 	if (!save)
-	{
-		save = malloc(sizeof(char));
-		*save = '\0';
-	}
+		return (strdup_line(load, TRUE));
 	str = malloc(strlen_set(save, '\0') + strlen_set(load, '\0') + 1);
 	if (!str)
 		return (free(save), NULL);

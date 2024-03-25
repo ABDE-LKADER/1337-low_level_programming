@@ -6,12 +6,12 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/17 08:19:16 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:01:36 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
+s
 static int	fd_check(t_list *save, int fd)
 {
 	while (save->next)
