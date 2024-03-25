@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/25 10:57:08 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:31:05 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ static char	*get_read(int fd, char *save)
 	bytes = 1;
 	load = malloc((size_t)BUFFER_SIZE + 1);
 	if (!load)
-		return (free(save), save = NULL, NULL);
+		return (free(save), save = NULL, load = NULL, NULL);
 	while (ft_search(save) && bytes)
 	{
 		bytes = read(fd, load, BUFFER_SIZE);
 		if (bytes == -1)
-			return (free(load), free(save), save = NULL, NULL);
+			return (free(load), load = NULL, free(save), save = NULL, NULL);
 		load[bytes] = '\0';
 		save = join_strings(save, load);
 	}
-	return (free(load), save);
+	return (free(load), load = NULL, save);
 }
 
 char	*get_next_line(int fd)
