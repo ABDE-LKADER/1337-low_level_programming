@@ -20,12 +20,12 @@ static char	*get_read(int fd, char *save)
 	bytes = 1;
 	load = malloc((size_t)BUFFER_SIZE + 1);
 	if (!load)
-		return (NULL);
+		return (free(save), save = NULL, NULL);
 	while (ft_search(save) && bytes)
 	{
 		bytes = read(fd, load, BUFFER_SIZE);
 		if (bytes == -1)
-			return (free(load), NULL);
+			return (free(load), free(save), save = NULL, NULL);
 		load[bytes] = '\0';
 		save = join_strings(save, load);
 	}

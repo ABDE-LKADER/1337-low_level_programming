@@ -48,16 +48,16 @@ char	*strdup_next(char *str)
 
 	i = 0;
 	if (!str || !*str)
-		return (free(str), NULL);
+		return (free(str), str = NULL, NULL);
 	len = strlen_set(str, '\n');
 	if (str[len] == '\n')
 		len++;
 	new = malloc((strlen_set(str, '\0') - len) + 1);
 	if (!new)
-		return (free(str), NULL);
+		return (free(str), str = NULL, NULL);
 	while (str[len])
 		new[i++] = str[len++];
-	return (new[i] = '\0', free(str), new);
+	return (new[i] = '\0', free(str), str = NULL, new);
 }
 
 char	*strdup_line(char *str, int set)
@@ -96,7 +96,7 @@ char	*join_strings(char *save, char *load)
 		return (strdup_line(load, TRUE));
 	str = malloc(strlen_set(save, '\0') + strlen_set(load, '\0') + 1);
 	if (!str)
-		return (free(save), NULL);
+		return (free(save), save = NULL, NULL);
 	i = 0;
 	while (save[i])
 	{
@@ -106,5 +106,5 @@ char	*join_strings(char *save, char *load)
 	j = 0;
 	while (load[j])
 		str[i++] = load[j++];
-	return (str[i] = '\0', free(save), str);
+	return (str[i] = '\0', free(save), save = NULL, str);
 }

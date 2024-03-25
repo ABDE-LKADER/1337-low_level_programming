@@ -21,9 +21,9 @@
 #  define BUFFER_SIZE 1337
 # endif
 
-#  define TRUE 0
-#  define FALSE 1
-#  define OPEN_MAX 10240
+# define TRUE 0
+# define FALSE 1
+# define OPEN_MAX 10240
 
 size_t	ft_search(char *s);
 char	*get_next_line(int fd);

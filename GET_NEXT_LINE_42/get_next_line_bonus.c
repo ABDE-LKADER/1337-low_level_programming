@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-s
+
 static int	fd_check(t_list *save, int fd)
 {
 	while (save->next)
@@ -23,23 +23,23 @@ static int	fd_check(t_list *save, int fd)
 	return (0);
 }
 
-// static void	free_all(t_list **save)
-// {
-// 	t_list	*node;
-// 	t_list	*loop;
+static void	free_all(t_list **save)
+{
+	t_list	*node;
+	t_list	*loop;
 
-// 	if (!save)
-// 		return ;
-// 	node = *save;
-// 	while (node)
-// 	{
-// 		loop = node->next;
-// 		free(node->save);
-// 		free(node);
-// 		node = loop;
-// 	}
-// 	*save = NULL;
-// }
+	if (!save)
+		return ;
+	node = *save;
+	while (node)
+	{
+		loop = node->next;
+		free(node->save);
+		free(node);
+		node = loop;
+	}
+	*save = NULL;
+}
 
 static void	fd_add(t_list **save, int fd)
 {
@@ -89,6 +89,7 @@ char	*get_next_line(int fd)
 	t_list			*current;
 	char			*line;
 
+	(void)free_all;
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
 		|| fd > OPEN_MAX || read(fd, save, 0) == -1)
 		return (NULL);

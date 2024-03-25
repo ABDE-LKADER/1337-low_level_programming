@@ -21,6 +21,8 @@
 #  define BUFFER_SIZE 1337
 # endif
 
+# define OPEN_MAX 10240
+
 typedef struct s_list
 {
 	int				fd;
