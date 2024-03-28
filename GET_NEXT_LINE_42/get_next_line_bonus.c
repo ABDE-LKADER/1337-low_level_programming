@@ -84,7 +84,7 @@ static char	*get_read(int fd, char *save)
 	bytes = 1;
 	load = malloc((size_t)BUFFER_SIZE + 1);
 	if (!load)
-		return (NULL);
+		return (free(save), save = NULL, NULL);
 	while (ft_search(save) && bytes)
 	{
 		bytes = read(fd, load, BUFFER_SIZE);
@@ -102,7 +102,6 @@ char	*get_next_line(int fd)
 	t_list			*current;
 	char			*line;
 
-	(void)free_node;
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
 	if (!save || !fd_check(save, fd))
@@ -112,8 +111,11 @@ char	*get_next_line(int fd)
 		current = current->next;
 	current->save = get_read(fd, current->save);
 	line = strdup_set(current->save, NLN);
+	if (!line)
+		return (free(current->save), current->save = NULL,
+			free_node(&save, fd), NULL);
 	current->save = get_next(current->save);
-	if (!current->save)
-		free_node(&save, fd);
+	// if (!current->save)
+	// 	return (free_node(&save, fd), line);
 	return (line);
 }
