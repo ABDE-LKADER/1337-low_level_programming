@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -21,6 +21,8 @@
 #  define BUFFER_SIZE 1337
 # endif
 
+# define END '\0'
+# define NLN '\n'
 # define OPEN_MAX 10240
 
 typedef struct s_list
@@ -32,9 +34,9 @@ typedef struct s_list
 
 size_t	ft_search(char *s);
 char	*get_next_line(int fd);
-char	*strdup_line(char *str);
-char	*strdup_next(char *str);
 size_t	strlen_set(char *s, char set);
-char	*join_strings(char *s1, char *s2);
+int		fd_check(t_list *save, int fd);
+char	*ft_strdup(char *str, char set);
+char	*ft_strjoin(char *save, char *load);
 
 #endif

@@ -12,33 +12,22 @@
 
 #include "get_next_line_bonus.h"
 
-static int	fd_check(t_list *save, int fd)
+static void	free_node(t_list **save, int fd)
 {
-	while (save->next)
-	{
-		if (save->fd == fd)
-			return (1);
-		save = save->next;
-	}
-	return (0);
-}
-
-static void	free_all(t_list **save)
-{
-	t_list	*node;
-	t_list	*loop;
+	t_list	*prev;
+	t_list	*current;
 
 	if (!save)
 		return ;
-	node = *save;
-	while (node)
+	prev = *save;
+	current = (*save)->next;
+	while (current && current->fd != fd)
 	{
-		loop = node->next;
-		free(node->save);
-		free(node);
-		node = loop;
+		prev = prev->next;
+		current = current->next;
 	}
-	*save = NULL;
+	prev->next = current->next;
+	free(current);
 }
 
 static void	fd_add(t_list **save, int fd)
@@ -63,6 +52,26 @@ static void	fd_add(t_list **save, int fd)
 	node->next = new;
 }
 
+static char	*get_next(char *str)
+{
+	size_t	i;
+	size_t	len;
+	char	*new;
+
+	if (!str || !*str)
+		return (free(str), str = NULL, NULL);
+	len = strlen_set(str, '\n');
+	if (str[len] == '\n')
+		len++;
+	new = malloc((strlen_set(str, '\0') - len) + 1);
+	if (!new)
+		return (free(str), str = NULL, NULL);
+	i = 0;
+	while (str[len])
+		new[i++] = str[len++];
+	return (new[i] = '\0', free(str), str = NULL, new);
+}
+
 static char	*get_read(int fd, char *save)
 {
 	char	*load;
@@ -77,8 +86,8 @@ static char	*get_read(int fd, char *save)
 		bytes = read(fd, load, BUFFER_SIZE);
 		if (bytes == -1)
 			return (free(load), NULL);
-		load[bytes] = '\0';
-		save = join_strings(save, load);
+		load[bytes] = END;
+		save = ft_strjoin(save, load);
 	}
 	return (free(load), save);
 }
@@ -89,9 +98,7 @@ char	*get_next_line(int fd)
 	t_list			*current;
 	char			*line;
 
-	(void)free_all;
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
-		|| fd > OPEN_MAX || read(fd, save, 0) == -1)
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
 	if (!save || !fd_check(save, fd))
 		fd_add(&save, fd);
@@ -99,8 +106,9 @@ char	*get_next_line(int fd)
 	while (current && current->fd != fd)
 		current = current->next;
 	current->save = get_read(fd, current->save);
-	if (!current->save)
-		return (NULL);
-	return (line = strdup_line(current->save),
-		current->save = strdup_next(current->save), line);
+	line = ft_strdup(current->save, NLN);
+	current->save = get_next(current->save);
+	if (!line)
+		return (free_node(&save, fd), NULL);
+	return (line);
 }

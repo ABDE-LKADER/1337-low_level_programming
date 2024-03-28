@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_NLN.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -20,23 +20,23 @@ int	main(void)
 	char	*line;
 
 	fd = open("file.txt", O_RDONLY);
-	line = get_next_line(-1);
+	line = get_next_NLN(-1);
 	printf("%s", line);
 	free(line);
-	line = get_next_line(fd);
+	line = get_next_NLN(fd);
 	while (line)
 	{
 		printf("%s", line);
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_NLN(fd);
 	}
-	line = get_next_line(fd);
+	line = get_next_NLN(fd);
 	printf("%s", line);
 	free(line);
-	line = get_next_line(fd);
+	line = get_next_NLN(fd);
 	printf("%s", line);
 	free(line);
-	line = get_next_line(fd);
+	line = get_next_NLN(fd);
 	printf("%s", line);
 	free(line);
 }

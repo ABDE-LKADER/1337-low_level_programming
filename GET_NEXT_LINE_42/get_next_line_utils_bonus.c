@@ -28,83 +28,67 @@ size_t	ft_search(char *s)
 {
 	size_t	i;
 
-	i = 0;
 	if (!s)
 		return (1);
+	i = 0;
 	while (s[i])
 	{
-		if (s[i] == '\n')
+		if (s[i++] == NLN)
 			return (0);
-		i++;
 	}
 	return (1);
 }
 
-char	*strdup_next(char *str)
+int	fd_check(t_list *save, int fd)
 {
-	size_t	i;
-	size_t	len;
-	char	*new;
-
-	i = 0;
-	if (!*str)
-		return (free(str), NULL);
-	len = strlen_set(str, '\n');
-	if (str[len] == '\n')
-		len++;
-	new = malloc((strlen_set(str, '\0') - len) + 1);
-	if (!new)
-		return (free(str), NULL);
-	while (str[len])
-		new[i++] = str[len++];
-	return (new[i] = '\0', free(str), new);
+	while (save->next)
+	{
+		if (save->fd == fd)
+			return (1);
+		save = save->next;
+	}
+	return (0);
 }
 
-char	*strdup_line(char *str)
+char	*ft_strdup(char *str, char set)
 {
 	size_t	i;
 	size_t	len;
 	char	*new;
 
-	i = 0;
-	if (!*str)
+	if (!str || !*str)
 		return (NULL);
-	len = strlen_set(str, '\n');
-	if (str[len] == '\n')
+	if (set)
+		len = strlen_set(str, set);
+	else
+		len = strlen_set(str, set);
+	if (set && str[len] == NLN)
 		len++;
 	new = malloc(len + 1);
 	if (!new)
 		return (NULL);
-	while (i < len)
-	{
+	i = -1;
+	while (++i < len)
 		new[i] = str[i];
-		i++;
-	}
-	return (new[i] = '\0', new);
+	return (new[i] = END, new);
 }
 
-char	*join_strings(char *save, char *load)
+char	*ft_strjoin(char *save, char *load)
 {
 	size_t	i;
 	size_t	j;
 	char	*str;
 
 	if (!save)
-	{
-		save = malloc(sizeof(char));
-		*save = '\0';
-	}
-	str = malloc(strlen_set(save, '\0') + strlen_set(load, '\0') + 1);
+		return (ft_strdup(load, END));
+	str = malloc(strlen_set(save, END) + strlen_set(load, END) + 1);
 	if (!str)
-		return (free(save), NULL);
-	i = 0;
-	while (save[i])
-	{
+		return (free(save), save = NULL, NULL);
+	i = -1;
+	while (save[++i])
 		str[i] = save[i];
-		i++;
-	}
 	j = 0;
 	while (load[j])
 		str[i++] = load[j++];
-	return (str[i] = '\0', free(save), str);
+	return (str[i] = END, free(save), save = NULL, str);
 }
