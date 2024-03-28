@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 07:52:24 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/25 11:41:36 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/28 08:18:15 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,7 @@ size_t	ft_search(char *s)
 	return (1);
 }
 
-char	*get_next(char *str)
-{
-	size_t	i;
-	size_t	len;
-	char	*new;
-
-	if (!str || !*str)
-		return (free(str), str = NULL, NULL);
-	len = strlen_set(str, '\n');
-	if (str[len] == '\n')
-		len++;
-	new = malloc((strlen_set(str, '\0') - len) + 1);
-	if (!new)
-		return (free(str), str = NULL, NULL);
-	i = 0;
-	while (str[len])
-		new[i++] = str[len++];
-	return (new[i] = '\0', free(str), str = NULL, new);
-}
-
-char	*ft_strdup(char *str, char set)
+char	*strdup_set(char *str, char set)
 {
 	size_t	i;
 	size_t	len;
@@ -67,11 +47,8 @@ char	*ft_strdup(char *str, char set)
 
 	if (!str || !*str)
 		return (NULL);
-	if (set)
-		len = strlen_set(str, set);
-	else
-		len = strlen_set(str, set);
-	if (set && str[len] == NLN)
+	len = strlen_set(str, set);
+	if (str[len] == NLN)
 		len++;
 	new = malloc(len + 1);
 	if (!new)
@@ -89,7 +66,7 @@ char	*ft_strjoin(char *save, char *load)
 	char	*str;
 
 	if (!save)
-		return (ft_strdup(load, END));
+		return (strdup_set(load, END));
 	str = malloc(strlen_set(save, END) + strlen_set(load, END) + 1);
 	if (!str)
 		return (free(save), save = NULL, NULL);

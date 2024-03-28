@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:26:53 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/20 14:58:13 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/28 09:08:03 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 # define END '\0'
 # define NLN '\n'
-# define OPEN_MAX 10240
 
 typedef struct s_list
 {
@@ -36,7 +35,7 @@ size_t	ft_search(char *s);
 char	*get_next_line(int fd);
 size_t	strlen_set(char *s, char set);
 int		fd_check(t_list *save, int fd);
-char	*ft_strdup(char *str, char set);
+char	*strdup_set(char *str, char set);
 char	*ft_strjoin(char *save, char *load);
 
 #endif

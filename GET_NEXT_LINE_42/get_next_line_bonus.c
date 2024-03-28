@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/25 10:01:36 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/28 09:16:28 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ static void	free_node(t_list **save, int fd)
 		return ;
 	prev = *save;
 	current = (*save)->next;
-	while (current && current->fd != fd)
+	while (current->next && current->fd != fd)
 	{
 		prev = prev->next;
 		current = current->next;
 	}
 	prev->next = current->next;
 	free(current);
+	current = NULL;
 }
 
 static void	fd_add(t_list **save, int fd)
@@ -52,24 +53,20 @@ static void	fd_add(t_list **save, int fd)
 	node->next = new;
 }
 
-static char	*get_next(char *str)
+static char	*get_next(char *save)
 {
-	size_t	i;
 	size_t	len;
 	char	*new;
 
-	if (!str || !*str)
-		return (free(str), str = NULL, NULL);
-	len = strlen_set(str, '\n');
-	if (str[len] == '\n')
+	if (!save || !*save)
+		return (free(save), save = NULL, NULL);
+	len = strlen_set(save, '\n');
+	if (save[len] == '\n')
 		len++;
-	new = malloc((strlen_set(str, '\0') - len) + 1);
+	new = strdup_set(save + len, END);
 	if (!new)
-		return (free(str), str = NULL, NULL);
-	i = 0;
-	while (str[len])
-		new[i++] = str[len++];
-	return (new[i] = '\0', free(str), str = NULL, new);
+		return (free(save), save = NULL, NULL);
+	return (free(save), save = NULL, new);
 }
 
 static char	*get_read(int fd, char *save)
@@ -98,6 +95,7 @@ char	*get_next_line(int fd)
 	t_list			*current;
 	char			*line;
 
+	(void)free_node;
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
 	if (!save || !fd_check(save, fd))
@@ -106,9 +104,7 @@ char	*get_next_line(int fd)
 	while (current && current->fd != fd)
 		current = current->next;
 	current->save = get_read(fd, current->save);
-	line = ft_strdup(current->save, NLN);
+	line = strdup_set(current->save, NLN);
 	current->save = get_next(current->save);
-	if (!line)
-		return (free_node(&save, fd), NULL);
 	return (line);
 }

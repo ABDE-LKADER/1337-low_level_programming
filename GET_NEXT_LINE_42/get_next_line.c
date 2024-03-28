@@ -6,11 +6,27 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/25 12:31:05 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/28 09:11:40 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static char	*get_next(char *save)
+{
+	size_t	len;
+	char	*new;
+
+	if (!save || !*save)
+		return (free(save), save = NULL, NULL);
+	len = strlen_set(save, '\n');
+	if (save[len] == '\n')
+		len++;
+	new = strdup_set(save + len, END);
+	if (!new)
+		return (free(save), save = NULL, NULL);
+	return (free(save), save = NULL, new);
+}
 
 static char	*get_read(int fd, char *save)
 {
@@ -40,6 +56,6 @@ char	*get_next_line(int fd)
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX
 		|| read(fd, save, 0) == -1)
 		return (free(save), save = NULL, NULL);
-	return (save = get_read(fd, save), line = ft_strdup(save, NLN),
+	return (save = get_read(fd, save), line = strdup_set(save, NLN),
 		save = get_next(save), line);
 }

@@ -23,13 +23,11 @@
 
 # define END '\0'
 # define NLN '\n'
-# define OPEN_MAX 10240
 
 size_t	ft_search(char *s);
 char	*get_next_line(int fd);
-char	*get_next(char *str);
 size_t	strlen_set(char *s, char set);
-char	*ft_strdup(char *str, char set);
+char	*strdup_set(char *str, char set);
 char	*ft_strjoin(char *save, char *load);
 
 #endif

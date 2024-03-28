@@ -6,11 +6,22 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 07:52:24 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/25 10:01:18 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/28 08:45:03 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+
+int	fd_check(t_list *save, int fd)
+{
+	while (save->next)
+	{
+		if (save->fd == fd)
+			return (1);
+		save = save->next;
+	}
+	return (0);
+}
 
 size_t	strlen_set(char *s, char set)
 {
@@ -39,18 +50,7 @@ size_t	ft_search(char *s)
 	return (1);
 }
 
-int	fd_check(t_list *save, int fd)
-{
-	while (save->next)
-	{
-		if (save->fd == fd)
-			return (1);
-		save = save->next;
-	}
-	return (0);
-}
-
-char	*ft_strdup(char *str, char set)
+char	*strdup_set(char *str, char set)
 {
 	size_t	i;
 	size_t	len;
@@ -58,11 +58,8 @@ char	*ft_strdup(char *str, char set)
 
 	if (!str || !*str)
 		return (NULL);
-	if (set)
-		len = strlen_set(str, set);
-	else
-		len = strlen_set(str, set);
-	if (set && str[len] == NLN)
+	len = strlen_set(str, set);
+	if (str[len] == NLN)
 		len++;
 	new = malloc(len + 1);
 	if (!new)
@@ -80,7 +77,7 @@ char	*ft_strjoin(char *save, char *load)
 	char	*str;
 
 	if (!save)
-		return (ft_strdup(load, END));
+		return (strdup_set(load, END));
 	str = malloc(strlen_set(save, END) + strlen_set(load, END) + 1);
 	if (!str)
 		return (free(save), save = NULL, NULL);
