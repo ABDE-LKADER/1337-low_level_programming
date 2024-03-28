@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/28 09:16:28 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/28 10:07:07 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,15 @@ static void	free_node(t_list **save, int fd)
 	if (!save)
 		return ;
 	prev = *save;
+	current = NULL;
+	if (prev->fd == fd)
+	{
+		(*save) = (*save)->next;
+		free(prev);
+		return ;
+	}
 	current = (*save)->next;
-	while (current->next && current->fd != fd)
+	while (current && current->fd != fd)
 	{
 		prev = prev->next;
 		current = current->next;
@@ -106,5 +113,7 @@ char	*get_next_line(int fd)
 	current->save = get_read(fd, current->save);
 	line = strdup_set(current->save, NLN);
 	current->save = get_next(current->save);
+	if (!current->save)
+		free_node(&save, fd);
 	return (line);
 }
