@@ -20,14 +20,14 @@ static void	free_node(t_list **save, int fd)
 	if (!save)
 		return ;
 	prev = *save;
-	current = NULL;
+	current = (*save)->next;
+	(void)fd;
 	if (prev->fd == fd)
 	{
-		(*save) = (*save)->next;
+		(*save) = current;
 		free(prev);
 		return ;
 	}
-	current = (*save)->next;
 	while (current && current->fd != fd)
 	{
 		prev = prev->next;
