@@ -21,16 +21,16 @@ static void	free_node(t_list **save, int fd)
 		return ;
 	prev = *save;
 	current = (*save)->next;
-	(void)fd;
 	if (prev->fd == fd)
 	{
 		(*save) = current;
 		free(prev);
+		prev = NULL;
 		return ;
 	}
 	while (current && current->fd != fd)
 	{
-		prev = prev->next;
+		prev = current;
 		current = current->next;
 	}
 	prev->next = current->next;
@@ -109,6 +109,8 @@ char	*get_next_line(int fd)
 	current = save;
 	while (current && current->fd != fd)
 		current = current->next;
+	if (!current)
+		return (free(current), current = NULL, NULL);
 	current->save = get_read(fd, current->save);
 	line = strdup_set(current->save, NLN);
 	if (!line)

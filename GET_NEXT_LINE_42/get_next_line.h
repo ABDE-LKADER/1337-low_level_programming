@@ -23,6 +23,7 @@
 
 # define END '\0'
 # define NLN '\n'
+# define OPEN_MAX 10240
 
 size_t	ft_search(char *s);
 char	*get_next_line(int fd);

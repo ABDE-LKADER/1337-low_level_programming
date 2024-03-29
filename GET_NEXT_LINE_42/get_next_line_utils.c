@@ -69,12 +69,12 @@ char	*ft_strjoin(char *save, char *load)
 		return (strdup_set(load, END));
 	str = malloc(strlen_set(save, END) + strlen_set(load, END) + 1);
 	if (!str)
-		return (free(save), save = NULL, NULL);
+		return (free(save), NULL);
 	i = -1;
 	while (save[++i])
 		str[i] = save[i];
 	j = 0;
 	while (load[j])
 		str[i++] = load[j++];
-	return (str[i] = END, free(save), save = NULL, str);
+	return (str[i] = END, free(save), str);
 }

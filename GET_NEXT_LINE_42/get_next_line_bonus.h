@@ -23,6 +23,7 @@
 
 # define END '\0'
 # define NLN '\n'
+# define OPEN_MAX 10240
 
 typedef struct s_list
 {
