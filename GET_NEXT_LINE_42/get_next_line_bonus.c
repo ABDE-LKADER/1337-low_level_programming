@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/28 10:42:40 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/29 14:43:14 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,9 @@ char	*get_next_line(int fd)
 	current->save = get_read(fd, current->save);
 	line = strdup_set(current->save, NLN);
 	if (!line)
-		return (free(current->save), current->save = NULL,
-			free_node(&save, fd), NULL);
+		return (free_node(&save, fd), NULL);
 	current->save = get_next(current->save);
-	// if (!current->save)
-	// 	return (free_node(&save, fd), line);
+	if (!current->save)
+		free_node(&save, fd);
 	return (line);
 }
