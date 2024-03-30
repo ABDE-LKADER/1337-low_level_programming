@@ -24,10 +24,8 @@ static void	free_node(t_list **save, int fd)
 	if (prev->fd == fd)
 	{
 		(*save) = current;
-		free(prev->save);
-		prev->save = NULL;
-		free(prev);
-		prev = NULL;
+		(free(prev->save), prev->save = NULL);
+		(free(prev), prev = NULL);
 		return ;
 	}
 	while (current && current->fd != fd)
@@ -36,10 +34,8 @@ static void	free_node(t_list **save, int fd)
 		current = current->next;
 	}
 	prev->next = current->next;
-	free(current->save);
-	current->save = NULL;
-	free(current);
-	current = NULL;
+	(free(current->save), current->save = NULL);
+	(free(current), current = NULL);
 }
 
 static void	fd_add(t_list **save, int fd)
