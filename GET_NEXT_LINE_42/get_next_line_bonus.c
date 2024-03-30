@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/29 15:12:59 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/30 09:47:33 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	free_node(t_list **save, int fd)
 	if (prev->fd == fd)
 	{
 		(*save) = current;
+		free(prev->save);
+		prev->save = NULL;
 		free(prev);
 		prev = NULL;
 		return ;
@@ -34,6 +36,8 @@ static void	free_node(t_list **save, int fd)
 		current = current->next;
 	}
 	prev->next = current->next;
+	free(current->save);
+	current->save = NULL;
 	free(current);
 	current = NULL;
 }
@@ -60,23 +64,24 @@ static void	fd_add(t_list **save, int fd)
 	node->next = new;
 }
 
-static char	*get_next(char *save)
+static t_list	*get_next(t_list **head, t_list *node)
 {
 	size_t	len;
 	char	*new;
 
-	if (!save || !*save)
-		return (free(save), save = NULL, NULL);
-	len = strlen_set(save, '\n');
-	if (save[len] == '\n')
+	if (!node->save || !*node->save)
+		return (free_node(head, node->fd), NULL);
+	len = strlen_set(node->save, '\n');
+	if (node->save[len] == '\n')
 		len++;
-	new = strdup_set(save + len, END);
+	new = strdup_set(node->save + len, END);
 	if (!new)
-		return (free(save), save = NULL, NULL);
-	return (free(save), save = NULL, new);
+		return (free_node(head, node->fd), NULL);
+	return (free(node->save), node->save = NULL,
+		node->save = new, node);
 }
 
-static char	*get_read(int fd, char *save)
+static char	*get_read(t_list *node)
 {
 	char	*load;
 	int		bytes;
@@ -84,16 +89,16 @@ static char	*get_read(int fd, char *save)
 	bytes = 1;
 	load = malloc((size_t)BUFFER_SIZE + 1);
 	if (!load)
-		return (free(save), save = NULL, NULL);
-	while (ft_search(save) && bytes)
+		return (free(node->save), node->save = NULL, NULL);
+	while (ft_search(node->save) && bytes)
 	{
-		bytes = read(fd, load, BUFFER_SIZE);
+		bytes = read(node->fd, load, BUFFER_SIZE);
 		if (bytes == -1)
 			return (free(load), NULL);
 		load[bytes] = END;
-		save = ft_strjoin(save, load);
+		node->save = ft_strjoin(node->save, load);
 	}
-	return (free(load), save);
+	return (free(load), node->save);
 }
 
 char	*get_next_line(int fd)
@@ -110,14 +115,10 @@ char	*get_next_line(int fd)
 	while (current && current->fd != fd)
 		current = current->next;
 	if (!current)
-		return (free(current), current = NULL, NULL);
-	current->save = get_read(fd, current->save);
+		return (NULL);
+	current->save = get_read(current);
 	line = strdup_set(current->save, NLN);
 	if (!line)
-		return (free(current->save), current->save = NULL,
-			free_node(&save, fd), NULL);
-	current->save = get_next(current->save);
-	if (!current->save)
-		free_node(&save, fd);
-	return (line);
+		return (free_node(&save, fd), NULL);
+	return (current = get_next(&save, current), line);
 }
