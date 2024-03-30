@@ -114,7 +114,8 @@ char	*get_next_line(int fd)
 	current->save = get_read(fd, current->save);
 	line = strdup_set(current->save, NLN);
 	if (!line)
-		return (free_node(&save, fd), NULL);
+		return (free(current->save), current->save = NULL,
+			free_node(&save, fd), NULL);
 	current->save = get_next(current->save);
 	if (!current->save)
 		free_node(&save, fd);
