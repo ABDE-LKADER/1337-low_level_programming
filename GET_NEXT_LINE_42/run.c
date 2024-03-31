@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <fcntl.h>
 
+void fn(){system("leaks run");}
 int main (void)
 {
-    int fd = open("multiple_nl.txt", O_RDONLY);
+    int fd = open("nl.txt", O_RDONLY);
     char *line;
 
     line = get_next_line(fd);
@@ -14,4 +15,5 @@ int main (void)
         free(line);
         line = get_next_line(fd);
     }
+    atexit(fn);
 }

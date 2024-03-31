@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/30 09:47:33 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/31 14:06:58 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void	free_node(t_list **save, int fd)
 		prev = current;
 		current = current->next;
 	}
+	if (!current)
+		return ;
 	prev->next = current->next;
 	(free(current->save), current->save = NULL);
 	(free(current), current = NULL);
