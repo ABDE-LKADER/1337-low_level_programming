@@ -19,8 +19,8 @@ static char	*get_next(char *save)
 
 	if (!save || !*save)
 		return (free(save), save = NULL, NULL);
-	len = strlen_set(save, '\n');
-	if (save[len] == '\n')
+	len = strlen_set(save, NLN);
+	if (save[len] == NLN)
 		len++;
 	new = strdup_set(save + len, END);
 	if (!new)

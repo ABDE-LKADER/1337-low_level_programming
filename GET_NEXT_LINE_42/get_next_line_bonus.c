@@ -67,8 +67,8 @@ static t_list	*get_next(t_list **head, t_list *node)
 
 	if (!node->save || !*node->save)
 		return (free_node(head, node->fd), NULL);
-	len = strlen_set(node->save, '\n');
-	if (node->save[len] == '\n')
+	len = strlen_set(node->save, NLN);
+	if (node->save[len] == NLN)
 		len++;
 	new = strdup_set(node->save + len, END);
 	if (!new)
