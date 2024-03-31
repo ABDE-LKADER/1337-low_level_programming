@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:26:53 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/29 14:21:59 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/03/31 14:07:38 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 # define END '\0'
 # define NLN '\n'
-# define OPEN_MAX 10240
 
 typedef struct s_list
 {
