@@ -6,12 +6,11 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/02 12:33:12 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:01:21 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	print_string(char *str)
 {
@@ -76,7 +75,6 @@ int	print_string_handler(char *str, t_flags flags)
 
 	print = string_handler_zero(str, flags);
 	print += string_handler_minus(str, &flags);
-	printf("LEN -----------------------__> %d\n", flags.dot_len);
 	if (!str && flags.dot_len >= ft_strlen(ISNULL))
 		print += print_string(str);
 	else if (flags.dot && str)
