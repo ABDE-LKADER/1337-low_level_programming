@@ -1,21 +1,22 @@
 NAME		=	libftprintf.a
 HEADER		=	ft_printf.h
 
-SRCS		=	mandatory/ft_printf.c \
-				mandatory/ft_printf_plus.c
+# SRCS		=	mandatory/ft_printf.c \
+# 				mandatory/ft_printf_plus.c
 
-SRCS_BONUS	=	bonus/ft_print_hex.c  \
-				bonus/ft_print_flags.c \
-				bonus/ft_printf_bonus.c \
-				bonus/ft_print_string.c  \
-				bonus/ft_print_number.c   \
-				bonus/ft_print_address.c   \
-				bonus/ft_print_unsigned.c
+SRCS		=	ft_printf.c   \
+				ft_print_hex.c \
+				ft_print_char.c \
+				ft_print_flags.c \
+				ft_print_string.c \
+				ft_print_number.c  \
+				ft_print_address.c  \
+				ft_print_unsigned.c
 
 FLGS		=	cc -Wall -Wextra -Werror
 
 OBJS		=	$(SRCS:.c=.o)
-OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
+OBJS_BONUS	=	$(SRCS:.c=.o)
 
 MYAR		=	MYLIB/libar.a
 MYHD		=	MYLIB/mylib.h

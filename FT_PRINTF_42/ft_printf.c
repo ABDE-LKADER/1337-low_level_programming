@@ -6,11 +6,11 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/01 17:59:08 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/02 12:42:01 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 static int	is_valid(const char *set)
 {
@@ -91,7 +91,7 @@ static int	format_set(char set, va_list lstarg, t_flags flags)
 	else if (set == 'x' || set == 'X')
 		print += print_hex_handler(va_arg(lstarg, unsigned int), set, flags);
 	else if (set == '%')
-		print += print_char(set);
+		print += print_char_handler(set, flags);
 	return (print);
 }
 
@@ -110,7 +110,7 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%' && is_valid(format + 1))
 		{
 			if (!*(++format))
-				return (-1);
+				return (print);
 			flags = check_flags((char *)format, flags);
 			while (!ft_strchr(SPECIFIERS, *format))
 				format++;

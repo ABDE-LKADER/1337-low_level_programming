@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_number.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/01/01 17:59:08 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/02 09:56:09 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 static int	number_len(int num)
 {
@@ -48,6 +48,8 @@ int	print_num(int num, t_flags flags)
 	}
 	else
 		number = num;
+	if (flags.dot && !flags.dot_len)
+		return (len);
 	if (number > 9)
 		len += print_num(number / 10, flags);
 	len += print_char(number % 10 + 48);
