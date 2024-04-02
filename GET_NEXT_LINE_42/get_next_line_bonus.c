@@ -6,11 +6,29 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/02 00:04:38 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:38:20 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+
+static t_list	*get_node(t_list **save, int fd)
+{
+	t_list	*new;
+
+	new = *save;
+	while (new && new->fd != fd)
+		new = new->next;
+	if (!new)
+	{
+		new = malloc(sizeof(t_list));
+		if (!new)
+			return (NULL);
+		(1) && (new->fd = fd, new->save = NULL,
+		new->next = *save, *save = new);
+	}
+	return (new);
+}
 
 static void	free_node(t_list **save, int fd)
 {
@@ -19,8 +37,7 @@ static void	free_node(t_list **save, int fd)
 
 	if (!save)
 		return ;
-	prev = *save;
-	current = (*save)->next;
+	(1) && (prev = *save, current = (*save)->next);
 	if (prev->fd == fd)
 	{
 		(*save) = current;
@@ -38,26 +55,6 @@ static void	free_node(t_list **save, int fd)
 	prev->next = current->next;
 	(free(current->save), current->save = NULL);
 	(free(current), current = NULL);
-}
-
-static t_list	*fd_add(t_list **save, int fd)
-{
-	t_list	*new;
-
-	new = *save;
-	while (new && new->fd != fd)
-		new = new->next;
-	if (!new)
-	{
-		new = malloc(sizeof(t_list));
-		if (!new)
-			return (NULL);
-		new->fd = fd;
-		new->save = NULL;
-		new->next = *save;
-		*save = new;
-	}
-	return (new);
 }
 
 static t_list	*get_next(t_list **head, t_list *node)
@@ -106,7 +103,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
-	current = fd_add(&save, fd);
+	current = get_node(&save, fd);
 	if (!current)
 		return (NULL);
 	current->save = get_read(current);

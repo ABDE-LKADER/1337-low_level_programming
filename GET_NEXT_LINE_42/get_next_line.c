@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/01 07:50:35 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:38:16 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ static char	*get_read(int fd, char *save)
 	{
 		bytes = read(fd, load, BUFFER_SIZE);
 		if (bytes == -1)
-			return (free(load), NULL);
+			return (free(load), free(save), NULL);
 		load[bytes] = END;
 		save = ft_strjoin(save, load);
+		if (!save)
+			break ;
 	}
 	return (free(load), save);
 }

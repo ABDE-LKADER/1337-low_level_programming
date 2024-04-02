@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:26:53 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/31 14:09:03 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:37:57 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_list
 size_t	ft_search(char *s);
 char	*get_next_line(int fd);
 size_t	strlen_set(char *s, char set);
-int		fd_check(t_list *save, int fd);
 char	*strdup_set(char *str, char set);
 char	*ft_strjoin(char *save, char *load);
 
