@@ -6,22 +6,11 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 07:52:24 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/31 14:09:01 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:01:06 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-int	fd_check(t_list *save, int fd)
-{
-	while (save->next)
-	{
-		if (save->fd == fd)
-			return (1);
-		save = save->next;
-	}
-	return (0);
-}
 
 size_t	strlen_set(char *s, char set)
 {

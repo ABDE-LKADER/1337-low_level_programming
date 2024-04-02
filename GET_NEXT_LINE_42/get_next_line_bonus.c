@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:23 by abadouab          #+#    #+#             */
-/*   Updated: 2024/03/31 14:09:04 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:04:38 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,24 @@ static void	free_node(t_list **save, int fd)
 	(free(current), current = NULL);
 }
 
-static void	fd_add(t_list **save, int fd)
+static t_list	*fd_add(t_list **save, int fd)
 {
-	t_list	*node;
 	t_list	*new;
 
-	new = malloc(sizeof(t_list));
+	new = *save;
+	while (new && new->fd != fd)
+		new = new->next;
 	if (!new)
-		return ;
-	new->fd = fd;
-	new->save = NULL;
-	new->next = NULL;
-	if (!(*save))
 	{
+		new = malloc(sizeof(t_list));
+		if (!new)
+			return (NULL);
+		new->fd = fd;
+		new->save = NULL;
+		new->next = *save;
 		*save = new;
-		return ;
 	}
-	node = *save;
-	while (node->next)
-		node = node->next;
-	node->next = new;
+	return (new);
 }
 
 static t_list	*get_next(t_list **head, t_list *node)
@@ -75,8 +73,7 @@ static t_list	*get_next(t_list **head, t_list *node)
 	new = strdup_set(node->save + len, END);
 	if (!new)
 		return (free_node(head, node->fd), NULL);
-	return (free(node->save), node->save = NULL,
-		node->save = new, node);
+	return (free(node->save), node->save = new, node);
 }
 
 static char	*get_read(t_list *node)
@@ -92,9 +89,11 @@ static char	*get_read(t_list *node)
 	{
 		bytes = read(node->fd, load, BUFFER_SIZE);
 		if (bytes == -1)
-			return (free(load), NULL);
+			return (free(load), free(node->save), NULL);
 		load[bytes] = END;
 		node->save = ft_strjoin(node->save, load);
+		if (!node->save)
+			break ;
 	}
 	return (free(load), node->save);
 }
@@ -107,11 +106,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
-	if (!save || !fd_check(save, fd))
-		fd_add(&save, fd);
-	current = save;
-	while (current && current->fd != fd)
-		current = current->next;
+	current = fd_add(&save, fd);
 	if (!current)
 		return (NULL);
 	current->save = get_read(current);
