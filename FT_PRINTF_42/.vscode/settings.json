@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "ft_printf.h": "c",
+        "__locale": "c",
+        "sstream": "c",
+        "cstdarg": "c",
+        "cstdio": "c",
+        "cwchar": "c",
+        "stdio.h": "c"
+    }
+}

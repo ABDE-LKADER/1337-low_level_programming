@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/02 14:01:30 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:58:46 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ static int	is_valid(const char *set)
 	else if (ft_strchr(FLAGS, *set) || ft_isdigit(*set))
 	{
 		while (!ft_strchr(SPECIFIERS, *set))
+		{
 			set++;
+		}
 	}
 	if (ft_strchr(SPECIFIERS, *set))
 		return (1);
@@ -34,9 +36,9 @@ static t_flags	set_flags_len(char *set, t_flags flags)
 			&& ft_strchr(FLAGS, *(set + 1)) && *set == *(set + 1))
 			set++;
 		if (*set == '-' && !flags.minus_len)
-			flags.minus_len = ft_atoi(++set);
+			flags.minus_len = ft_atoi(set + 1);
 		else if (*set == '.' && !flags.dot_len)
-			flags.dot_len = ft_atoi(++set);
+			flags.dot_len = ft_atoi(set + 1);
 		else if (ft_isdigit(*set) && !flags.minus_len && !flags.zero_len)
 			flags.zero_len = ft_atoi(set);
 		set++;

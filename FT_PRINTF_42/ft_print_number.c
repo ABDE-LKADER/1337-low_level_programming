@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/02 09:56:09 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/04 05:43:25 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int	print_num(int num, t_flags flags)
 	}
 	else
 		number = num;
-	if (flags.dot && !flags.dot_len)
+	if (!num && flags.dot && !flags.dot_len
+		&& (!flags.minus || !flags.just_num))
 		return (len);
 	if (number > 9)
 		len += print_num(number / 10, flags);
@@ -71,10 +72,14 @@ static void	zero_len_handler(int num, t_flags *flags)
 	{
 		if (flags->space && num >= 0)
 			flags->zero_len -= 1;
-		if (!flags->minus)
+		if (num < 0 && flags->dot_len >= number_len(num))
+			flags->zero_len -= 1;
+		if (num && !flags->minus)
 			flags->zero_len -= number_len(num);
-		else
+		else if (num && !flags->dot)
 			flags->zero_len -= number_len(num) + 1;
+		else if (!flags->dot && !flags->minus)
+			flags->zero_len -= number_len(num);
 	}
 }
 
@@ -124,7 +129,8 @@ int	print_num_handler(int num, t_flags flags)
 	{
 		if ((flags.space || flags.plus) && num >= 0)
 			flags.minus_len -= 1;
-		flags.minus_len -= number_len(num);
+		if ((num && flags.dot) || !flags.dot)
+			flags.minus_len -= number_len(num);
 	}
 	print += print_num(num, flags);
 	if (flags.minus)
