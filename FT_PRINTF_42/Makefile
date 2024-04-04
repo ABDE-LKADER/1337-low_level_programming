@@ -19,7 +19,7 @@ OBJS		=	$(SRCS:.c=.o)
 OBJS_BONUS	=	$(SRCS:.c=.o)
 
 MYAR		=	MYLIB/libar.a
-MYHD		=	MYLIB/mylib.h
+MYLB		=	MYLIB
 
 ARRC		=	ar -rc
 RM			=	rm -fr
@@ -29,16 +29,17 @@ YELOW 		=	"\033[1;33m"
 REDCL 		=	"\033[1;31m"
 RESET 		=	"\033[0m"
 
-all: $(NAME)
+all: $(MYLB) $(NAME)
 	@echo $(GREEN)Done !!$(RESET)
 
+$(MYLB):
+	@make -C $(MYLB) --no-print-directory
+
 $(NAME): $(OBJS)
-	@make -C MYLIB --no-print-directory
 	@cp $(MYAR) $(NAME)
 	@$(ARRC) $(NAME) $(OBJS)
 
-bonus: $(OBJS_BONUS)
-	@make -C MYLIB --no-print-directory
+bonus: $(MYLB) $(OBJS_BONUS)
 	@cp $(MYAR) $(NAME)
 	@$(ARRC) $(NAME) $(OBJS_BONUS)
 	@echo $(GREEN)Done !!$(RESET)
@@ -57,3 +58,5 @@ fclean: clean
 	@echo $(REDCL)Done !!$(RESET)
 
 re: fclean all
+
+.PHONY: $(MYLB)
