@@ -6,11 +6,24 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/02 09:54:05 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/04 07:29:33 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	address_len(unsigned long num)
+{
+	int	len;
+
+	len = 2;
+	while (num > 15)
+	{
+		num /= 16;
+		len++;
+	}
+	return (len);
+}
 
 t_flags	set_flags_init(void)
 {

@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/04 05:43:25 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/04 08:26:24 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,27 +62,31 @@ static void	zero_len_handler(int num, t_flags *flags)
 	if (flags->dot_len > number_len(num) && (flags->zero || flags->just_num)
 		&& flags->dot)
 	{
-		if (num < 0)
-			flags->zero_len -= 1;
-		else if (flags->space)
+		if (num < 0 || flags->space || flags->plus)
 			flags->zero_len -= 1;
 		flags->zero_len -= flags->dot_len;
 	}
 	else if (flags->zero || flags->just_num)
 	{
-		if (flags->space && num >= 0)
+		if ((flags->space && num >= 0) || (!num && flags->plus))
 			flags->zero_len -= 1;
 		if (num < 0 && flags->dot_len >= number_len(num))
 			flags->zero_len -= 1;
-		if (num && !flags->minus)
+		if (num && !flags->minus && !flags->plus)
 			flags->zero_len -= number_len(num);
-		else if (num && !flags->dot)
+		else if (num > 0 && !flags->dot)
 			flags->zero_len -= number_len(num) + 1;
 		else if (!flags->dot && !flags->minus)
 			flags->zero_len -= number_len(num);
+		else if (!num && flags->dot_len == 1)
+			flags->zero_len -= number_len(num);
+		else if (num > 0 && flags->plus && flags->dot)
+			flags->zero_len -= number_len(num) + 1;
+		else if (num < 0 && flags->plus && flags->dot)
+			flags->zero_len -= number_len(num);
 	}
 }
-
+   
 static int	num_handler_plus(int num, t_flags flags)
 {
 	int	print;
@@ -119,15 +123,14 @@ int	print_num_handler(int num, t_flags flags)
 	print = num_handler_plus(num, flags);
 	if (flags.dot_len > number_len(num) && flags.dot && flags.minus)
 	{
-		if (num < 0)
-			flags.minus_len -= 1;
-		else if (flags.space)
+		if (num < 0 || flags.space || flags.plus)
 			flags.minus_len -= 1;
 		flags.minus_len -= flags.dot_len;
 	}
 	else if (flags.minus)
 	{
-		if ((flags.space || flags.plus) && num >= 0)
+		if (((flags.space || flags.plus) && num >= 0)
+			|| (!num && flags.dot_len == 1) || (num && flags.space))
 			flags.minus_len -= 1;
 		if ((num && flags.dot) || !flags.dot)
 			flags.minus_len -= number_len(num);

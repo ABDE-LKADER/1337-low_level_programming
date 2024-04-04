@@ -2,8 +2,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-# define HHH "%20.5d", -1024
-# define SET "%-3i", 0
+# define SET  "%-10.5d", -1862
 
 int main()
 {

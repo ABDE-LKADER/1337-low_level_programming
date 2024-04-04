@@ -6,6 +6,7 @@
         "cstdarg": "c",
         "cstdio": "c",
         "cwchar": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "chrono": "c"
     }
 }
