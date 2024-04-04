@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/04 08:26:24 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:22:24 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ static void	zero_len_handler(int num, t_flags *flags)
 	if (flags->dot_len > number_len(num) && (flags->zero || flags->just_num)
 		&& flags->dot)
 	{
-		if (num < 0 || flags->space || flags->plus)
-			flags->zero_len -= 1;
+		(num < 0 || flags->space || flags->plus) && (flags->zero_len -= 1);
 		flags->zero_len -= flags->dot_len;
 	}
 	else if (flags->zero || flags->just_num)
@@ -86,7 +85,7 @@ static void	zero_len_handler(int num, t_flags *flags)
 			flags->zero_len -= number_len(num);
 	}
 }
-   
+
 static int	num_handler_plus(int num, t_flags flags)
 {
 	int	print;
@@ -129,11 +128,12 @@ int	print_num_handler(int num, t_flags flags)
 	}
 	else if (flags.minus)
 	{
-		if (((flags.space || flags.plus) && num >= 0)
-			|| (!num && flags.dot_len == 1) || (num && flags.space))
-			flags.minus_len -= 1;
-		if ((num && flags.dot) || !flags.dot)
-			flags.minus_len -= number_len(num);
+		(((flags.space || flags.plus) && num >= 0)
+			|| (!num && flags.dot_len == 1)) && (flags.minus_len -= 1);
+		((num < 0 && flags.dot_len >= number_len(num)) || (!num && (flags.space \
+			|| flags.plus) && flags.dot_len == 1)) && (flags.minus_len -= 1);
+		((num && flags.dot) || !flags.dot)
+			&& (flags.minus_len -= number_len(num));
 	}
 	print += print_num(num, flags);
 	if (flags.minus)

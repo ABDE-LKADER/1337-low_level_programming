@@ -1,9 +1,6 @@
 NAME		=	libftprintf.a
 HEADER		=	ft_printf.h
 
-# SRCS		=	mandatory/ft_printf.c \
-# 				mandatory/ft_printf_plus.c
-
 SRCS		=	ft_printf.c   \
 				ft_print_hex.c \
 				ft_print_char.c \
@@ -44,7 +41,7 @@ bonus: $(MYLB) $(OBJS_BONUS)
 	@$(ARRC) $(NAME) $(OBJS_BONUS)
 	@echo $(GREEN)Done !!$(RESET)
 
-%.o: %.c $(HEADER) $(MYHD)
+%.o: %.c $(HEADER) $(MYAR)
 	@$(FLGS) -c $< -o $@
 
 clean:

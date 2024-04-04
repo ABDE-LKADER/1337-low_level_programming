@@ -6,26 +6,11 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/02 07:52:21 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:52:07 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static int	hex_len(unsigned int num, t_flags flags)
-{
-	int	len;
-
-	if (!num && flags.dot)
-		return (0);
-	len = 1;
-	while (num > 15)
-	{
-		num /= 16;
-		len++;
-	}
-	return (len);
-}
 
 int	print_hex(unsigned int num, char set, t_flags flags)
 {
@@ -74,20 +59,36 @@ static int	hex_handler_zero(unsigned int num, t_flags flags)
 	return (print);
 }
 
-static int	hex_handler_plus(unsigned int num, char set, t_flags *flags)
+static int	hex_handler_hash(unsigned int num, char set, t_flags *flags)
 {
 	int	print;
 
 	print = 0;
-	if (flags->hash && !flags->dot && num && set == 'x')
+	if (flags->hash && !flags->dot && !flags->zero
+		&& !flags->just_num && num && set == 'x')
 		print += print_string("0x");
-	else if (flags->hash && !flags->dot && num && set == 'X')
+	else if (flags->hash && !flags->dot && !flags->zero
+		&& !flags->just_num && num && set == 'X')
 		print += print_string("0X");
 	print += hex_handler_zero(num, *flags);
 	if (flags->hash && flags->dot && num && set == 'x')
 		print += print_string("0x");
 	else if (flags->hash && flags->dot && num && set == 'X')
 		print += print_string("0X");
+	if (flags->hash && !flags->dot
+		&& (flags->zero || flags->just_num) && num && set == 'x')
+		print += print_string("0x");
+	else if (flags->hash && !flags->dot
+		&& (flags->zero || flags->just_num) && num && set == 'X')
+		print += print_string("0X");
+	return (print);
+}
+
+static int	hex_handler_plus(unsigned int num, char set, t_flags *flags)
+{
+	int	print;
+
+	print = hex_handler_hash(num, set, flags);
 	if (flags->dot_len > hex_len(num, *flags) && num && flags->minus
 		&& flags->hash && flags->dot)
 		flags->minus_len -= flags->dot_len + 2;

@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:31:09 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/04 06:35:36 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:48:28 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		print_string(char *str);
 t_flags	set_flags_init(void);
 int		address_len(unsigned long num);
 int		ft_printf(const char *format, ...);
+int		hex_len(unsigned int num, t_flags flags);
 int		print_char_handler(char c, t_flags flags);
 int		print_num_handler(int num, t_flags flags);
 int		num_handler_flags(int num, t_flags flags);

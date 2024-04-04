@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/04 07:29:33 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:48:53 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,21 @@ int	address_len(unsigned long num)
 	int	len;
 
 	len = 2;
+	while (num > 15)
+	{
+		num /= 16;
+		len++;
+	}
+	return (len);
+}
+
+int	hex_len(unsigned int num, t_flags flags)
+{
+	int	len;
+
+	if (!num && flags.dot)
+		return (0);
+	len = 1;
 	while (num > 15)
 	{
 		num /= 16;
