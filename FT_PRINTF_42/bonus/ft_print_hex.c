@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/05 11:00:30 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/05 11:11:00 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ static int	hex_handler_hash(unsigned int num, char set, t_flags *flags)
 
 	print = 0;
 	if ((flags->hash && !flags->dot && !flags->zero && !flags->just_num
-		&& num && set == 'x') || (flags->hash && !flags->dot
-		&& !flags->just_num && num && set == 'x'))
+			&& num && set == 'x') || (flags->hash && !flags->dot
+			&& !flags->just_num && num && set == 'x'))
 		print += print_string("0x");
 	else if ((flags->hash && !flags->dot && !flags->zero
-		&& !flags->just_num && num && set == 'X') ||(flags->hash &&
-		!flags->dot && !flags->just_num && num && set == 'X') )
+			&& !flags->just_num && num && set == 'X') || (flags->hash
+			&& !flags->dot && !flags->just_num && num && set == 'X'))
 		print += print_string("0X");
 	print += hex_handler_zero(num, *flags);
 	if (flags->hash && flags->dot && num && set == 'x')
