@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/05 07:29:45 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/05 07:45:37 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 static int	is_valid(const char *set)
 {
@@ -19,9 +19,7 @@ static int	is_valid(const char *set)
 	else if (ft_strchr(FLAGS, *set) || ft_isdigit(*set))
 	{
 		while (!ft_strchr(SPECIFIERS, *set))
-		{
 			set++;
-		}
 	}
 	if (ft_strchr(SPECIFIERS, *set))
 		return (1);
@@ -107,11 +105,10 @@ int	ft_printf(const char *format, ...)
 	t_flags	flags;
 	va_list	lstarg;
 
-	if (!format)
+	print = 0;
+	if (!format || write(1, format, 0) == -1)
 		return (-1);
-	if (write(1, format, 0) == -1)
-		return (-1);
-	(print = 0, va_start(lstarg, format));
+	va_start(lstarg, format);
 	while (*format)
 	{
 		if (*format == '%' && is_valid(format + 1))
