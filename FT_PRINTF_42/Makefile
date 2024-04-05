@@ -6,12 +6,11 @@
 #    By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/05 06:38:56 by abadouab          #+#    #+#              #
-#    Updated: 2024/04/05 07:43:01 by abadouab         ###   ########.fr        #
+#    Updated: 2024/04/05 07:48:08 by abadouab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libftprintf.a
-HEADER		=	ft_printf.h
 
 SRCS		=	mandatory/ft_printf.c \
 				mandatory/ft_printf_plus.c
@@ -29,6 +28,9 @@ FLGS		=	cc -Wall -Wextra -Werror
 
 OBJS		=	$(SRCS:.c=.o)
 OBJS_BONUS 	=	$(SRCS_BONUS:.c=.o)
+
+HEADER		=	mandatory/ft_printf.h
+HD_BONUS	=	bonus/ft_printf_bonus.h
 
 MYAR		=	MYLIB/libar.a
 MYLB		=	MYLIB
@@ -61,7 +63,7 @@ $(NAME): $(OBJS)
 	@cp $(MYAR) $(NAME)
 	@$(ARRC) $(NAME) $(OBJS)
 
-$(OBJS): %.o: %.c mandatory/$(HEADER) $(MYAR)
+$(OBJS): %.o: %.c $(HEADER) $(MYAR)
 	@$(FLGS) -c $< -I $(MYLB) -o $@
 	@printf $(GREEN)"."$(RESET)
 
@@ -69,7 +71,7 @@ bonus: start $(MYLB) $(OBJS_BONUS) finish
 	@cp $(MYAR) $(NAME)
 	@$(ARRC) $(NAME) $(OBJS_BONUS)
 
-$(OBJS_BONUS): %.o: %.c bonus/$(HEADER) $(MYAR)
+$(OBJS_BONUS): %.o: %.c $(HD_BONUS) $(MYAR)
 	@$(FLGS) -c $< -I $(MYLB) -o $@
 	@printf $(GREEN)"."$(RESET)
 
