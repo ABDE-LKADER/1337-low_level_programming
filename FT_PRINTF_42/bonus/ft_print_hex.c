@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/05 07:44:18 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/05 10:58:37 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ static int	hex_handler_hash(unsigned int num, char set, t_flags *flags)
 	int	print;
 
 	print = 0;
-	if (flags->hash && !flags->dot && !flags->zero
-		&& !flags->just_num && num && set == 'x')
+	if ((flags->hash && !flags->dot && !flags->zero && !flags->just_num
+		&& num && set == 'x') || (flags->hash && !flags->dot
+		&& !flags->just_num && num && set == 'x'))
 		print += print_string("0x");
-	else if (flags->hash && !flags->dot && !flags->zero
-		&& !flags->just_num && num && set == 'X')
+	else if ((flags->hash && !flags->dot && !flags->zero
+		&& !flags->just_num && num && set == 'X') ||(flags->hash &&
+		!flags->dot && !flags->just_num && num && set == 'X') )
 		print += print_string("0X");
 	print += hex_handler_zero(num, *flags);
 	if (flags->hash && flags->dot && num && set == 'x')
@@ -76,10 +78,10 @@ static int	hex_handler_hash(unsigned int num, char set, t_flags *flags)
 	else if (flags->hash && flags->dot && num && set == 'X')
 		print += print_string("0X");
 	if (flags->hash && !flags->dot
-		&& (flags->zero || flags->just_num) && num && set == 'x')
+		&& (flags->just_num) && num && set == 'x')
 		print += print_string("0x");
 	else if (flags->hash && !flags->dot
-		&& (flags->zero || flags->just_num) && num && set == 'X')
+		&& (flags->just_num) && num && set == 'X')
 		print += print_string("0X");
 	return (print);
 }
