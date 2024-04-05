@@ -1,19 +1,34 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/04/05 06:38:56 by abadouab          #+#    #+#              #
+#    Updated: 2024/04/05 07:31:56 by abadouab         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		=	libftprintf.a
 HEADER		=	ft_printf.h
 
-SRCS		=	ft_printf.c   \
-				ft_print_hex.c \
-				ft_print_char.c \
-				ft_print_flags.c \
-				ft_print_string.c \
-				ft_print_number.c  \
-				ft_print_address.c  \
-				ft_print_unsigned.c
+SRCS		=	mandatory/ft_printf.c \
+				mandatory/ft_printf_plus.c
+
+SRCS_BONUS	=	bonus/ft_printf.c   \
+				bonus/ft_print_hex.c \
+				bonus/ft_print_char.c \
+				bonus/ft_print_flags.c \
+				bonus/ft_print_string.c \
+				bonus/ft_print_number.c  \
+				bonus/ft_print_address.c  \
+				bonus/ft_print_unsigned.c
 
 FLGS		=	cc -Wall -Wextra -Werror
 
 OBJS		=	$(SRCS:.c=.o)
-OBJS_BONUS	=	$(SRCS:.c=.o)
+OBJS_BONUS 	=	$(SRCS_BONUS:.c=.o)
 
 MYAR		=	MYLIB/libar.a
 MYLB		=	MYLIB
@@ -26,8 +41,18 @@ YELOW 		=	"\033[1;33m"
 REDCL 		=	"\033[1;31m"
 RESET 		=	"\033[0m"
 
-all: $(MYLB) $(NAME)
-	@echo $(GREEN)Done !!$(RESET)
+all: start $(MYLB) $(NAME) finish 
+
+start:
+	@printf "\n"
+	@echo $(GREEN)"Starting build..."
+	@sleep 1
+	@printf "Loading [ "
+
+finish:
+	@echo $(GREEN) ] 100%$(RESET)
+	@echo $(GREEN)Project built.$(RESET)
+	@printf "\n"
 
 $(MYLB):
 	@make -C $(MYLB) --no-print-directory
@@ -36,23 +61,27 @@ $(NAME): $(OBJS)
 	@cp $(MYAR) $(NAME)
 	@$(ARRC) $(NAME) $(OBJS)
 
-bonus: $(MYLB) $(OBJS_BONUS)
+$(OBJS): %.o: %.c mandatory/$(HEADER) $(MYAR)
+	@$(FLGS) -c $< -I $(MYLB) -o $@
+	@printf $(GREEN)"."$(RESET)
+
+bonus: start $(MYLB) $(OBJS_BONUS) finish
 	@cp $(MYAR) $(NAME)
 	@$(ARRC) $(NAME) $(OBJS_BONUS)
-	@echo $(GREEN)Done !!$(RESET)
 
-%.o: %.c $(HEADER) $(MYAR)
-	@$(FLGS) -c $< -o $@
+$(OBJS_BONUS): %.o: %.c bonus/$(HEADER) $(MYAR)
+	@$(FLGS) -c $< -I $(MYLB) -o $@
+	@printf $(GREEN)"."$(RESET)
 
 clean:
 	@$(RM) $(OBJS) $(OBJS_BONUS)
-	@make clean -C MYLIB --no-print-directory
-	@echo $(YELOW)Done !!$(RESET)
+	@make clean -C $(MYLB) --no-print-directory
+	@echo $(YELOW)Cleaning up 🧹💫$(RESET)
 
 fclean: clean
 	@$(RM) $(NAME)
-	@make fclean -C MYLIB --no-print-directory
-	@echo $(REDCL)Done !!$(RESET)
+	@make fclean -C $(MYLB) --no-print-directory
+	@echo $(REDCL)Purging all files 🗑️$(RESET)
 
 re: fclean all
 

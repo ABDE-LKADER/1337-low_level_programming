@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/04 18:47:31 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/05 07:29:45 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,11 @@ int	ft_printf(const char *format, ...)
 	t_flags	flags;
 	va_list	lstarg;
 
-	print = 0;
 	if (!format)
 		return (-1);
-	va_start(lstarg, format);
+	if (write(1, format, 0) == -1)
+		return (-1);
+	(print = 0, va_start(lstarg, format));
 	while (*format)
 	{
 		if (*format == '%' && is_valid(format + 1))

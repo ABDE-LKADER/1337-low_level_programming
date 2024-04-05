@@ -6,14 +6,14 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:31:09 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/04 18:48:28 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/05 06:18:48 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 
-# include "MYLIB/mylib.h"
+# include "mylib.h"
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdio.h>
