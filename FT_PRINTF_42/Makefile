@@ -6,7 +6,7 @@
 #    By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/05 06:38:56 by abadouab          #+#    #+#              #
-#    Updated: 2024/04/05 07:49:10 by abadouab         ###   ########.fr        #
+#    Updated: 2024/04/06 08:49:20 by abadouab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ $(NAME): $(OBJS)
 	@$(ARRC) $(NAME) $(OBJS)
 
 $(OBJS): %.o: %.c $(HEADER) $(MYAR)
-	@$(FLGS) -c $< -I $(MYLB) -o $@
+	@$(FLGS) -c $< -o $@
 	@printf $(GREEN)"."$(RESET)
 
 bonus: start $(MYLB) $(OBJS_BONUS) finish
@@ -72,7 +72,7 @@ bonus: start $(MYLB) $(OBJS_BONUS) finish
 	@$(ARRC) $(NAME) $(OBJS_BONUS)
 
 $(OBJS_BONUS): %.o: %.c $(HD_BONUS) $(MYAR)
-	@$(FLGS) -c $< -I $(MYLB) -o $@
+	@$(FLGS) -c $< -o $@
 	@printf $(GREEN)"."$(RESET)
 
 clean:

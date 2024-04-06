@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 17:45:48 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/05 06:11:31 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/06 08:45:55 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdarg.h>
-# include <limits.h>
-# include <stdio.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

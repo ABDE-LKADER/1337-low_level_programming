@@ -6,18 +6,16 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:31:09 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/05 11:13:38 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/06 08:48:43 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_BONUS_H
 # define FT_PRINTF_BONUS_H
 
-# include "mylib.h"
+# include "../MYLIB/mylib.h"
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
-# include <limits.h>
 
 # define SPECIFIERS	"cspdiuxX%"
 # define NUMBERS	"0123456789"
