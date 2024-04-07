@@ -6,13 +6,13 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/05 11:13:44 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/07 10:51:46 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	print_hex(unsigned int num, char set, t_flags flags)
+static int	print_hex(unsigned int num, char set, t_flags flags)
 {
 	int		len;
 	char	*base;

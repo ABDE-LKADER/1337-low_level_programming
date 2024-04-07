@@ -6,7 +6,7 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/05 11:00:31 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/07 10:53:39 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	number_len(int num)
 	return (len);
 }
 
-int	print_num(int num, t_flags flags)
+static int	print_num(int num, t_flags flags)
 {
 	int				len;
 	unsigned int	number;
