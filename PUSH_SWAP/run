@@ -1,2 +1,0 @@
-#!/bin/bash
-python3 python_visualizer.py `ruby -e "puts (-2..5).to_a.shuffle.join(' ')"`
