@@ -6,13 +6,13 @@
 /*   By: abadouab <abadouab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:30 by abadouab          #+#    #+#             */
-/*   Updated: 2024/04/07 10:54:22 by abadouab         ###   ########.fr       */
+/*   Updated: 2024/04/17 07:37:41 by abadouab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-static int	print_address(unsigned long num, char set)
+static int	print_address(unsigned long num)
 {
 	int		len;
 	char	*base;
@@ -20,7 +20,7 @@ static int	print_address(unsigned long num, char set)
 	len = 0;
 	base = "0123456789abcdef";
 	if (num > 15)
-		len += print_address(num / 16, set);
+		len += print_address(num / 16);
 	len += print_char(base[num % 16]);
 	return (len);
 }
@@ -95,7 +95,7 @@ int	print_address_handler(void *ptr, t_flags flags)
 		while (flags.dot_len-- > 0)
 			print += print_char('0');
 	}
-	print += print_address((unsigned long)ptr, 'x');
+	print += print_address((unsigned long)ptr);
 	if (flags.minus)
 	{
 		while (flags.minus_len-- > 0)
